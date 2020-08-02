@@ -1,12 +1,16 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, ManyToOne} from "typeorm";
 import {OFFER_TYPE, OfferDetailedPrices, OfferIndicators} from "../../logic/helpers/Offer";
 import {OfferDetailedAttributes} from "../../logic/extractors/extractAttrs";
+import {LookoutRequest} from "./LookoutRequest";
 
 
 @Entity()
 export class Offer {
     @PrimaryGeneratedColumn()
     id: number;
+
+    @ManyToOne(type => LookoutRequest, req => req.offers)
+    lookoutRequest: LookoutRequest
 
     @Column()
     title: string;

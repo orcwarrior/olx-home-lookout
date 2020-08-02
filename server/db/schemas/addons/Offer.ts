@@ -24,4 +24,12 @@ RETURNS double precision AS $$
 $$ LANGUAGE sql STABLE;
 `);
 
+    const TODO = `
+SELECT LEAST(GREATEST(-0.9 * o."deviationAvgM2Price" + 10, 0.001), 30) * o.indicators_deal * 4 as rank_deal,
+o.indicators_comfort as rank_comfort
+FROM public."Offers" as o
+WHERE o."offerType" = 'RENT'
+ORDER BY rank_deal DESC
+LIMIT 120`;
+
 }) as SchemaExecutor;
