@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "HOME-LOOKOUT-Docker-PG",
+      "Group": "Servers",
+      "Port": 5432,
+      "Username": "admin",
+      "Host": "home-lookout-postgres",
+      "SSLMode": "prefer",
+      "MaintenanceDB": "postgres"
+    }
+  }
+}

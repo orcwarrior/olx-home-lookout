@@ -1,0 +1,33 @@
+{
+  "name": "olx-search-lookout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node server/logic/index.ts",
+    "dev": "ts-node-dev server/logic/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker": "npm run docker:pre && docker-compose up --build",
+    "docker:pre": "nodetouch ./local.env && nodetouch ./secret.env",
+    "docker:hasura": "npm run docker:pre && docker-compose up graphql-engine",
+    "docker:stop": "npm run docker:pre && docker-compose down",
+    "docker:clear-all": "docker-compose rm -f && docker-compose down --rmi all --volumes"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crawler": "^1.2.2",
+    "date-fns": "^2.15.0",
+    "jsdom": "^16.3.0",
+    "lodash": "^4.17.19",
+    "typeorm": "^0.2.25"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.21",
+    "@types/lodash": "^4.14.158",
+    "ts-node": "^8.10.2",
+    "ts-node-dev": "^1.0.0-pre.54",
+    "typescript": "^3.9.7",
+    "touch": "^3.1.0"
+  }
+}

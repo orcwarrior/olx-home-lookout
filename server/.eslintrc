@@ -1,0 +1,26 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "legacyDecotators": true
+    },
+    "requireConfigFile": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "../.eslintrc"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "settings": {},
+  "rules": {
+    "no-inner-declarations": "off"
+  }
+}

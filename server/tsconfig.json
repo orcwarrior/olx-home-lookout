@@ -1,0 +1,29 @@
+{
+  "module": "commonjs",
+  "esModuleInterop": true,
+  "allowSyntheticDefaultImports": true,
+  "target": "es6",
+  "noImplicitAny": true,
+  "moduleResolution": "node",
+  "sourceMap": true,
+  "outDir": "dist",
+  "listFiles": false,
+  "traceResolution": false,
+  "typeRoots": [
+    "node_modules/@types"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "downlevelIteration": true,
+    "paths": {
+      "@config/*": [
+        "config/*"
+      ]
+    },
+    "lib": [
+      "es2020.string"
+    ]
+  }
+}

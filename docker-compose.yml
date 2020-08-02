@@ -1,0 +1,111 @@
+version: '3.5'
+
+services:
+  home-lookout-postgres:
+    image: mdillon/postgis:11
+    restart: always
+    volumes:
+      - home_lookout_postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - home_lookout
+    env_file:
+      - .env
+      - local.env
+      - secret.env
+    environment:
+      POSTGRES_USER: ${POSTGRES__USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES__PASSWORD:-strongpwd}
+      POSTGRES_DB: ${POSTGRES__PG_DB:-postgres}
+      PGDATA: /data/postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  home-lookout-pgadmin:
+    image: dpage/pgadmin4
+    env_file:
+      - ".env"
+      - "secret.env"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN__DEFAULT_EMAIL:-admin@homelookout.pl}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN__DEFAULT_PASSWORD:-admin}
+    volumes:
+      - home_lookout_pgadmin:/root/.pgadmin
+      - ./volumes/pgadmin/servers.json:/pgadmin4/servers.json
+    ports:
+      - "${PGADMIN__PORT:-8010}:80"
+    networks:
+      - home_lookout
+    depends_on:
+      - home-lookout-postgres
+    restart: unless-stopped
+
+  graphql-engine:
+    image: hasura/graphql-engine:v1.3.0-beta.4.cli-migrations-v2
+    ports:
+      - "8080:8080"
+    depends_on:
+      - home-lookout-db-init-once #DK: requires at least one run to create and init database
+    restart: always
+    networks:
+      - home_lookout
+#    volumes:
+#      - ./hasura/migrations/:/hasura-migrations/
+#      - ./hasura/metadata/:/hasura-metadata/
+    env_file:
+      - .env
+      - local.env
+      - secret.env
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: ${POSTGRES__URL}
+#      HASURA_GRAPHQL_METADATA_DIR: "/hasura-migrations"
+      ## uncomment next line to set the admin secret key
+      # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+
+
+  home-lookout-db-init-once:
+    container_name: home-lookout-server
+    build: ./server
+    image: home-lookout/server
+    networks:
+      - home_lookout
+    env_file:
+      - .env
+      - local.env
+      - secret.env
+    environment:
+      - RUNTIME_ENVIROMENT=docker_compose
+    ports:
+      - "${SERVER__PORT:-9000}:${SERVER__PORT:-9000}"
+    command: npm run db:init:once
+    depends_on:
+      - home-lookout-postgres
+
+#  home-lookout-client:
+#    container_name: libigo-client
+#    build: ./client
+#    image: home-lookout/client
+#    networks:
+#      - home_lookout
+#    env_file:
+#      - .env
+#      - local.env
+#      - secret.env
+#    environment:
+#      - RUNTIME_ENVIROMENT=docker_compose
+#      - CLIENT_GRAPHQL_URL_CLIENT
+#    depends_on:
+#      - graphql-engine
+#    ports:
+#      - "80:${CLIENT_PORT:-5000}"
+
+networks:
+  home_lookout:
+    driver: bridge
+volumes:
+  home_lookout_postgres:
+  home_lookout_pgadmin:

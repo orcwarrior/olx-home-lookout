@@ -1,0 +1,33 @@
+- table:
+    schema: public
+    name: LookoutRequests
+- table:
+    schema: public
+    name: Offers
+  computed_fields:
+  - name: weight
+    definition:
+      function:
+        schema: public
+        name: offers_weight
+    comment: Get weight / significance of offer based on area & comfort indicator
+  - name: deviation_price_perM2
+    definition:
+      function:
+        schema: public
+        name: offers_prices_perm2_deviation
+    comment: ""
+  event_triggers:
+  - name: offer_created
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      num_retries: 5
+      interval_sec: 10
+      timeout_sec: 60
+    webhook: http://host.docker.internal:3000/events
+    headers:
+    - value: "yes"
+      name: custom
