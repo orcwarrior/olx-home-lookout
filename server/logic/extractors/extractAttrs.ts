@@ -48,7 +48,7 @@ function extractAttrsOLX($: CheerioAPI): [OfferDetailedAttributes, any] {
     );
     // console.log(`OLX.detailItems: `, detail);
     return [{
-        area: parseValue(detail.powierzchnia.replace(",", ".")),
+        area: parseValue(detail.powierzchnia?.replace(",", ".")),
         floor: parseValue(detail.poziom),
         furniture: (detail.umeblowane === "Tak"),
         rooms: parseValue(detail.liczba_pokoi),

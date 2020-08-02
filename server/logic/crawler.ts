@@ -4,7 +4,7 @@ import * as Crawler from "crawler";
 const crawler = new Crawler({
     // rateLimit: 200,
     // maxConnections: 6,
-    jQuery: true,
+    jQuery: true
 });
 
 let lastRateLimitedQueueInsert = 1;
@@ -16,7 +16,7 @@ function crawlerRateLimitedQueue(options) {
     const awaitMs = Math.max(lastRateLimitedQueueInsert + RATE_LIMIT_MS - nowTS, 0);
     lastRateLimitedQueueInsert = nowTS + awaitMs;
 
-    console.log("Rate limit by: ", {awaitMs, lastRateLimitedQueueInsert});
+    console.log("Rate limit by: ", awaitMs);
     if (awaitMs > 0) setTimeout(() => crawler.queue(options), awaitMs);
     else crawler.direct(options);
 }

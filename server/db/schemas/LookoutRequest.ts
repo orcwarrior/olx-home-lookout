@@ -7,6 +7,9 @@ export class LookoutRequest {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({default: "uuid_generate_v4()", unique: true})
+    hash: string;
+
     @Column()
     url: string;
 

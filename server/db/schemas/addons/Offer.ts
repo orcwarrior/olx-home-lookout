@@ -19,7 +19,7 @@ RETURNS double precision AS $$
     FROM (
         SELECT (offers_weight(off2, o.attrs_area, o.indicators_comfort)) as weight, off2."prices_perM2"
         FROM public."Offers" as off2
-        WHERE off2."offerType" = o."offerType") nested
+        WHERE off2."offerType" = o."offerType" AND off2.city = o.city) nested
     
 $$ LANGUAGE sql STABLE;
 `);

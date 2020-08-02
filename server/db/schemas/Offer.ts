@@ -21,7 +21,10 @@ export class Offer {
     createdAt: Date;
 
     @Column()
-    district: string;
+    city: string;
+
+    @Column({nullable: true})
+    district?: string;
 
     @Column(type => OfferDetailedPrices)
     prices: OfferDetailedPrices;

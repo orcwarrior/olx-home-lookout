@@ -16,14 +16,18 @@ function _rateEstateTypeComfort(type: ESTATE_TYPE) {
 }
 
 function decorateWithIndicators(offer: OfferDetailed): OfferDetailed {
+    const SENSIBLE_AREA_PER_ROOM = 16;
+    const areaPerRoom = offer.attrs.area / offer.attrs.rooms;
     const comfort = offer.descriptionRating +
         (offer.attrs.area) +
-        offer.attrs.rooms * 7 +
+        offer.attrs.rooms * 6 +
+        (SENSIBLE_AREA_PER_ROOM - areaPerRoom) +
         (offer.attrs.furniture ? 5 : -35)
         + _rateEstateTypeComfort(offer.attrs.estateType);
     const indicators = {
         comfort,
-        deal: (comfort/1.5) / offer.prices.perM2
+        areaPerRoom,
+        deal: (comfort / 1.5) / offer.prices.perM2
     };
     return {...offer, indicators};
 }

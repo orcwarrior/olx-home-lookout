@@ -10,7 +10,7 @@ function calculatePrices(offer: Offer, attrs: OfferDetailedAttributes, descripti
     const base = offer._priceBase, additional = attrs.bonusRent || 0;
 
     const {descriptionPricingSum, descriptionPricingsDetails} = extractDescriptionPricing(description);
-    console.log(`descriptionPricingsDetails: `, descriptionPricingsDetails);
+    // console.log(`descriptionPricingsDetails: `, descriptionPricingsDetails);
     return {
         base,
         additional,

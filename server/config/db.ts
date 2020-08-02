@@ -6,7 +6,7 @@ const {
     SERVER__DB_SCHEMA = "public",
     SERVER__DB_DROP = false,
     SERVER__DB_SEED = false,
-    SERVER__DB_INIT_ONCE = true,
+    SERVER__DB_INIT_ONCE = false,
     POSTGRES__PG_DB = "postgres",
     POSTGRES__USER = "admin",
     POSTGRES__PASSWORD = "strongpwd",

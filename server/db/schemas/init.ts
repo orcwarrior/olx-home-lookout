@@ -52,7 +52,7 @@ async function initSchemas() {
     if (db.dropDb) {
         const preparedAddons = await prepareFiles("./addons/");
         await Promise.all(preparedAddons.map(({initFn, model}) => {
-            console.trace(`Initing ${model} (addon) ...`);
+            console.log(`Initing ${model} (addon) ...`);
             return initFn(knexClient);
         }));
     }

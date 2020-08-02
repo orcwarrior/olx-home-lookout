@@ -9,7 +9,8 @@ type Offer = {
     mainImg: string,
     createdAt: Date,
     _priceBase: number,
-    district: string,
+    city: string,
+    district?: string,
     offerType: OFFER_TYPE
 }
 
@@ -39,6 +40,9 @@ class OfferIndicators {
 
     @Column({type: "float"})
     deal: number;
+
+    @Column({type: "float"})
+    areaPerRoom: number;
 }
 
 type OfferDetails = {

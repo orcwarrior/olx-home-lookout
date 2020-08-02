@@ -2,7 +2,7 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import {api} from "../config";
 
-import eventsRouter from "./events";
+import eventsRouter from "./events/events";
 
 const app = express();
 
