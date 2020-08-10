@@ -4,6 +4,7 @@ const OFFER_DESCRIPTION_RATINGS = {
     // Negative
     "remontu": -20,
     "kamienica": -5,
+    "kwatery|agancj[ai] prac|dla pracownik\w": -60,
 
     // Positive
     "remoncie": 7,

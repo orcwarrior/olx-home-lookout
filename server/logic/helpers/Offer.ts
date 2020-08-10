@@ -1,5 +1,6 @@
 import {Column} from "typeorm";
 import {OfferDetailedAttributes} from "../extractors/extractAttrs";
+import {LookoutRequest} from "../../db/schemas";
 
 
 type OFFER_TYPE = "RENT" | "PURCHASE" | "ROOM";
@@ -11,7 +12,8 @@ type Offer = {
     _priceBase: number,
     city: string,
     district?: string,
-    offerType: OFFER_TYPE
+    offerType: OFFER_TYPE,
+    lookoutRequestId: number
 }
 
 class OfferDetailedPrices {

@@ -9,7 +9,7 @@ import {
     updateLookoutOrdersProcessedCount
 } from "./scrapeAdsList.utils";
 
-const OFFERS_PARSE_CAP = 20;
+const OFFERS_PARSE_CAP = 500;
 
 async function parseOffersDetails(offers: Array<Offer>): Promise<OfferDetailed[]> {
     return Promise.all(offers.map((offer) => {
@@ -41,12 +41,12 @@ export default async function scrapeAdsList(lookout: LookoutRequest, previouslyP
 
                         const $: CheerioAPI = response.$;
                         const offers = $(".offer").toArray()
-                            .map(((element) => parseOffer(element, $)));
+                            .map(((element) => parseOffer(element, $, lookout)));
 
                         const finalOffers = offers
                             .filter(o => !previouslyParsed.some(prev => prev.url === o.url))
                             .filter(offerMatchLookoutParams(lookout))
-                            .map(offer => ({...offer, lookoutRequest: lookout.id}));
+
 
                         console.log(`offers collected: ${offers.length} - (uniq) --> ${finalOffers.length}  url: ${lookout.url}`);
 
@@ -54,10 +54,11 @@ export default async function scrapeAdsList(lookout: LookoutRequest, previouslyP
                         const allOffersParsed = previouslyParsed.length + detailedOffers.length;
                         console.log(`Parsed +${allOffersParsed} / ${OFFERS_PARSE_CAP} offers...`);
 
-                        const dataOverlapsWithDB = await offersOverlapsWithDB(detailedOffers);
-                        updateLookoutOrdersProcessedCount(lookout, detailedOffers.length);
+                        const isPageEmpty = !detailedOffers.length;
+                        const dataOverlapsWithDB = !isPageEmpty && await offersOverlapsWithDB(detailedOffers);
+                        await updateLookoutOrdersProcessedCount(lookout, detailedOffers.length);
 
-                        if (dataOverlapsWithDB || allOffersParsed > OFFERS_PARSE_CAP || !detailedOffers.length) {
+                        if (dataOverlapsWithDB || allOffersParsed > OFFERS_PARSE_CAP || isPageEmpty) {
                             resolve(detailedOffers);
                             await updateLookoutInitialLookoutFinished(lookout);
 

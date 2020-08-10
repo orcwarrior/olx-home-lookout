@@ -18,6 +18,7 @@ let scrappingFinished = false;
         return Promise.all(uniqOffers.map(offer => offerBuilder
             .insert()
             .into(Offer)
+        // @ts-ignore
             .values(offer)
             .execute()
             .catch(err => console.warn(err))
