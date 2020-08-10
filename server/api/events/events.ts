@@ -1,14 +1,14 @@
 import {Router} from "express";
 import {HasuraEvtPayload} from "./utils";
 import {INSERT_Offers} from "./Offers/insert";
-import {INSERT_LookoutRequest} from "./LookoutRequest/insert";
+import {INSERT_LookoutRequests} from "./LookoutRequests/insert";
 
 const router = Router();
 
 
 const handlers = {
     INSERT_Offers: INSERT_Offers,
-    INSERT_LookoutRequest: INSERT_LookoutRequest
+    INSERT_LookoutRequests: INSERT_LookoutRequests
 };
 
 

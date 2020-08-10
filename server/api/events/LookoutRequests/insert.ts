@@ -5,7 +5,7 @@ import scrapeAdsList from "../../../logic/scrapeAdsList";
 import {OfferDetailed} from "../../../logic/helpers/Offer";
 import {uniqBy} from "lodash";
 
-const INSERT_LookoutRequest = bufferedHandler(async (data: HandlerArgs<LookoutRequest>) => {
+const INSERT_LookoutRequests = bufferedHandler(async (data: HandlerArgs<LookoutRequest>) => {
     const offerBuilder = await getQueryBuilder<Offer>();
 
     const offers = await scrapeAdsList(data.new);
@@ -16,6 +16,7 @@ const INSERT_LookoutRequest = bufferedHandler(async (data: HandlerArgs<LookoutRe
     return Promise.all(uniqOffers.map(offer => offerBuilder
         .insert()
         .into(Offer)
+    // @ts-ignore
         .values(offer)
         .execute()
         .catch(err => console.warn(err))
@@ -23,4 +24,4 @@ const INSERT_LookoutRequest = bufferedHandler(async (data: HandlerArgs<LookoutRe
 
 });
 
-export {INSERT_LookoutRequest};
+export {INSERT_LookoutRequests};
