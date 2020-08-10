@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@contexts/*": ["./contexts/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@components/*": ["./components/*"],
+      "@generics/*": ["./components/generics/*"],
+      "@utils/*": ["./utils/*"],
+      "@assets/*": ["./public/assets/*"],
+      "@icons/*": ["./public/assets/icons/*"],
+      "@config*": ["./config"],
+      "@gql-queries/*": ["./gql-queries/*"],
+      "@content/*": ["./content/*"],
+      "@styles/*": ["./styles/*"]
+    }
+  }
+}

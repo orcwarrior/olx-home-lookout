@@ -1,0 +1,11 @@
+query testQuery {
+    Offers_connection{
+        edges{
+            node{
+                id
+                title
+                url
+            }
+        }
+    }
+}

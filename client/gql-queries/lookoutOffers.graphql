@@ -1,0 +1,35 @@
+query LookoutOffers($where: Offers_bool_exp) {
+    Offers_connection(where: $where, order_by: {deviationAvgM2Price: asc}) {
+        edges {
+            node {
+                id
+                url
+                title
+                mainImg
+                city
+                district
+                createdAt
+                offerType
+
+                indicators_comfort
+                indicators_deal
+                indicators_areaPerRoom
+
+                attrs_estateType
+                attrs_area
+                attrs_floor
+                attrs_rooms
+
+                prices_full
+                prices_perM2
+                prices_base
+                prices_descriptionPricingsDetails
+
+                description
+                descriptionRating
+                descriptionRatingsDetails
+                deviationAvgM2Price
+            }
+        }
+    }
+}

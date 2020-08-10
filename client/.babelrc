@@ -1,0 +1,65 @@
+{
+  "presets": [
+    [
+      "next/babel"
+    ]
+  ],
+  "plugins": [
+    "inline-react-svg",
+    "@babel/plugin-proposal-optional-chaining",
+    "@babel/plugin-syntax-top-level-await",
+    [
+      "babel-plugin-root-import",
+      {
+        "paths": [
+          {
+            "rootPathSuffix": "./hoc",
+            "rootPathPrefix": "@hoc/"
+          },
+          {
+            "rootPathSuffix": "./hooks",
+            "rootPathPrefix": "@hooks/"
+          },
+          {
+            "rootPathSuffix": "./contexts",
+            "rootPathPrefix": "@contexts/"
+          },
+          {
+            "rootPathSuffix": "./components",
+            "rootPathPrefix": "@components/"
+          },
+          {
+            "rootPathSuffix": "./components/generic",
+            "rootPathPrefix": "@generic/"
+          },
+          {
+            "rootPathSuffix": "./utils",
+            "rootPathPrefix": "@utils/"
+          },
+          {
+            "rootPathSuffix": "./public/assets",
+            "rootPathPrefix": "@assets/"
+          },
+          {
+            "rootPathSuffix": "./public/assets/icons",
+            "rootPathPrefix": "@icons/"
+          },
+          {
+            "rootPathSuffix": "./config",
+            "rootPathPrefix": "@config"
+          },
+          {
+            "rootPathSuffix": "./styles",
+            "rootPathPrefix": "@styles"
+          }
+        ]
+      }
+    ],
+    ["import", {
+        "libraryName": "antd",
+        "libraryDirectory": "lib",
+        "style": true
+      }
+    ]
+  ]
+}
