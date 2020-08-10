@@ -8,10 +8,10 @@ export class LookoutRequest {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToMany(type => Offer, req => req.lookoutRequest)
+    @OneToMany(type => Offer, req => req.id)
     offers: Offer[];
 
-    @Column({default: "uuid_generate_v4()", unique: true})
+    @Column({default: () => "gen_random_uuid()", unique: true})
     hash: string;
 
     @Column({unique: true})
@@ -21,10 +21,10 @@ export class LookoutRequest {
     email: string;
 
     @Column()
-    priceSignificance: string;
+    priceSignificance: number;
 
     @Column()
-    comfortSignificance: string;
+    comfortSignificance: number;
 
     @Column({default: 0})
     offersProcessed: number;
