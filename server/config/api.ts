@@ -1,6 +1,6 @@
 const {
     GENERAL__DOMAIN_NAME = "localhost",
-    CLIENT__PORT = "3000"
+    CLIENT__PORT = "4000"
 } = process.env;
 
 
