@@ -1,0 +1,1727 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: query_root
+    mutation: mutation_root
+    subscription: subscription_root
+}
+
+"An object with globally unique ID"
+interface Node {
+    "A globally unique identifier"
+    id: ID!
+}
+
+"columns and relationships of \"LookoutRequests\""
+type LookoutRequests implements Node {
+    "An array relationship"
+    Offers(
+        "distinct select on columns"
+        distinct_on: [Offers_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [Offers_order_by!],
+        "filter the rows returned"
+        where: Offers_bool_exp
+    ): [Offers!]!
+    "An aggregated array relationship"
+    Offers_aggregate(
+        "distinct select on columns"
+        distinct_on: [Offers_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [Offers_order_by!],
+        "filter the rows returned"
+        where: Offers_bool_exp
+    ): Offers_aggregate!
+    "An array relationship connection"
+    Offers_connection(
+        after: String,
+        before: String,
+        "distinct select on columns"
+        distinct_on: [Offers_select_column!],
+        first: Int,
+        last: Int,
+        "sort the rows by one or more columns"
+        order_by: [Offers_order_by!],
+        "filter the rows returned"
+        where: Offers_bool_exp
+    ): OffersConnection!
+    comfortSignificance: Int!
+    email: String!
+    hash: String!
+    id: ID!
+    initialLookoutFinished: Boolean!
+    lookingFor: String!
+    offersProcessed: Int!
+    priceSignificance: Int!
+    url: String!
+}
+
+"A Relay Connection object on \"LookoutRequests\""
+type LookoutRequestsConnection {
+    edges: [LookoutRequestsEdge!]!
+    pageInfo: PageInfo!
+}
+
+type LookoutRequestsEdge {
+    cursor: String!
+    node: LookoutRequests!
+}
+
+"aggregated selection of \"LookoutRequests\""
+type LookoutRequests_aggregate {
+    aggregate: LookoutRequests_aggregate_fields
+    nodes: [LookoutRequests!]!
+}
+
+"aggregate fields of \"LookoutRequests\""
+type LookoutRequests_aggregate_fields {
+    avg: LookoutRequests_avg_fields
+    count(columns: [LookoutRequests_select_column!], distinct: Boolean): Int
+    max: LookoutRequests_max_fields
+    min: LookoutRequests_min_fields
+    stddev: LookoutRequests_stddev_fields
+    stddev_pop: LookoutRequests_stddev_pop_fields
+    stddev_samp: LookoutRequests_stddev_samp_fields
+    sum: LookoutRequests_sum_fields
+    var_pop: LookoutRequests_var_pop_fields
+    var_samp: LookoutRequests_var_samp_fields
+    variance: LookoutRequests_variance_fields
+}
+
+"aggregate avg on columns"
+type LookoutRequests_avg_fields {
+    comfortSignificance: Float
+    id: Float
+    offersProcessed: Float
+    priceSignificance: Float
+}
+
+"aggregate max on columns"
+type LookoutRequests_max_fields {
+    comfortSignificance: Int
+    email: String
+    hash: String
+    id: Int
+    lookingFor: String
+    offersProcessed: Int
+    priceSignificance: Int
+    url: String
+}
+
+"aggregate min on columns"
+type LookoutRequests_min_fields {
+    comfortSignificance: Int
+    email: String
+    hash: String
+    id: Int
+    lookingFor: String
+    offersProcessed: Int
+    priceSignificance: Int
+    url: String
+}
+
+"response of any mutation on the table \"LookoutRequests\""
+type LookoutRequests_mutation_response {
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [LookoutRequests!]!
+}
+
+"aggregate stddev on columns"
+type LookoutRequests_stddev_fields {
+    comfortSignificance: Float
+    id: Float
+    offersProcessed: Float
+    priceSignificance: Float
+}
+
+"aggregate stddev_pop on columns"
+type LookoutRequests_stddev_pop_fields {
+    comfortSignificance: Float
+    id: Float
+    offersProcessed: Float
+    priceSignificance: Float
+}
+
+"aggregate stddev_samp on columns"
+type LookoutRequests_stddev_samp_fields {
+    comfortSignificance: Float
+    id: Float
+    offersProcessed: Float
+    priceSignificance: Float
+}
+
+"aggregate sum on columns"
+type LookoutRequests_sum_fields {
+    comfortSignificance: Int
+    id: Int
+    offersProcessed: Int
+    priceSignificance: Int
+}
+
+"aggregate var_pop on columns"
+type LookoutRequests_var_pop_fields {
+    comfortSignificance: Float
+    id: Float
+    offersProcessed: Float
+    priceSignificance: Float
+}
+
+"aggregate var_samp on columns"
+type LookoutRequests_var_samp_fields {
+    comfortSignificance: Float
+    id: Float
+    offersProcessed: Float
+    priceSignificance: Float
+}
+
+"aggregate variance on columns"
+type LookoutRequests_variance_fields {
+    comfortSignificance: Float
+    id: Float
+    offersProcessed: Float
+    priceSignificance: Float
+}
+
+"columns and relationships of \"Offers\""
+type Offers implements Node {
+    "An object relationship"
+    LookoutRequest: LookoutRequests!
+    attrs_area: float8!
+    attrs_bail: float8!
+    attrs_bonusRent: float8!
+    attrs_estateType: String!
+    attrs_floor: Int!
+    attrs_furniture: Boolean!
+    attrs_rooms: Int!
+    city: String!
+    createdAt: timestamp!
+    description: String!
+    descriptionRating: float8!
+    descriptionRatingsDetails(
+        "JSON select path"
+        path: String
+    ): jsonb
+    deviationAvgM2Price: float8
+    "A computed field, executes function \"offers_prices_perm2_deviation\""
+    deviation_price_perM2: float8
+    district: String
+    id: ID!
+    indicators_areaPerRoom: float8!
+    indicators_comfort: float8!
+    indicators_deal: float8!
+    lookoutRequestId: Int!
+    mainImg: String
+    offerType: String!
+    prices_additional: float8!
+    prices_base: float8!
+    prices_descriptionPricingSum: float8!
+    prices_descriptionPricingsDetails(
+        "JSON select path"
+        path: String
+    ): jsonb
+    prices_full: float8!
+    prices_perM2: float8!
+    rawAttrs(
+        "JSON select path"
+        path: String
+    ): jsonb
+    title: String!
+    url: String!
+    userNote: String
+    userReviewStatus: Offers_userreviewstatus_enum!
+    views: Int!
+    "A computed field, executes function \"offers_weight\""
+    weight(
+        "input parameters for function \"offers_weight\""
+        args: offers_weight_args!
+    ): float8
+}
+
+"A Relay Connection object on \"Offers\""
+type OffersConnection {
+    edges: [OffersEdge!]!
+    pageInfo: PageInfo!
+}
+
+type OffersEdge {
+    cursor: String!
+    node: Offers!
+}
+
+"aggregated selection of \"Offers\""
+type Offers_aggregate {
+    aggregate: Offers_aggregate_fields
+    nodes: [Offers!]!
+}
+
+"aggregate fields of \"Offers\""
+type Offers_aggregate_fields {
+    avg: Offers_avg_fields
+    count(columns: [Offers_select_column!], distinct: Boolean): Int
+    max: Offers_max_fields
+    min: Offers_min_fields
+    stddev: Offers_stddev_fields
+    stddev_pop: Offers_stddev_pop_fields
+    stddev_samp: Offers_stddev_samp_fields
+    sum: Offers_sum_fields
+    var_pop: Offers_var_pop_fields
+    var_samp: Offers_var_samp_fields
+    variance: Offers_variance_fields
+}
+
+"aggregate avg on columns"
+type Offers_avg_fields {
+    attrs_area: Float
+    attrs_bail: Float
+    attrs_bonusRent: Float
+    attrs_floor: Float
+    attrs_rooms: Float
+    descriptionRating: Float
+    deviationAvgM2Price: Float
+    id: Float
+    indicators_areaPerRoom: Float
+    indicators_comfort: Float
+    indicators_deal: Float
+    lookoutRequestId: Float
+    prices_additional: Float
+    prices_base: Float
+    prices_descriptionPricingSum: Float
+    prices_full: Float
+    prices_perM2: Float
+    views: Float
+}
+
+"aggregate max on columns"
+type Offers_max_fields {
+    attrs_area: float8
+    attrs_bail: float8
+    attrs_bonusRent: float8
+    attrs_estateType: String
+    attrs_floor: Int
+    attrs_rooms: Int
+    city: String
+    createdAt: timestamp
+    description: String
+    descriptionRating: float8
+    deviationAvgM2Price: float8
+    district: String
+    id: Int
+    indicators_areaPerRoom: float8
+    indicators_comfort: float8
+    indicators_deal: float8
+    lookoutRequestId: Int
+    mainImg: String
+    offerType: String
+    prices_additional: float8
+    prices_base: float8
+    prices_descriptionPricingSum: float8
+    prices_full: float8
+    prices_perM2: float8
+    title: String
+    url: String
+    userNote: String
+    views: Int
+}
+
+"aggregate min on columns"
+type Offers_min_fields {
+    attrs_area: float8
+    attrs_bail: float8
+    attrs_bonusRent: float8
+    attrs_estateType: String
+    attrs_floor: Int
+    attrs_rooms: Int
+    city: String
+    createdAt: timestamp
+    description: String
+    descriptionRating: float8
+    deviationAvgM2Price: float8
+    district: String
+    id: Int
+    indicators_areaPerRoom: float8
+    indicators_comfort: float8
+    indicators_deal: float8
+    lookoutRequestId: Int
+    mainImg: String
+    offerType: String
+    prices_additional: float8
+    prices_base: float8
+    prices_descriptionPricingSum: float8
+    prices_full: float8
+    prices_perM2: float8
+    title: String
+    url: String
+    userNote: String
+    views: Int
+}
+
+"response of any mutation on the table \"Offers\""
+type Offers_mutation_response {
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [Offers!]!
+}
+
+"aggregate stddev on columns"
+type Offers_stddev_fields {
+    attrs_area: Float
+    attrs_bail: Float
+    attrs_bonusRent: Float
+    attrs_floor: Float
+    attrs_rooms: Float
+    descriptionRating: Float
+    deviationAvgM2Price: Float
+    id: Float
+    indicators_areaPerRoom: Float
+    indicators_comfort: Float
+    indicators_deal: Float
+    lookoutRequestId: Float
+    prices_additional: Float
+    prices_base: Float
+    prices_descriptionPricingSum: Float
+    prices_full: Float
+    prices_perM2: Float
+    views: Float
+}
+
+"aggregate stddev_pop on columns"
+type Offers_stddev_pop_fields {
+    attrs_area: Float
+    attrs_bail: Float
+    attrs_bonusRent: Float
+    attrs_floor: Float
+    attrs_rooms: Float
+    descriptionRating: Float
+    deviationAvgM2Price: Float
+    id: Float
+    indicators_areaPerRoom: Float
+    indicators_comfort: Float
+    indicators_deal: Float
+    lookoutRequestId: Float
+    prices_additional: Float
+    prices_base: Float
+    prices_descriptionPricingSum: Float
+    prices_full: Float
+    prices_perM2: Float
+    views: Float
+}
+
+"aggregate stddev_samp on columns"
+type Offers_stddev_samp_fields {
+    attrs_area: Float
+    attrs_bail: Float
+    attrs_bonusRent: Float
+    attrs_floor: Float
+    attrs_rooms: Float
+    descriptionRating: Float
+    deviationAvgM2Price: Float
+    id: Float
+    indicators_areaPerRoom: Float
+    indicators_comfort: Float
+    indicators_deal: Float
+    lookoutRequestId: Float
+    prices_additional: Float
+    prices_base: Float
+    prices_descriptionPricingSum: Float
+    prices_full: Float
+    prices_perM2: Float
+    views: Float
+}
+
+"aggregate sum on columns"
+type Offers_sum_fields {
+    attrs_area: float8
+    attrs_bail: float8
+    attrs_bonusRent: float8
+    attrs_floor: Int
+    attrs_rooms: Int
+    descriptionRating: float8
+    deviationAvgM2Price: float8
+    id: Int
+    indicators_areaPerRoom: float8
+    indicators_comfort: float8
+    indicators_deal: float8
+    lookoutRequestId: Int
+    prices_additional: float8
+    prices_base: float8
+    prices_descriptionPricingSum: float8
+    prices_full: float8
+    prices_perM2: float8
+    views: Int
+}
+
+"aggregate var_pop on columns"
+type Offers_var_pop_fields {
+    attrs_area: Float
+    attrs_bail: Float
+    attrs_bonusRent: Float
+    attrs_floor: Float
+    attrs_rooms: Float
+    descriptionRating: Float
+    deviationAvgM2Price: Float
+    id: Float
+    indicators_areaPerRoom: Float
+    indicators_comfort: Float
+    indicators_deal: Float
+    lookoutRequestId: Float
+    prices_additional: Float
+    prices_base: Float
+    prices_descriptionPricingSum: Float
+    prices_full: Float
+    prices_perM2: Float
+    views: Float
+}
+
+"aggregate var_samp on columns"
+type Offers_var_samp_fields {
+    attrs_area: Float
+    attrs_bail: Float
+    attrs_bonusRent: Float
+    attrs_floor: Float
+    attrs_rooms: Float
+    descriptionRating: Float
+    deviationAvgM2Price: Float
+    id: Float
+    indicators_areaPerRoom: Float
+    indicators_comfort: Float
+    indicators_deal: Float
+    lookoutRequestId: Float
+    prices_additional: Float
+    prices_base: Float
+    prices_descriptionPricingSum: Float
+    prices_full: Float
+    prices_perM2: Float
+    views: Float
+}
+
+"aggregate variance on columns"
+type Offers_variance_fields {
+    attrs_area: Float
+    attrs_bail: Float
+    attrs_bonusRent: Float
+    attrs_floor: Float
+    attrs_rooms: Float
+    descriptionRating: Float
+    deviationAvgM2Price: Float
+    id: Float
+    indicators_areaPerRoom: Float
+    indicators_comfort: Float
+    indicators_deal: Float
+    lookoutRequestId: Float
+    prices_additional: Float
+    prices_base: Float
+    prices_descriptionPricingSum: Float
+    prices_full: Float
+    prices_perM2: Float
+    views: Float
+}
+
+type PageInfo {
+    endCursor: String!
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    startCursor: String!
+}
+
+"mutation root"
+type mutation_root {
+    "delete data from the table: \"LookoutRequests\""
+    delete_LookoutRequests(
+        "filter the rows which have to be deleted"
+        where: LookoutRequests_bool_exp!
+    ): LookoutRequests_mutation_response
+    "delete single row from the table: \"LookoutRequests\""
+    delete_LookoutRequests_by_pk(id: Int!): LookoutRequests
+    "delete data from the table: \"Offers\""
+    delete_Offers(
+        "filter the rows which have to be deleted"
+        where: Offers_bool_exp!
+    ): Offers_mutation_response
+    "delete single row from the table: \"Offers\""
+    delete_Offers_by_pk(id: Int!): Offers
+    "insert data into the table: \"LookoutRequests\""
+    insert_LookoutRequests(
+        "the rows to be inserted"
+        objects: [LookoutRequests_insert_input!]!,
+        "on conflict condition"
+        on_conflict: LookoutRequests_on_conflict
+    ): LookoutRequests_mutation_response
+    "insert a single row into the table: \"LookoutRequests\""
+    insert_LookoutRequests_one(
+        "the row to be inserted"
+        object: LookoutRequests_insert_input!,
+        "on conflict condition"
+        on_conflict: LookoutRequests_on_conflict
+    ): LookoutRequests
+    "insert data into the table: \"Offers\""
+    insert_Offers(
+        "the rows to be inserted"
+        objects: [Offers_insert_input!]!,
+        "on conflict condition"
+        on_conflict: Offers_on_conflict
+    ): Offers_mutation_response
+    "insert a single row into the table: \"Offers\""
+    insert_Offers_one(
+        "the row to be inserted"
+        object: Offers_insert_input!,
+        "on conflict condition"
+        on_conflict: Offers_on_conflict
+    ): Offers
+    "update data of the table: \"LookoutRequests\""
+    update_LookoutRequests(
+        "increments the integer columns with given value of the filtered values"
+        _inc: LookoutRequests_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: LookoutRequests_set_input,
+        "filter the rows which have to be updated"
+        where: LookoutRequests_bool_exp!
+    ): LookoutRequests_mutation_response
+    "update single row of the table: \"LookoutRequests\""
+    update_LookoutRequests_by_pk(
+        "increments the integer columns with given value of the filtered values"
+        _inc: LookoutRequests_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: LookoutRequests_set_input,
+        pk_columns: LookoutRequests_pk_columns_input!
+    ): LookoutRequests
+    "update data of the table: \"Offers\""
+    update_Offers(
+        "append existing jsonb value of filtered columns with new jsonb value"
+        _append: Offers_append_input,
+        "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+        _delete_at_path: Offers_delete_at_path_input,
+        "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+        _delete_elem: Offers_delete_elem_input,
+        "delete key/value pair or string element. key/value pairs are matched based on their key value"
+        _delete_key: Offers_delete_key_input,
+        "increments the integer columns with given value of the filtered values"
+        _inc: Offers_inc_input,
+        "prepend existing jsonb value of filtered columns with new jsonb value"
+        _prepend: Offers_prepend_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: Offers_set_input,
+        "filter the rows which have to be updated"
+        where: Offers_bool_exp!
+    ): Offers_mutation_response
+    "update single row of the table: \"Offers\""
+    update_Offers_by_pk(
+        "append existing jsonb value of filtered columns with new jsonb value"
+        _append: Offers_append_input,
+        "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+        _delete_at_path: Offers_delete_at_path_input,
+        "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+        _delete_elem: Offers_delete_elem_input,
+        "delete key/value pair or string element. key/value pairs are matched based on their key value"
+        _delete_key: Offers_delete_key_input,
+        "increments the integer columns with given value of the filtered values"
+        _inc: Offers_inc_input,
+        "prepend existing jsonb value of filtered columns with new jsonb value"
+        _prepend: Offers_prepend_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: Offers_set_input,
+        pk_columns: Offers_pk_columns_input!
+    ): Offers
+}
+
+"query root"
+type query_root {
+    "fetch data from the table: \"LookoutRequests\""
+    LookoutRequests_connection(
+        after: String,
+        before: String,
+        "distinct select on columns"
+        distinct_on: [LookoutRequests_select_column!],
+        first: Int,
+        last: Int,
+        "sort the rows by one or more columns"
+        order_by: [LookoutRequests_order_by!],
+        "filter the rows returned"
+        where: LookoutRequests_bool_exp
+    ): LookoutRequestsConnection!
+    "fetch data from the table: \"Offers\""
+    Offers_connection(
+        after: String,
+        before: String,
+        "distinct select on columns"
+        distinct_on: [Offers_select_column!],
+        first: Int,
+        last: Int,
+        "sort the rows by one or more columns"
+        order_by: [Offers_order_by!],
+        "filter the rows returned"
+        where: Offers_bool_exp
+    ): OffersConnection!
+    node(
+        "A globally unique id"
+        id: ID!
+    ): Node
+}
+
+"subscription root"
+type subscription_root {
+    "fetch data from the table: \"LookoutRequests\""
+    LookoutRequests_connection(
+        after: String,
+        before: String,
+        "distinct select on columns"
+        distinct_on: [LookoutRequests_select_column!],
+        first: Int,
+        last: Int,
+        "sort the rows by one or more columns"
+        order_by: [LookoutRequests_order_by!],
+        "filter the rows returned"
+        where: LookoutRequests_bool_exp
+    ): LookoutRequestsConnection!
+    "fetch data from the table: \"Offers\""
+    Offers_connection(
+        after: String,
+        before: String,
+        "distinct select on columns"
+        distinct_on: [Offers_select_column!],
+        first: Int,
+        last: Int,
+        "sort the rows by one or more columns"
+        order_by: [Offers_order_by!],
+        "filter the rows returned"
+        where: Offers_bool_exp
+    ): OffersConnection!
+    node(
+        "A globally unique id"
+        id: ID!
+    ): Node
+}
+
+"unique or primary key constraints on table \"LookoutRequests\""
+enum LookoutRequests_constraint {
+    "unique or primary key constraint"
+    PK_0bdb5180221b1f595c02e20fa4d
+    "unique or primary key constraint"
+    UQ_0a431db91462c3ebdbd9d795c1a
+    "unique or primary key constraint"
+    UQ_4663d0988ecddec3dd93b62f3ea
+    "unique or primary key constraint"
+    UQ_47cc606fdba26e598c7a2a8a10d
+}
+
+"select columns of table \"LookoutRequests\""
+enum LookoutRequests_select_column {
+    "column name"
+    comfortSignificance
+    "column name"
+    email
+    "column name"
+    hash
+    "column name"
+    id
+    "column name"
+    initialLookoutFinished
+    "column name"
+    lookingFor
+    "column name"
+    offersProcessed
+    "column name"
+    priceSignificance
+    "column name"
+    url
+}
+
+"update columns of table \"LookoutRequests\""
+enum LookoutRequests_update_column {
+    "column name"
+    comfortSignificance
+    "column name"
+    email
+    "column name"
+    hash
+    "column name"
+    id
+    "column name"
+    initialLookoutFinished
+    "column name"
+    lookingFor
+    "column name"
+    offersProcessed
+    "column name"
+    priceSignificance
+    "column name"
+    url
+}
+
+"unique or primary key constraints on table \"Offers\""
+enum Offers_constraint {
+    "unique or primary key constraint"
+    PK_e3bb6a7420e9589888fb72d0e43
+    "unique or primary key constraint"
+    UQ_7699d56320469c6d5ab8bd9c71c
+}
+
+"select columns of table \"Offers\""
+enum Offers_select_column {
+    "column name"
+    attrs_area
+    "column name"
+    attrs_bail
+    "column name"
+    attrs_bonusRent
+    "column name"
+    attrs_estateType
+    "column name"
+    attrs_floor
+    "column name"
+    attrs_furniture
+    "column name"
+    attrs_rooms
+    "column name"
+    city
+    "column name"
+    createdAt
+    "column name"
+    description
+    "column name"
+    descriptionRating
+    "column name"
+    descriptionRatingsDetails
+    "column name"
+    deviationAvgM2Price
+    "column name"
+    district
+    "column name"
+    id
+    "column name"
+    indicators_areaPerRoom
+    "column name"
+    indicators_comfort
+    "column name"
+    indicators_deal
+    "column name"
+    lookoutRequestId
+    "column name"
+    mainImg
+    "column name"
+    offerType
+    "column name"
+    prices_additional
+    "column name"
+    prices_base
+    "column name"
+    prices_descriptionPricingSum
+    "column name"
+    prices_descriptionPricingsDetails
+    "column name"
+    prices_full
+    "column name"
+    prices_perM2
+    "column name"
+    rawAttrs
+    "column name"
+    title
+    "column name"
+    url
+    "column name"
+    userNote
+    "column name"
+    userReviewStatus
+    "column name"
+    views
+}
+
+"update columns of table \"Offers\""
+enum Offers_update_column {
+    "column name"
+    attrs_area
+    "column name"
+    attrs_bail
+    "column name"
+    attrs_bonusRent
+    "column name"
+    attrs_estateType
+    "column name"
+    attrs_floor
+    "column name"
+    attrs_furniture
+    "column name"
+    attrs_rooms
+    "column name"
+    city
+    "column name"
+    createdAt
+    "column name"
+    description
+    "column name"
+    descriptionRating
+    "column name"
+    descriptionRatingsDetails
+    "column name"
+    deviationAvgM2Price
+    "column name"
+    district
+    "column name"
+    id
+    "column name"
+    indicators_areaPerRoom
+    "column name"
+    indicators_comfort
+    "column name"
+    indicators_deal
+    "column name"
+    lookoutRequestId
+    "column name"
+    mainImg
+    "column name"
+    offerType
+    "column name"
+    prices_additional
+    "column name"
+    prices_base
+    "column name"
+    prices_descriptionPricingSum
+    "column name"
+    prices_descriptionPricingsDetails
+    "column name"
+    prices_full
+    "column name"
+    prices_perM2
+    "column name"
+    rawAttrs
+    "column name"
+    title
+    "column name"
+    url
+    "column name"
+    userNote
+    "column name"
+    userReviewStatus
+    "column name"
+    views
+}
+
+"column ordering options"
+enum order_by {
+    "in the ascending order, nulls last"
+    asc
+    "in the ascending order, nulls first"
+    asc_nulls_first
+    "in the ascending order, nulls last"
+    asc_nulls_last
+    "in the descending order, nulls first"
+    desc
+    "in the descending order, nulls first"
+    desc_nulls_first
+    "in the descending order, nulls last"
+    desc_nulls_last
+}
+
+"expression to compare columns of type Boolean. All fields are combined with logical 'AND'."
+input Boolean_comparison_exp {
+    _eq: Boolean
+    _gt: Boolean
+    _gte: Boolean
+    _in: [Boolean!]
+    _is_null: Boolean
+    _lt: Boolean
+    _lte: Boolean
+    _neq: Boolean
+    _nin: [Boolean!]
+}
+
+"expression to compare columns of type Int. All fields are combined with logical 'AND'."
+input Int_comparison_exp {
+    _eq: Int
+    _gt: Int
+    _gte: Int
+    _in: [Int!]
+    _is_null: Boolean
+    _lt: Int
+    _lte: Int
+    _neq: Int
+    _nin: [Int!]
+}
+
+"order by aggregate values of table \"LookoutRequests\""
+input LookoutRequests_aggregate_order_by {
+    avg: LookoutRequests_avg_order_by
+    count: order_by
+    max: LookoutRequests_max_order_by
+    min: LookoutRequests_min_order_by
+    stddev: LookoutRequests_stddev_order_by
+    stddev_pop: LookoutRequests_stddev_pop_order_by
+    stddev_samp: LookoutRequests_stddev_samp_order_by
+    sum: LookoutRequests_sum_order_by
+    var_pop: LookoutRequests_var_pop_order_by
+    var_samp: LookoutRequests_var_samp_order_by
+    variance: LookoutRequests_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"LookoutRequests\""
+input LookoutRequests_arr_rel_insert_input {
+    data: [LookoutRequests_insert_input!]!
+    on_conflict: LookoutRequests_on_conflict
+}
+
+"order by avg() on columns of table \"LookoutRequests\""
+input LookoutRequests_avg_order_by {
+    comfortSignificance: order_by
+    id: order_by
+    offersProcessed: order_by
+    priceSignificance: order_by
+}
+
+"Boolean expression to filter rows from the table \"LookoutRequests\". All fields are combined with a logical 'AND'."
+input LookoutRequests_bool_exp {
+    Offers: Offers_bool_exp
+    _and: [LookoutRequests_bool_exp]
+    _not: LookoutRequests_bool_exp
+    _or: [LookoutRequests_bool_exp]
+    comfortSignificance: Int_comparison_exp
+    email: String_comparison_exp
+    hash: String_comparison_exp
+    id: Int_comparison_exp
+    initialLookoutFinished: Boolean_comparison_exp
+    lookingFor: String_comparison_exp
+    offersProcessed: Int_comparison_exp
+    priceSignificance: Int_comparison_exp
+    url: String_comparison_exp
+}
+
+"input type for incrementing integer column in table \"LookoutRequests\""
+input LookoutRequests_inc_input {
+    comfortSignificance: Int
+    id: Int
+    offersProcessed: Int
+    priceSignificance: Int
+}
+
+"input type for inserting data into table \"LookoutRequests\""
+input LookoutRequests_insert_input {
+    Offers: Offers_arr_rel_insert_input
+    comfortSignificance: Int
+    email: String
+    hash: String
+    id: Int
+    initialLookoutFinished: Boolean
+    lookingFor: String
+    offersProcessed: Int
+    priceSignificance: Int
+    url: String
+}
+
+"order by max() on columns of table \"LookoutRequests\""
+input LookoutRequests_max_order_by {
+    comfortSignificance: order_by
+    email: order_by
+    hash: order_by
+    id: order_by
+    lookingFor: order_by
+    offersProcessed: order_by
+    priceSignificance: order_by
+    url: order_by
+}
+
+"order by min() on columns of table \"LookoutRequests\""
+input LookoutRequests_min_order_by {
+    comfortSignificance: order_by
+    email: order_by
+    hash: order_by
+    id: order_by
+    lookingFor: order_by
+    offersProcessed: order_by
+    priceSignificance: order_by
+    url: order_by
+}
+
+"input type for inserting object relation for remote table \"LookoutRequests\""
+input LookoutRequests_obj_rel_insert_input {
+    data: LookoutRequests_insert_input!
+    on_conflict: LookoutRequests_on_conflict
+}
+
+"on conflict condition type for table \"LookoutRequests\""
+input LookoutRequests_on_conflict {
+    constraint: LookoutRequests_constraint!
+    update_columns: [LookoutRequests_update_column!]!
+    where: LookoutRequests_bool_exp
+}
+
+"ordering options when selecting data from \"LookoutRequests\""
+input LookoutRequests_order_by {
+    Offers_aggregate: Offers_aggregate_order_by
+    comfortSignificance: order_by
+    email: order_by
+    hash: order_by
+    id: order_by
+    initialLookoutFinished: order_by
+    lookingFor: order_by
+    offersProcessed: order_by
+    priceSignificance: order_by
+    url: order_by
+}
+
+"primary key columns input for table: \"LookoutRequests\""
+input LookoutRequests_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"LookoutRequests\""
+input LookoutRequests_set_input {
+    comfortSignificance: Int
+    email: String
+    hash: String
+    id: Int
+    initialLookoutFinished: Boolean
+    lookingFor: String
+    offersProcessed: Int
+    priceSignificance: Int
+    url: String
+}
+
+"order by stddev() on columns of table \"LookoutRequests\""
+input LookoutRequests_stddev_order_by {
+    comfortSignificance: order_by
+    id: order_by
+    offersProcessed: order_by
+    priceSignificance: order_by
+}
+
+"order by stddev_pop() on columns of table \"LookoutRequests\""
+input LookoutRequests_stddev_pop_order_by {
+    comfortSignificance: order_by
+    id: order_by
+    offersProcessed: order_by
+    priceSignificance: order_by
+}
+
+"order by stddev_samp() on columns of table \"LookoutRequests\""
+input LookoutRequests_stddev_samp_order_by {
+    comfortSignificance: order_by
+    id: order_by
+    offersProcessed: order_by
+    priceSignificance: order_by
+}
+
+"order by sum() on columns of table \"LookoutRequests\""
+input LookoutRequests_sum_order_by {
+    comfortSignificance: order_by
+    id: order_by
+    offersProcessed: order_by
+    priceSignificance: order_by
+}
+
+"order by var_pop() on columns of table \"LookoutRequests\""
+input LookoutRequests_var_pop_order_by {
+    comfortSignificance: order_by
+    id: order_by
+    offersProcessed: order_by
+    priceSignificance: order_by
+}
+
+"order by var_samp() on columns of table \"LookoutRequests\""
+input LookoutRequests_var_samp_order_by {
+    comfortSignificance: order_by
+    id: order_by
+    offersProcessed: order_by
+    priceSignificance: order_by
+}
+
+"order by variance() on columns of table \"LookoutRequests\""
+input LookoutRequests_variance_order_by {
+    comfortSignificance: order_by
+    id: order_by
+    offersProcessed: order_by
+    priceSignificance: order_by
+}
+
+"order by aggregate values of table \"Offers\""
+input Offers_aggregate_order_by {
+    avg: Offers_avg_order_by
+    count: order_by
+    max: Offers_max_order_by
+    min: Offers_min_order_by
+    stddev: Offers_stddev_order_by
+    stddev_pop: Offers_stddev_pop_order_by
+    stddev_samp: Offers_stddev_samp_order_by
+    sum: Offers_sum_order_by
+    var_pop: Offers_var_pop_order_by
+    var_samp: Offers_var_samp_order_by
+    variance: Offers_variance_order_by
+}
+
+"append existing jsonb value of filtered columns with new jsonb value"
+input Offers_append_input {
+    descriptionRatingsDetails: jsonb
+    prices_descriptionPricingsDetails: jsonb
+    rawAttrs: jsonb
+}
+
+"input type for inserting array relation for remote table \"Offers\""
+input Offers_arr_rel_insert_input {
+    data: [Offers_insert_input!]!
+    on_conflict: Offers_on_conflict
+}
+
+"order by avg() on columns of table \"Offers\""
+input Offers_avg_order_by {
+    attrs_area: order_by
+    attrs_bail: order_by
+    attrs_bonusRent: order_by
+    attrs_floor: order_by
+    attrs_rooms: order_by
+    descriptionRating: order_by
+    deviationAvgM2Price: order_by
+    id: order_by
+    indicators_areaPerRoom: order_by
+    indicators_comfort: order_by
+    indicators_deal: order_by
+    lookoutRequestId: order_by
+    prices_additional: order_by
+    prices_base: order_by
+    prices_descriptionPricingSum: order_by
+    prices_full: order_by
+    prices_perM2: order_by
+    views: order_by
+}
+
+"Boolean expression to filter rows from the table \"Offers\". All fields are combined with a logical 'AND'."
+input Offers_bool_exp {
+    LookoutRequest: LookoutRequests_bool_exp
+    _and: [Offers_bool_exp]
+    _not: Offers_bool_exp
+    _or: [Offers_bool_exp]
+    attrs_area: float8_comparison_exp
+    attrs_bail: float8_comparison_exp
+    attrs_bonusRent: float8_comparison_exp
+    attrs_estateType: String_comparison_exp
+    attrs_floor: Int_comparison_exp
+    attrs_furniture: Boolean_comparison_exp
+    attrs_rooms: Int_comparison_exp
+    city: String_comparison_exp
+    createdAt: timestamp_comparison_exp
+    description: String_comparison_exp
+    descriptionRating: float8_comparison_exp
+    descriptionRatingsDetails: jsonb_comparison_exp
+    deviationAvgM2Price: float8_comparison_exp
+    district: String_comparison_exp
+    id: Int_comparison_exp
+    indicators_areaPerRoom: float8_comparison_exp
+    indicators_comfort: float8_comparison_exp
+    indicators_deal: float8_comparison_exp
+    lookoutRequestId: Int_comparison_exp
+    mainImg: String_comparison_exp
+    offerType: String_comparison_exp
+    prices_additional: float8_comparison_exp
+    prices_base: float8_comparison_exp
+    prices_descriptionPricingSum: float8_comparison_exp
+    prices_descriptionPricingsDetails: jsonb_comparison_exp
+    prices_full: float8_comparison_exp
+    prices_perM2: float8_comparison_exp
+    rawAttrs: jsonb_comparison_exp
+    title: String_comparison_exp
+    url: String_comparison_exp
+    userNote: String_comparison_exp
+    userReviewStatus: Offers_userreviewstatus_enum_comparison_exp
+    views: Int_comparison_exp
+}
+
+"delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+input Offers_delete_at_path_input {
+    descriptionRatingsDetails: [String]
+    prices_descriptionPricingsDetails: [String]
+    rawAttrs: [String]
+}
+
+"delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+input Offers_delete_elem_input {
+    descriptionRatingsDetails: Int
+    prices_descriptionPricingsDetails: Int
+    rawAttrs: Int
+}
+
+"delete key/value pair or string element. key/value pairs are matched based on their key value"
+input Offers_delete_key_input {
+    descriptionRatingsDetails: String
+    prices_descriptionPricingsDetails: String
+    rawAttrs: String
+}
+
+"input type for incrementing integer column in table \"Offers\""
+input Offers_inc_input {
+    attrs_area: float8
+    attrs_bail: float8
+    attrs_bonusRent: float8
+    attrs_floor: Int
+    attrs_rooms: Int
+    descriptionRating: float8
+    deviationAvgM2Price: float8
+    id: Int
+    indicators_areaPerRoom: float8
+    indicators_comfort: float8
+    indicators_deal: float8
+    lookoutRequestId: Int
+    prices_additional: float8
+    prices_base: float8
+    prices_descriptionPricingSum: float8
+    prices_full: float8
+    prices_perM2: float8
+    views: Int
+}
+
+"input type for inserting data into table \"Offers\""
+input Offers_insert_input {
+    LookoutRequest: LookoutRequests_obj_rel_insert_input
+    attrs_area: float8
+    attrs_bail: float8
+    attrs_bonusRent: float8
+    attrs_estateType: String
+    attrs_floor: Int
+    attrs_furniture: Boolean
+    attrs_rooms: Int
+    city: String
+    createdAt: timestamp
+    description: String
+    descriptionRating: float8
+    descriptionRatingsDetails: jsonb
+    deviationAvgM2Price: float8
+    district: String
+    id: Int
+    indicators_areaPerRoom: float8
+    indicators_comfort: float8
+    indicators_deal: float8
+    lookoutRequestId: Int
+    mainImg: String
+    offerType: String
+    prices_additional: float8
+    prices_base: float8
+    prices_descriptionPricingSum: float8
+    prices_descriptionPricingsDetails: jsonb
+    prices_full: float8
+    prices_perM2: float8
+    rawAttrs: jsonb
+    title: String
+    url: String
+    userNote: String
+    userReviewStatus: Offers_userreviewstatus_enum
+    views: Int
+}
+
+"order by max() on columns of table \"Offers\""
+input Offers_max_order_by {
+    attrs_area: order_by
+    attrs_bail: order_by
+    attrs_bonusRent: order_by
+    attrs_estateType: order_by
+    attrs_floor: order_by
+    attrs_rooms: order_by
+    city: order_by
+    createdAt: order_by
+    description: order_by
+    descriptionRating: order_by
+    deviationAvgM2Price: order_by
+    district: order_by
+    id: order_by
+    indicators_areaPerRoom: order_by
+    indicators_comfort: order_by
+    indicators_deal: order_by
+    lookoutRequestId: order_by
+    mainImg: order_by
+    offerType: order_by
+    prices_additional: order_by
+    prices_base: order_by
+    prices_descriptionPricingSum: order_by
+    prices_full: order_by
+    prices_perM2: order_by
+    title: order_by
+    url: order_by
+    userNote: order_by
+    views: order_by
+}
+
+"order by min() on columns of table \"Offers\""
+input Offers_min_order_by {
+    attrs_area: order_by
+    attrs_bail: order_by
+    attrs_bonusRent: order_by
+    attrs_estateType: order_by
+    attrs_floor: order_by
+    attrs_rooms: order_by
+    city: order_by
+    createdAt: order_by
+    description: order_by
+    descriptionRating: order_by
+    deviationAvgM2Price: order_by
+    district: order_by
+    id: order_by
+    indicators_areaPerRoom: order_by
+    indicators_comfort: order_by
+    indicators_deal: order_by
+    lookoutRequestId: order_by
+    mainImg: order_by
+    offerType: order_by
+    prices_additional: order_by
+    prices_base: order_by
+    prices_descriptionPricingSum: order_by
+    prices_full: order_by
+    prices_perM2: order_by
+    title: order_by
+    url: order_by
+    userNote: order_by
+    views: order_by
+}
+
+"input type for inserting object relation for remote table \"Offers\""
+input Offers_obj_rel_insert_input {
+    data: Offers_insert_input!
+    on_conflict: Offers_on_conflict
+}
+
+"on conflict condition type for table \"Offers\""
+input Offers_on_conflict {
+    constraint: Offers_constraint!
+    update_columns: [Offers_update_column!]!
+    where: Offers_bool_exp
+}
+
+"ordering options when selecting data from \"Offers\""
+input Offers_order_by {
+    LookoutRequest: LookoutRequests_order_by
+    attrs_area: order_by
+    attrs_bail: order_by
+    attrs_bonusRent: order_by
+    attrs_estateType: order_by
+    attrs_floor: order_by
+    attrs_furniture: order_by
+    attrs_rooms: order_by
+    city: order_by
+    createdAt: order_by
+    description: order_by
+    descriptionRating: order_by
+    descriptionRatingsDetails: order_by
+    deviationAvgM2Price: order_by
+    district: order_by
+    id: order_by
+    indicators_areaPerRoom: order_by
+    indicators_comfort: order_by
+    indicators_deal: order_by
+    lookoutRequestId: order_by
+    mainImg: order_by
+    offerType: order_by
+    prices_additional: order_by
+    prices_base: order_by
+    prices_descriptionPricingSum: order_by
+    prices_descriptionPricingsDetails: order_by
+    prices_full: order_by
+    prices_perM2: order_by
+    rawAttrs: order_by
+    title: order_by
+    url: order_by
+    userNote: order_by
+    userReviewStatus: order_by
+    views: order_by
+}
+
+"primary key columns input for table: \"Offers\""
+input Offers_pk_columns_input {
+    id: Int!
+}
+
+"prepend existing jsonb value of filtered columns with new jsonb value"
+input Offers_prepend_input {
+    descriptionRatingsDetails: jsonb
+    prices_descriptionPricingsDetails: jsonb
+    rawAttrs: jsonb
+}
+
+"input type for updating data in table \"Offers\""
+input Offers_set_input {
+    attrs_area: float8
+    attrs_bail: float8
+    attrs_bonusRent: float8
+    attrs_estateType: String
+    attrs_floor: Int
+    attrs_furniture: Boolean
+    attrs_rooms: Int
+    city: String
+    createdAt: timestamp
+    description: String
+    descriptionRating: float8
+    descriptionRatingsDetails: jsonb
+    deviationAvgM2Price: float8
+    district: String
+    id: Int
+    indicators_areaPerRoom: float8
+    indicators_comfort: float8
+    indicators_deal: float8
+    lookoutRequestId: Int
+    mainImg: String
+    offerType: String
+    prices_additional: float8
+    prices_base: float8
+    prices_descriptionPricingSum: float8
+    prices_descriptionPricingsDetails: jsonb
+    prices_full: float8
+    prices_perM2: float8
+    rawAttrs: jsonb
+    title: String
+    url: String
+    userNote: String
+    userReviewStatus: Offers_userreviewstatus_enum
+    views: Int
+}
+
+"order by stddev() on columns of table \"Offers\""
+input Offers_stddev_order_by {
+    attrs_area: order_by
+    attrs_bail: order_by
+    attrs_bonusRent: order_by
+    attrs_floor: order_by
+    attrs_rooms: order_by
+    descriptionRating: order_by
+    deviationAvgM2Price: order_by
+    id: order_by
+    indicators_areaPerRoom: order_by
+    indicators_comfort: order_by
+    indicators_deal: order_by
+    lookoutRequestId: order_by
+    prices_additional: order_by
+    prices_base: order_by
+    prices_descriptionPricingSum: order_by
+    prices_full: order_by
+    prices_perM2: order_by
+    views: order_by
+}
+
+"order by stddev_pop() on columns of table \"Offers\""
+input Offers_stddev_pop_order_by {
+    attrs_area: order_by
+    attrs_bail: order_by
+    attrs_bonusRent: order_by
+    attrs_floor: order_by
+    attrs_rooms: order_by
+    descriptionRating: order_by
+    deviationAvgM2Price: order_by
+    id: order_by
+    indicators_areaPerRoom: order_by
+    indicators_comfort: order_by
+    indicators_deal: order_by
+    lookoutRequestId: order_by
+    prices_additional: order_by
+    prices_base: order_by
+    prices_descriptionPricingSum: order_by
+    prices_full: order_by
+    prices_perM2: order_by
+    views: order_by
+}
+
+"order by stddev_samp() on columns of table \"Offers\""
+input Offers_stddev_samp_order_by {
+    attrs_area: order_by
+    attrs_bail: order_by
+    attrs_bonusRent: order_by
+    attrs_floor: order_by
+    attrs_rooms: order_by
+    descriptionRating: order_by
+    deviationAvgM2Price: order_by
+    id: order_by
+    indicators_areaPerRoom: order_by
+    indicators_comfort: order_by
+    indicators_deal: order_by
+    lookoutRequestId: order_by
+    prices_additional: order_by
+    prices_base: order_by
+    prices_descriptionPricingSum: order_by
+    prices_full: order_by
+    prices_perM2: order_by
+    views: order_by
+}
+
+"order by sum() on columns of table \"Offers\""
+input Offers_sum_order_by {
+    attrs_area: order_by
+    attrs_bail: order_by
+    attrs_bonusRent: order_by
+    attrs_floor: order_by
+    attrs_rooms: order_by
+    descriptionRating: order_by
+    deviationAvgM2Price: order_by
+    id: order_by
+    indicators_areaPerRoom: order_by
+    indicators_comfort: order_by
+    indicators_deal: order_by
+    lookoutRequestId: order_by
+    prices_additional: order_by
+    prices_base: order_by
+    prices_descriptionPricingSum: order_by
+    prices_full: order_by
+    prices_perM2: order_by
+    views: order_by
+}
+
+"expression to compare columns of type Offers_userreviewstatus_enum. All fields are combined with logical 'AND'."
+input Offers_userreviewstatus_enum_comparison_exp {
+    _eq: Offers_userreviewstatus_enum
+    _gt: Offers_userreviewstatus_enum
+    _gte: Offers_userreviewstatus_enum
+    _in: [Offers_userreviewstatus_enum!]
+    _is_null: Boolean
+    _lt: Offers_userreviewstatus_enum
+    _lte: Offers_userreviewstatus_enum
+    _neq: Offers_userreviewstatus_enum
+    _nin: [Offers_userreviewstatus_enum!]
+}
+
+"order by var_pop() on columns of table \"Offers\""
+input Offers_var_pop_order_by {
+    attrs_area: order_by
+    attrs_bail: order_by
+    attrs_bonusRent: order_by
+    attrs_floor: order_by
+    attrs_rooms: order_by
+    descriptionRating: order_by
+    deviationAvgM2Price: order_by
+    id: order_by
+    indicators_areaPerRoom: order_by
+    indicators_comfort: order_by
+    indicators_deal: order_by
+    lookoutRequestId: order_by
+    prices_additional: order_by
+    prices_base: order_by
+    prices_descriptionPricingSum: order_by
+    prices_full: order_by
+    prices_perM2: order_by
+    views: order_by
+}
+
+"order by var_samp() on columns of table \"Offers\""
+input Offers_var_samp_order_by {
+    attrs_area: order_by
+    attrs_bail: order_by
+    attrs_bonusRent: order_by
+    attrs_floor: order_by
+    attrs_rooms: order_by
+    descriptionRating: order_by
+    deviationAvgM2Price: order_by
+    id: order_by
+    indicators_areaPerRoom: order_by
+    indicators_comfort: order_by
+    indicators_deal: order_by
+    lookoutRequestId: order_by
+    prices_additional: order_by
+    prices_base: order_by
+    prices_descriptionPricingSum: order_by
+    prices_full: order_by
+    prices_perM2: order_by
+    views: order_by
+}
+
+"order by variance() on columns of table \"Offers\""
+input Offers_variance_order_by {
+    attrs_area: order_by
+    attrs_bail: order_by
+    attrs_bonusRent: order_by
+    attrs_floor: order_by
+    attrs_rooms: order_by
+    descriptionRating: order_by
+    deviationAvgM2Price: order_by
+    id: order_by
+    indicators_areaPerRoom: order_by
+    indicators_comfort: order_by
+    indicators_deal: order_by
+    lookoutRequestId: order_by
+    prices_additional: order_by
+    prices_base: order_by
+    prices_descriptionPricingSum: order_by
+    prices_full: order_by
+    prices_perM2: order_by
+    views: order_by
+}
+
+"expression to compare columns of type String. All fields are combined with logical 'AND'."
+input String_comparison_exp {
+    _eq: String
+    _gt: String
+    _gte: String
+    _ilike: String
+    _in: [String!]
+    _is_null: Boolean
+    _like: String
+    _lt: String
+    _lte: String
+    _neq: String
+    _nilike: String
+    _nin: [String!]
+    _nlike: String
+    _nsimilar: String
+    _similar: String
+}
+
+"expression to compare columns of type float8. All fields are combined with logical 'AND'."
+input float8_comparison_exp {
+    _eq: float8
+    _gt: float8
+    _gte: float8
+    _in: [float8!]
+    _is_null: Boolean
+    _lt: float8
+    _lte: float8
+    _neq: float8
+    _nin: [float8!]
+}
+
+"expression to compare columns of type jsonb. All fields are combined with logical 'AND'."
+input jsonb_comparison_exp {
+    "is the column contained in the given json value"
+    _contained_in: jsonb
+    "does the column contain the given json value at the top level"
+    _contains: jsonb
+    _eq: jsonb
+    _gt: jsonb
+    _gte: jsonb
+    "does the string exist as a top-level key in the column"
+    _has_key: String
+    "do all of these strings exist as top-level keys in the column"
+    _has_keys_all: [String!]
+    "do any of these strings exist as top-level keys in the column"
+    _has_keys_any: [String!]
+    _in: [jsonb!]
+    _is_null: Boolean
+    _lt: jsonb
+    _lte: jsonb
+    _neq: jsonb
+    _nin: [jsonb!]
+}
+
+input offers_weight_args {
+    base_area: float8
+    base_comfort: float8
+}
+
+"expression to compare columns of type timestamp. All fields are combined with logical 'AND'."
+input timestamp_comparison_exp {
+    _eq: timestamp
+    _gt: timestamp
+    _gte: timestamp
+    _in: [timestamp!]
+    _is_null: Boolean
+    _lt: timestamp
+    _lte: timestamp
+    _neq: timestamp
+    _nin: [timestamp!]
+}
+
+
+scalar Offers_userreviewstatus_enum
+
+scalar float8
+
+scalar jsonb
+
+scalar timestamp

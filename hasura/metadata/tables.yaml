@@ -1,9 +1,32 @@
 - table:
     schema: public
     name: LookoutRequests
+  array_relationships:
+  - name: Offers
+    using:
+      foreign_key_constraint_on:
+        column: lookoutRequestId
+        table:
+          schema: public
+          name: Offers
+  event_triggers:
+  - name: lookout_created
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      num_retries: 5
+      interval_sec: 10
+      timeout_sec: 60
+    webhook: http://host.docker.internal:4000/events
 - table:
     schema: public
     name: Offers
+  object_relationships:
+  - name: LookoutRequest
+    using:
+      foreign_key_constraint_on: lookoutRequestId
   computed_fields:
   - name: weight
     definition:
@@ -20,14 +43,14 @@
   event_triggers:
   - name: offer_created
     definition:
-      enable_manual: false
+      enable_manual: true
       insert:
         columns: '*'
     retry_conf:
       num_retries: 5
       interval_sec: 10
       timeout_sec: 60
-    webhook: http://host.docker.internal:3000/events
+    webhook: http://host.docker.internal:4000/events
     headers:
     - value: "yes"
       name: custom
