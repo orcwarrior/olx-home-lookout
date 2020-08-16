@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback } from "react";
 import {
   Accordion,
   AccordionPanel,
@@ -7,29 +7,56 @@ import {
   Heading,
   Paragraph,
   Text,
+  Button
 } from 'grommet'
+import * as Color from "color";
 
 import { Clear, Currency, Favorite, Lounge, Task } from 'grommet-icons'
 import { CardTopGallery } from "@components/Offer/OfferCard/CardTopGallery";
+import { useMutation } from "@apollo/react-hooks";
+import MUTATE_OFFER from "@gql-queries/actOnOffer.graphql"
 
+global.Buffer = global.Buffer || require('buffer').Buffer;
 
-const _OfferCard = (offer) => {
+if (typeof btoa === 'undefined') {
+  global.btoa = function (str) {
+    return new Buffer(str, 'binary').toString('base64');
+  };
+}
+
+if (typeof atob === 'undefined') {
+  global.atob = function (b64Encoded) {
+    return new Buffer(b64Encoded, 'base64').toString('binary');
+  };
+}
+
+const OfferCard = (offer) => {
 
 
   const {
+    id,
     title, url, district, city, description,
     indicators_comfort, indicators_deal, descriptionRating,
+    userReviewStatus, logic
   } = offer;
-  const {
-    favoriteColor, rejectedColor,
-    toggleLike, toggleReject
-  } = offer.logic;
+  const [_, __, ___, dbId] = JSON.parse(atob(id));
+  // console.log({deviationAvgM2Price, percentageM2PriceDeviation, prices_perM2})
+  const [changeOffer] = useMutation(MUTATE_OFFER)
+  const favoriteColor = (userReviewStatus === "BOOKMARKED") ? "accent-1" : "white";
+  const rejectedColor = (userReviewStatus === "REJECTED") ? "dark-3" : "white";
 
+  function actOnOffer(action) {
+
+    return () => {
+      if (userReviewStatus === action) action = "NONE";
+      return changeOffer({variables: {id: dbId, userReviewStatus: action}})
+    }
+  }
 
   return <Box align="center" justify="center" pad="small" background={{"color": "light-1", "opacity": "weak"}}
               round="medium">
 
-    <CardTopGallery {...offer} />
+    <CardTopGallery {...offer} logic={logic}/>
 
     <Box align="stretch" justify="start" direction="column" fill={true} flex="shrink"
          pad="small">
@@ -40,8 +67,8 @@ const _OfferCard = (offer) => {
           </Anchor>
         </Heading>
         <Box align="center" justify="center" direction="row" gap="medium" pad="small">
-          <Favorite/>
-          <Clear/>
+          <Button icon={<Favorite color={favoriteColor}/>} type="button" onClick={actOnOffer("BOOKMARKED")}/>
+          <Button icon={<Clear color={rejectedColor}/>} type="button" onClick={actOnOffer("REJECTED")}/>
         </Box>
       </Box>
       <Box align="center" justify="between" direction="row" pad="small" gap="xsmall">
@@ -82,6 +109,5 @@ const _OfferCard = (offer) => {
   </Box>;
 }
 
-const OfferCard = withOfferLogic(_OfferCard)
 
 export { OfferCard }

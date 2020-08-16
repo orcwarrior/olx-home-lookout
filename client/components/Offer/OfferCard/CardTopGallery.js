@@ -14,7 +14,6 @@ function calcPercDeviation({prices_perM2, deviationAvgM2Price}) {
   return [deviation, deviationTxt];
 }
 
-const METER_MAX = 25;
 const STYLE_TXT_SHADOW = {textShadow: "2px 2px 6px rgba(0,0,0,0.3)"}
 const STYLE_TXT_SHADOW_STRONG = {textShadow: "1px 1px 3px rgba(0,0,0,0.6)"}
 const STYLE_MIRRORED_METER = {
@@ -64,8 +63,12 @@ const CardTopGallery = (offer) => {
     attrs_rooms, attrs_area, deviationAvgM2Price,
     prices_full, prices_perM2
   } = offer;
+  const {
+    createdAgo, galleryImgs,
+    meterPriceDevProps, meterTxtColor, meterTxtPriceDeviation,
+    display_priceM2
+  } = offer.logic;
 
-  const {global: {colors: themeColors}} = useContext(ThemeContext);
 
   const mainImg = _mainImg || "/assets/no-photo.png"
   const createdAt = Date.parse(createdAtStr);
@@ -94,7 +97,7 @@ const CardTopGallery = (offer) => {
       </Box>
       <Box align="center" justify="center" direction="row" gap="xsmall" pad={{"horizontal": "small"}}>
         <Text size="small" textAlign="start" style={STYLE_TXT_SHADOW_STRONG}>
-          {createdAt && `${formatDistanceToNow(createdAt)} ago`}
+          {createdAgo}
         </Text>
       </Box>
     </Box>
@@ -110,22 +113,19 @@ const CardTopGallery = (offer) => {
 
           </Text>
           <Text textAlign="end" size="large" color="white" style={STYLE_TXT_SHADOW}>
-            {Math.round(prices_perM2)}zł/m²
+            {display_priceM2}zł/m²
           </Text>
         </Box>
         <Box align="center" justify="center" flex="shrink">
           <Stack fill={false} anchor="center">
             <Box align="stretch" justify="center" pad="xsmall" fill direction="column" gap="xsmall">
               <Meter type="circle" background="active" round
-                     size="xsmall" thickness="small" {...decorateMeter({
-                percentageM2PriceDeviation,
-                themeColors
-              })}/>
+                     size="xsmall" thickness="small" {...meterPriceDevProps}/>
             </Box>
             <Box align="center" justify="center" direction="column" gap="medium" margin={{"bottom": "xsmall"}}>
               <Text textAlign="center" size="large" weight="bold" style={STYLE_TXT_SHADOW}
-                    color={getMeterColor({themeColors, percentageM2PriceDeviation})}>
-                {percentageM2PriceDeviationTxt}%
+                    color={meterTxtColor}>
+                {meterTxtPriceDeviation}%
               </Text>
             </Box>
           </Stack>
