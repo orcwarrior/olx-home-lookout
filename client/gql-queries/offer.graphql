@@ -1,0 +1,40 @@
+query LookoutOffers($id: Int! ) {
+    Offers_connection(where: {id: {_eq: $id}}) {
+        edges {
+            node {
+                __typename
+                id
+                url
+                title
+                mainImg
+                gallery
+                city
+                district
+                createdAt
+                offerType
+
+                indicators_comfort
+                indicators_deal
+                indicators_areaPerRoom
+
+                attrs_estateType
+                attrs_area
+                attrs_floor
+                attrs_rooms
+
+                prices_full
+                prices_perM2
+                prices_base
+                prices_descriptionPricingsDetails
+
+                description
+                descriptionRating
+                descriptionRatingsDetails
+                deviationAvgM2Price
+
+                userReviewStatus
+                userNotes
+            }
+        }
+    }
+}
