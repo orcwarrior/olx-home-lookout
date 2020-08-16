@@ -11,7 +11,7 @@ function parseOffer(el: CheerioElement, $: CheerioAPI, lookout: LookoutRequest):
     const sub$ = (selector) => $(selector, el);
     const title = sub$("a > strong").text();
     const _priceBase = parseFloat(sub$(".price > strong").text().replace(/zł| /gi, ""));
-    const urlNormalized = sub$("td[valign=top] a").attr("href").replace(/\??#.+$/, "");
+    const urlNormalized = sub$("td[valign=top] a").attr("href").replace(/\??#.+$/, "").replace("?","");
     const [city, district] = sub$("[data-icon=location-filled]").parent().text().split(",");
     return {
         title,
