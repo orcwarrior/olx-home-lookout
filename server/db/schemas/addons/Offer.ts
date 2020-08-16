@@ -12,7 +12,7 @@ RETURNS double precision AS $$
 $$ LANGUAGE sql STABLE;
 `);
 
-    return knex.schema.raw(`
+    await knex.schema.raw(`
 CREATE FUNCTION offers_prices_perM2_deviation(o "Offers")
 RETURNS double precision AS $$
   SELECT o."prices_perM2" - SUM(nested.weight * nested."prices_perM2") / SUM(nested.weight)
@@ -22,6 +22,25 @@ RETURNS double precision AS $$
         WHERE off2."offerType" = o."offerType" AND off2.city = o.city) nested
     
 $$ LANGUAGE sql STABLE;
+`);
+    return knex.schema.raw(`
+CREATE OR REPLACE FUNCTION offers_rank(o "Offers")
+    RETURNS double precision AS $$
+DECLARE 
+    lookout "LookoutRequests";
+    rank double precision;
+BEGIN
+    SELECT INTO lookout * FROM "LookoutRequests" WHERE id = o."lookoutRequestId";
+    RAISE LOG 'offer.lookout = %', lookout;
+    EXECUTE 'SELECT (LEAST(GREATEST(-0.9 * $1."deviationAvgM2Price" + 10, 0.001), 30) * $1.indicators_deal * 4) * $2."priceSignificance" 
+      + ($1.indicators_comfort * $2."comfortSignificance")'
+      USING o, lookout
+      INTO rank;
+    RAISE LOG 'offer.rank = %', rank;
+    RETURN rank;
+    
+END;
+$$ LANGUAGE plpgsql STABLE;
 `);
 
     const TODO = `

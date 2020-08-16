@@ -52,6 +52,9 @@ export class Offer {
     @Column()
     views: number;
 
+    @Column({type: "float", nullable: true})
+    rank: number;
+
     @Column({type: "jsonb", nullable: true})
     rawAttrs: any;
 
