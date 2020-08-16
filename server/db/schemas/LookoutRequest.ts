@@ -33,6 +33,9 @@ export class LookoutRequest {
     @Column({default: 0})
     offersProcessed: number;
 
+    @Column({default: () => "now()"})
+    createdAt: Date;
+
     @Column({default: false})
     initialLookoutFinished: boolean;
 

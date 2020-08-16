@@ -51,7 +51,7 @@ function extractAttrsOLX($: CheerioAPI): [OfferDetailedAttributes, any] {
         area: parseValue(detail.powierzchnia?.replace(",", ".")),
         floor: parseValue(detail.poziom),
         furniture: (detail.umeblowane === "Tak"),
-        rooms: parseValue(detail.liczba_pokoi),
+        rooms: parseValue(detail.liczba_pokoi) || 1,
         estateType: _getEstateType(detail),
         bonusRent: parseValue(detail.czynsz_dodatkowo),
         bail: parseValue(detail.kaucja)
@@ -75,7 +75,7 @@ function extractAttrsOtoDom($: CheerioAPI): [OfferDetailedAttributes, any] {
         area: parseValue(detail.powierzchnia?.replace(",", ".") || "0"),
         floor: parseValue(detail.pietro),
         furniture: (detail.stan_wykonczenia === "do zamieszkania"),
-        rooms: parseValue(detail.liczba_pokoi),
+        rooms: parseValue(detail.liczba_pokoi) || 1,
         estateType: _getEstateType(detail),
         bonusRent: parseValue(detail.czynsz_dodatkowo),
         bail: parseValue(detail.kaucja)

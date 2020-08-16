@@ -14,7 +14,7 @@ const handlers = {
 
 router.post("/events", async (req, res) => {
     const payload: HasuraEvtPayload = req.body;
-    console.log(`payload: `, payload);
+    // console.log(`payload: `, payload);
     // const row = payload.event.data.new || payload.event.data.old;
     const handlerKey = `${payload.event.op}_${payload.table.name}`;
     const hasEvtHandler = !!handlers[handlerKey];

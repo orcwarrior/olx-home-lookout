@@ -1,18 +1,17 @@
 import {Offer} from "../../../db/schemas";
-import {getQueryBuilder} from "../../../db/typeOrmInstance";
 import {bufferedHandler, HandlerArgs} from "../utils";
+import {recalculateOfferComputedFields} from "@db/logic/recalculateOfferComputedFields";
+import {recalculateLookoutAvgRank} from "@db/logic/recalculateLookoutAvgRank";
+import {debounce} from "lodash";
 
+
+const smartRecalculateLookoutAvgRank = debounce(recalculateLookoutAvgRank, 2000);
 const INSERT_Offers = bufferedHandler(async (data: HandlerArgs<Offer>) => {
-    const queryBuilder = await getQueryBuilder<Offer>();
-    queryBuilder
-        .update(Offer)
-        .set({
-            deviationAvgM2Price: () => `(SELECT offers_prices_perm2_deviation(o) FROM "Offers" o WHERE o.id = ${data.new.id})`
-        })
-        .where("id = :id", {id: data.new.id})
-        .execute()
-        .catch(err => console.error(`Event handler error: ${err.toString()}`));
-    return {};
+
+    const offerId = data?.new?.id;
+    const recalcOffer = await recalculateOfferComputedFields(offerId);
+    smartRecalculateLookoutAvgRank(data?.new?.lookoutRequestId);
+    return recalcOffer;
 
 });
 

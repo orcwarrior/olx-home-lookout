@@ -2,6 +2,8 @@ import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, RelationI
 import {OFFER_TYPE, OfferDetailedPrices, OfferIndicators} from "../../logic/helpers/Offer";
 import {OfferDetailedAttributes} from "../../logic/extractors/extractAttrs";
 import {LookoutRequest} from "./LookoutRequest";
+import {LookoutReport} from "@db/schemas/LookoutReport";
+import {GeographyType} from "@db/schemas/utils";
 
 enum USER_REVIEW_STATUS {
     NONE = "NONE",
@@ -21,6 +23,16 @@ export class Offer {
     @Column()
     @RelationId((offer: Offer) => offer.lookoutRequest)
     lookoutRequestId: number;
+
+
+    @ManyToOne(type => LookoutReport, report => report.id)
+    @JoinColumn({name: "fromReportId"})
+    fromReport: LookoutReport;
+
+    @Column({nullable: true})
+    @RelationId((offer: Offer) => offer.fromReport)
+    fromReportId: number;
+
 
     @Column()
     title: string;

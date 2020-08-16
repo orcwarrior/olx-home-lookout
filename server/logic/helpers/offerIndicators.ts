@@ -17,7 +17,7 @@ function _rateEstateTypeComfort(type: ESTATE_TYPE) {
 
 function decorateWithIndicators(offer: OfferDetailed): OfferDetailed {
     const SENSIBLE_AREA_PER_ROOM = 16;
-    const areaPerRoom = offer.attrs.area / offer.attrs.rooms;
+    const areaPerRoom = offer.attrs.area / (offer.attrs.rooms || 1);
     const comfort = offer.descriptionRating +
         (offer.attrs.area) +
         offer.attrs.rooms * 6 +
