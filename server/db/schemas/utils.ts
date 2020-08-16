@@ -33,6 +33,7 @@ export class Geography {
     toPostgisGeography: () => Knex.Raw = () => {
         return postgis_st.geomFromText(`Point(${this.coordinates.join(" ")})`, this.srid);
     };
+    toTypeOrm = () => ({type: this.type, coordinates: this.coordinates});
 }
 
 export function ComputedField(table: string, sql: (sqlParams: { table, propertyKey, type }) => string, type?: ColumnType) {
