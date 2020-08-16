@@ -1,0 +1,2007 @@
+{
+  "counters": {
+    "u_content_image": 19,
+    "u_content_text": 36,
+    "u_content_divider": 6,
+    "u_content_button": 8,
+    "u_column": 40,
+    "u_row": 21,
+    "u_content_menu": 1,
+    "u_content_html": 3
+  },
+  "body": {
+    "rows": [
+      {
+        "cells": [
+          1,
+          1,
+          1
+        ],
+        "columns": [
+          {
+            "contents": [],
+            "values": {
+              "_meta": {
+                "htmlID": "u_column_1",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_image_5",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://i.imgur.com/k6Yf7fT.png",
+                    "width": 692,
+                    "height": 266
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_15",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_16",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "#000000",
+          "columnsBackgroundColor": "rgba(255,255,255,0)",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": false,
+            "cover": false
+          },
+          "padding": "0px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_1",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true,
+          "_override": {
+            "mobile": {
+              "hideMobile": true,
+              "noStackMobile": false
+            }
+          }
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "0px",
+                  "_meta": {
+                    "htmlID": "u_content_image_8",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://i.imgur.com/k6Yf7fT.png",
+                    "width": 692,
+                    "height": 266
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": true,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "htmlID": "u_column_19",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "rgba(255,255,255,0)",
+          "columnsBackgroundColor": "rgba(255,255,255,0)",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": false,
+            "cover": false
+          },
+          "padding": "0px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_14",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true,
+          "_override": {
+            "mobile": {
+              "hideMobile": false,
+              "noStackMobile": false
+            }
+          }
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "15px 30px",
+                  "_meta": {
+                    "htmlID": "u_content_text_17",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ecf0f1",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"font-size: 14px; line-height: 140%; text-align: center;\"><em>Hey! Just dropping by to show you some new </em>🔥<em> offers for your perfect home. Take a while and enjoy all the work we're doing for you!&nbsp; </em>🧐</p>"
+                }
+              },
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_text_26",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ecf0f1",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"font-size: 14px; line-height: 140%; text-align: center;\"><strong><span style=\"font-size: 22px; line-height: 30.8px; font-family: Montserrat, sans-serif;\">Last 3 hours report</span></strong></p>"
+                }
+              },
+              {
+                "type": "divider",
+                "values": {
+                  "containerPadding": "1px 10px 5px",
+                  "_meta": {
+                    "htmlID": "u_content_divider_2",
+                    "htmlClassNames": "u_content_divider"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "width": "100%",
+                  "border": {
+                    "borderTopWidth": "1px",
+                    "borderTopStyle": "solid",
+                    "borderTopColor": "#CCC"
+                  },
+                  "textAlign": "center",
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "htmlID": "u_column_3",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "#111111",
+          "columnsBackgroundColor": "rgba(255,255,255,0)",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": false,
+            "cover": false
+          },
+          "padding": "0px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_3",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true
+        }
+      },
+      {
+        "cells": [
+          2,
+          1,
+          2,
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_text_19",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ced4d9",
+                  "textAlign": "left",
+                  "lineHeight": "100%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"text-align: right; font-size: 14px; line-height: 100%;\"><span style=\"font-size: 14px; line-height: 14px;\">Time range<br /><br />Offers</span></p>"
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "htmlID": "u_column_6",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_text_23",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ffffff",
+                  "textAlign": "left",
+                  "lineHeight": "100%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"text-align: left; font-size: 14px; line-height: 100%;\"><span style=\"font-size: 14px; line-height: 14px;\">3h<br /><br />15</span></p>"
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_22",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_text_21",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ced4d9",
+                  "textAlign": "left",
+                  "lineHeight": "100%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"text-align: right; font-size: 14px; line-height: 100%;\">Rank<span style=\"font-size: 10px; line-height: 10px;\"> (min / avg / max)<br /></span><br />Avg. rank trend</p>"
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_23",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_text_24",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ffffff",
+                  "textAlign": "left",
+                  "lineHeight": "100%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"text-align: left; font-size: 14px; line-height: 100%;\"><span style=\"font-size: 14px; line-height: 14px;\"><span style=\"font-size: 10px; line-height: 10px;\">23 / 45.1 / 123<br /><br /></span>-5%</span></p>"
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_24",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "#111111",
+          "columnsBackgroundColor": "rgba(255,255,255,0)",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": false,
+            "cover": false
+          },
+          "padding": "0px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_5",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true,
+          "_override": {
+            "mobile": {
+              "noStackMobile": true
+            }
+          }
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "divider",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_divider_6",
+                    "htmlClassNames": "u_content_divider"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "width": "100%",
+                  "border": {
+                    "borderTopWidth": "1px",
+                    "borderTopStyle": "solid",
+                    "borderTopColor": "#BBBBBB"
+                  },
+                  "textAlign": "center",
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_28",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "#111111",
+          "columnsBackgroundColor": "",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": true,
+            "cover": false
+          },
+          "padding": "0px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_17",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_text_28",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ffffff",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"font-size: 14px; line-height: 140%; text-align: center;\"><strong><span style=\"font-size: 22px; line-height: 30.8px; font-family: Montserrat, sans-serif;\">Offer Highlights</span></strong></p>"
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "htmlID": "u_column_12",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "#111111",
+          "columnsBackgroundColor": "rgba(255,255,255,0)",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": false,
+            "cover": false
+          },
+          "padding": "0px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_9",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true
+        }
+      },
+      {
+        "cells": [
+          1,
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "0px 7px",
+                  "_meta": {
+                    "htmlID": "u_content_image_9",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://ireland.apollo.olxcdn.com/v1/files/hj2c49r1ohnr2-PL/image00",
+                    "width": 933,
+                    "height": 700,
+                    "autoWidth": false,
+                    "maxWidth": "100%"
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "attrs": {
+                      "href": "{{href}}",
+                      "target": "{{target}}"
+                    },
+                    "values": {
+                      "href": "http://google.pl",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_25",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "20px 10px 7px",
+                  "_meta": {
+                    "htmlID": "u_content_text_25",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ffffff",
+                  "textAlign": "left",
+                  "lineHeight": "130%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"font-size: 14px; line-height: 130%;\"><strong><span style=\"font-size: 18px; line-height: 23.4px;\">Wynajme mieszkanie 56m2 w centrum lodzi</span></strong></p>"
+                }
+              },
+              {
+                "type": "html",
+                "values": {
+                  "containerPadding": "0px 10px",
+                  "_meta": {
+                    "htmlID": "u_content_html_1",
+                    "htmlClassNames": "u_content_html"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "html": "<div style=\"display: block\">\n<div style=\"color: #2DC2A3; font-size: 20px; \nfont-weight: 600; display: inline-block;\">1400zł\n</div>\n<div style=\"display: inline-block; float: right; margin-top: 6px;\n            font-size: 10px; font-weight: 400; color: #FFF\">\n  2 pokoje | 48m² | 25zł/m²\n</div>\n</div>",
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              },
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "6px 10px",
+                  "_meta": {
+                    "htmlID": "u_content_text_31",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ecf0f1",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"font-size: 14px; line-height: 140%;\"><span style=\"font-size: 12px; line-height: 16.8px;\">📍</span><em>Ł&oacute;dź, Śr&oacute;dmieście</em></p>"
+                }
+              },
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_text_29",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ecf0f1",
+                  "textAlign": "left",
+                  "lineHeight": "100%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"font-size: 14px; line-height: 100%; text-align: center;\"><span style=\"font-size: 14px; line-height: 14px;\">⭐: 123.1 | 🤑: 1.6 | 💺: 50 | 💸 -39%</span></p>"
+                }
+              },
+              {
+                "type": "button",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_button_5",
+                    "htmlClassNames": "u_content_button"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "href": {
+                    "name": "web",
+                    "attrs": {
+                      "href": "{{href}}",
+                      "target": "{{target}}"
+                    },
+                    "values": {
+                      "href": "http://google.pl",
+                      "target": "_blank"
+                    }
+                  },
+                  "buttonColors": {
+                    "color": "#FFFFFF",
+                    "backgroundColor": "#2dc2a3",
+                    "hoverColor": "#FFFFFF",
+                    "hoverBackgroundColor": "#3AAEE0"
+                  },
+                  "size": {
+                    "autoWidth": false,
+                    "width": "100%"
+                  },
+                  "textAlign": "center",
+                  "lineHeight": "100%",
+                  "border": {
+                    "borderTopWidth": "0px",
+                    "borderTopStyle": "solid",
+                    "borderTopColor": "#CCC",
+                    "borderLeftWidth": "0px",
+                    "borderLeftStyle": "solid",
+                    "borderLeftColor": "#CCC",
+                    "borderRightWidth": "0px",
+                    "borderRightStyle": "solid",
+                    "borderRightColor": "#CCC",
+                    "borderBottomWidth": "0px",
+                    "borderBottomStyle": "solid",
+                    "borderBottomColor": "#CCC"
+                  },
+                  "borderRadius": "4px",
+                  "padding": "10px 20px",
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<strong><span style=\"font-size: 14px; line-height: 14px;\">SEE OFFER</span></strong>",
+                  "calculatedWidth": 280,
+                  "calculatedHeight": 34,
+                  "_override": {
+                    "mobile": {
+                      "hideMobile": true
+                    }
+                  }
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_26",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "#222222",
+          "columnsBackgroundColor": "",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": true,
+            "cover": false
+          },
+          "padding": "0px 10px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_15",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true
+        }
+      },
+      {
+        "cells": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_image_11",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://ireland.apollo.olxcdn.com/v1/files/sv4hed8stc7u-PL/image00",
+                    "width": 525,
+                    "height": 700
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_32",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_image_12",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://ireland.apollo.olxcdn.com/v1/files/m443wi9vvgpk2-PL/image00",
+                    "width": 933,
+                    "height": 700
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_33",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_image_13",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://ireland.apollo.olxcdn.com/v1/files/50cm4cswhc8a1-PL/image00",
+                    "width": 933,
+                    "height": 700
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_34",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_image_14",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://ireland.apollo.olxcdn.com/v1/files/c5m3ykv3qtvd3-PL/image00",
+                    "width": 525,
+                    "height": 700
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              },
+              {
+                "type": "button",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_button_7",
+                    "htmlClassNames": "u_content_button"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "href": {
+                    "name": "web",
+                    "attrs": {
+                      "href": "{{href}}",
+                      "target": "{{target}}"
+                    },
+                    "values": {
+                      "href": "http://google.pl",
+                      "target": "_blank"
+                    }
+                  },
+                  "buttonColors": {
+                    "color": "#FFFFFF",
+                    "backgroundColor": "#2dc2a3",
+                    "hoverColor": "#FFFFFF",
+                    "hoverBackgroundColor": "#3AAEE0"
+                  },
+                  "size": {
+                    "autoWidth": false,
+                    "width": "100%"
+                  },
+                  "textAlign": "center",
+                  "lineHeight": "120%",
+                  "border": {
+                    "borderTopWidth": "0px",
+                    "borderTopStyle": "solid",
+                    "borderTopColor": "#CCC",
+                    "borderLeftWidth": "0px",
+                    "borderLeftStyle": "solid",
+                    "borderLeftColor": "#CCC",
+                    "borderRightWidth": "0px",
+                    "borderRightStyle": "solid",
+                    "borderRightColor": "#CCC",
+                    "borderBottomWidth": "0px",
+                    "borderBottomStyle": "solid",
+                    "borderBottomColor": "#CCC"
+                  },
+                  "borderRadius": "4px",
+                  "padding": "10px 20px",
+                  "hideDesktop": true,
+                  "hideMobile": false,
+                  "text": "<strong><span style=\"font-size: 14px; line-height: 16.8px;\">SEE OFFER</span></strong>",
+                  "calculatedWidth": 300,
+                  "calculatedHeight": 36,
+                  "_override": {
+                    "mobile": {
+                      "padding": "10px 20px"
+                    }
+                  }
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_35",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "#222222",
+          "columnsBackgroundColor": "",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": true,
+            "cover": false
+          },
+          "padding": "0px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_19",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true,
+          "_override": {
+            "mobile": {
+              "noStackMobile": false
+            }
+          }
+        }
+      },
+      {
+        "cells": [
+          1,
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "20px 10px 7px",
+                  "_meta": {
+                    "htmlID": "u_content_text_32",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ffffff",
+                  "textAlign": "right",
+                  "lineHeight": "130%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"font-size: 14px; line-height: 130%;\"><span style=\"font-size: 18px; line-height: 23.4px;\"><strong>2-pokojowe mieszkanie do wynajęcia- śr&oacute;dmieście</strong></span></p>"
+                }
+              },
+              {
+                "type": "html",
+                "values": {
+                  "containerPadding": "0px 10px",
+                  "_meta": {
+                    "htmlID": "u_content_html_3",
+                    "htmlClassNames": "u_content_html"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "html": "<div style=\"display: block\">\n  <div style=\"color: #FEE715; font-size: 20px;\ndisplay: inline-block; float: right;\nfont-weight: 600\">1600zł\n</div>\n<div style=\"display: inline-block; float: l; margin-top: 6px;\n            font-size: 10px; font-weight: 400; color: #FFF\">\n  2 pokoje | 48m² | 25zł/m²\n\t</div>\n<div>",
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              },
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "6px 10px",
+                  "_meta": {
+                    "htmlID": "u_content_text_33",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ecf0f1",
+                  "textAlign": "right",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p dir=\"rtl\" style=\"font-size: 14px; line-height: 140%; text-align: right;\"><span style=\"font-size: 12px; line-height: 16.8px;\">📍 </span><em>Ł&oacute;dź, Śr&oacute;dmieście</em></p>"
+                }
+              },
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_text_36",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#ecf0f1",
+                  "textAlign": "left",
+                  "lineHeight": "100%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"font-size: 14px; line-height: 100%; text-align: center;\"><span style=\"font-size: 14px; line-height: 14px;\">⭐: 123.1 | 🤑: 1.6 | 💺: 50 | 💸 -39%</span></p>"
+                }
+              },
+              {
+                "type": "button",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_button_6",
+                    "htmlClassNames": "u_content_button"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "href": {
+                    "name": "web",
+                    "attrs": {
+                      "href": "{{href}}",
+                      "target": "{{target}}"
+                    },
+                    "values": {
+                      "href": "http://google.pl",
+                      "target": "_blank"
+                    }
+                  },
+                  "buttonColors": {
+                    "color": "#111111",
+                    "backgroundColor": "#fee715",
+                    "hoverColor": "#FFFFFF",
+                    "hoverBackgroundColor": "#3AAEE0"
+                  },
+                  "size": {
+                    "autoWidth": false,
+                    "width": "100%"
+                  },
+                  "textAlign": "center",
+                  "lineHeight": "100%",
+                  "border": {
+                    "borderTopWidth": "0px",
+                    "borderTopStyle": "solid",
+                    "borderTopColor": "#CCC",
+                    "borderLeftWidth": "0px",
+                    "borderLeftStyle": "solid",
+                    "borderLeftColor": "#CCC",
+                    "borderRightWidth": "0px",
+                    "borderRightStyle": "solid",
+                    "borderRightColor": "#CCC",
+                    "borderBottomWidth": "0px",
+                    "borderBottomStyle": "solid",
+                    "borderBottomColor": "#CCC"
+                  },
+                  "borderRadius": "4px",
+                  "padding": "10px 20px",
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<strong><span style=\"font-size: 14px; line-height: 14px;\">SEE OFFER</span></strong>",
+                  "calculatedWidth": 280,
+                  "calculatedHeight": 34,
+                  "_override": {
+                    "mobile": {
+                      "hideMobile": true
+                    }
+                  }
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_29",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "0px 7px",
+                  "_meta": {
+                    "htmlID": "u_content_image_10",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://ireland.apollo.olxcdn.com/v1/files/kxnriao97f3z1-PL/image00",
+                    "width": 525,
+                    "height": 700
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "attrs": {
+                      "href": "{{href}}",
+                      "target": "{{target}}"
+                    },
+                    "values": {
+                      "href": "http://google.pl",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_30",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "#111111",
+          "columnsBackgroundColor": "",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": true,
+            "cover": false
+          },
+          "padding": "0px 10px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_18",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true
+        }
+      },
+      {
+        "cells": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_image_15",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://ireland.apollo.olxcdn.com/v1/files/i7bsi328ztbv-PL/image00",
+                    "width": 933,
+                    "height": 700
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_36",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_image_16",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://ireland.apollo.olxcdn.com/v1/files/mmg5a7rai22o1-PL/image00",
+                    "width": 933,
+                    "height": 700
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_37",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_image_17",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://ireland.apollo.olxcdn.com/v1/files/6wchd1o06nu2-PL/image00",
+                    "width": 525,
+                    "height": 700
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_38",
+                "htmlClassNames": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_image_18",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://ireland.apollo.olxcdn.com/v1/files/c464w4hng79k2-PL/image00",
+                    "width": 525,
+                    "height": 700
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              },
+              {
+                "type": "button",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_button_8",
+                    "htmlClassNames": "u_content_button"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "href": {
+                    "name": "web",
+                    "attrs": {
+                      "href": "{{href}}",
+                      "target": "{{target}}"
+                    },
+                    "values": {
+                      "href": "http://google.pl",
+                      "target": "_blank"
+                    }
+                  },
+                  "buttonColors": {
+                    "color": "#FFFFFF",
+                    "backgroundColor": "#2dc2a3",
+                    "hoverColor": "#FFFFFF",
+                    "hoverBackgroundColor": "#3AAEE0"
+                  },
+                  "size": {
+                    "autoWidth": false,
+                    "width": "100%"
+                  },
+                  "textAlign": "center",
+                  "lineHeight": "120%",
+                  "border": {
+                    "borderTopWidth": "0px",
+                    "borderTopStyle": "solid",
+                    "borderTopColor": "#CCC",
+                    "borderLeftWidth": "0px",
+                    "borderLeftStyle": "solid",
+                    "borderLeftColor": "#CCC",
+                    "borderRightWidth": "0px",
+                    "borderRightStyle": "solid",
+                    "borderRightColor": "#CCC",
+                    "borderBottomWidth": "0px",
+                    "borderBottomStyle": "solid",
+                    "borderBottomColor": "#CCC"
+                  },
+                  "borderRadius": "4px",
+                  "padding": "10px 20px",
+                  "hideDesktop": true,
+                  "hideMobile": false,
+                  "text": "<strong><span style=\"font-size: 14px; line-height: 16.8px;\">SEE OFFER</span></strong>",
+                  "calculatedWidth": 300,
+                  "calculatedHeight": 36,
+                  "_override": {
+                    "mobile": {
+                      "padding": "10px 20px"
+                    }
+                  }
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_39",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "#111111",
+          "columnsBackgroundColor": "",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": true,
+            "cover": false
+          },
+          "padding": "0px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_20",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_text_35",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#2dc2a3",
+                  "textAlign": "left",
+                  "lineHeight": "140%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<p style=\"font-size: 14px; line-height: 140%; text-align: center;\"><strong><span style=\"font-size: 22px; line-height: 30.8px; font-family: Montserrat, sans-serif;\">Offers rank trends</span></strong></p>"
+                }
+              },
+              {
+                "type": "image",
+                "values": {
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "htmlID": "u_content_image_19",
+                    "htmlClassNames": "u_content_image"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "src": {
+                    "url": "https://math.scholastic.com/content/dam/classroom-magazines/math/issues/2017-18/092517/fake-news-fake-data/MA-092517-FAKENEWS-Popup5.png",
+                    "width": 1200,
+                    "height": 902
+                  },
+                  "textAlign": "center",
+                  "altText": "Image",
+                  "action": {
+                    "name": "web",
+                    "values": {
+                      "href": "",
+                      "target": "_blank"
+                    }
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false
+                }
+              }
+            ],
+            "values": {
+              "backgroundColor": "",
+              "padding": "0px",
+              "border": {},
+              "_meta": {
+                "htmlID": "u_column_40",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "",
+          "columnsBackgroundColor": "#111111",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": true,
+            "cover": false
+          },
+          "padding": "0px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_21",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "15px",
+                  "_meta": {
+                    "htmlID": "u_content_text_12",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "color": "#111111",
+                  "textAlign": "center",
+                  "lineHeight": "130%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<div><span style=\"font-size: 32px; line-height: 41.6px;\">GETTING ANNOYED?</span></div>"
+                }
+              },
+              {
+                "type": "button",
+                "values": {
+                  "containerPadding": "20px",
+                  "_meta": {
+                    "htmlID": "u_content_button_4",
+                    "htmlClassNames": "u_content_button"
+                  },
+                  "selectable": true,
+                  "draggable": true,
+                  "duplicatable": true,
+                  "deletable": true,
+                  "href": "",
+                  "buttonColors": {
+                    "color": "#ecf0f1",
+                    "backgroundColor": "#222222",
+                    "hoverColor": "#58a864",
+                    "hoverBackgroundColor": "#3AAEE0"
+                  },
+                  "size": {
+                    "autoWidth": true,
+                    "width": "100%"
+                  },
+                  "textAlign": "center",
+                  "lineHeight": "160%",
+                  "border": {},
+                  "borderRadius": "37px",
+                  "padding": "10px 25px",
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "calculatedHeight": 48,
+                  "calculatedWidth": 270,
+                  "text": "<span style=\"font-size: 18px; line-height: 28.8px;\">CANCEL SUBSCRIPTION</span>",
+                  "_override": {
+                    "mobile": {
+                      "padding": "10px 20px",
+                      "size": {
+                        "autoWidth": true,
+                        "width": "100%"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "htmlID": "u_column_13",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "#fee715",
+          "columnsBackgroundColor": "rgba(255,255,255,0)",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": false,
+            "cover": false
+          },
+          "padding": "10px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_10",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": true,
+          "draggable": true,
+          "duplicatable": true,
+          "deletable": true
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "20px",
+                  "_meta": {
+                    "htmlID": "u_content_text_14",
+                    "htmlClassNames": "u_content_text"
+                  },
+                  "selectable": false,
+                  "draggable": false,
+                  "duplicatable": true,
+                  "deletable": false,
+                  "color": "#000",
+                  "textAlign": "left",
+                  "lineHeight": "120%",
+                  "linkStyle": {
+                    "inherit": true,
+                    "linkColor": "#0000ee",
+                    "linkHoverColor": "#0000ee",
+                    "linkUnderline": true,
+                    "linkHoverUnderline": true
+                  },
+                  "hideDesktop": false,
+                  "hideMobile": false,
+                  "text": "<div style=\"font-family: arial, helvetica, sans-serif;\"><span style=\"font-size: 12px; color: #999999; line-height: 14.4px;\">You received this email because you signed up for .</span></div>\n<div style=\"font-family: arial, helvetica, sans-serif;\">&nbsp;</div>\n<div style=\"font-family: arial, helvetica, sans-serif;\"><span style=\"font-size: 12px; color: #999999; line-height: 14.4px;\"></span></div>"
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "htmlID": "u_column_14",
+                "htmlClassNames": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "columns": false,
+          "backgroundColor": "#f0f0f0",
+          "columnsBackgroundColor": "rgba(255,255,255,0)",
+          "backgroundImage": {
+            "url": "",
+            "fullWidth": true,
+            "repeat": false,
+            "center": false,
+            "cover": false
+          },
+          "padding": "30px",
+          "hideDesktop": false,
+          "hideMobile": false,
+          "noStackMobile": false,
+          "_meta": {
+            "htmlID": "u_row_11",
+            "htmlClassNames": "u_row"
+          },
+          "selectable": false,
+          "draggable": false,
+          "duplicatable": true,
+          "deletable": false
+        }
+      }
+    ],
+    "values": {
+      "backgroundColor": "#0a0a0a",
+      "backgroundImage": {
+        "url": "",
+        "fullWidth": true,
+        "repeat": false,
+        "center": true,
+        "cover": false
+      },
+      "contentWidth": "600px",
+      "fontFamily": {
+        "label": "Montserrat",
+        "value": "'Montserrat',sans-serif",
+        "url": "https://fonts.googleapis.com/css?family=Montserrat:400,700",
+        "defaultFont": true
+      },
+      "linkStyle": {
+        "body": true,
+        "inherit": false,
+        "linkColor": "#0a0a0a",
+        "linkUnderline": true,
+        "linkHoverColor": "#0000ee",
+        "linkHoverUnderline": true
+      },
+      "_meta": {
+        "htmlID": "u_body",
+        "htmlClassNames": "u_body"
+      }
+    }
+  },
+  "schemaVersion": 5
+}
