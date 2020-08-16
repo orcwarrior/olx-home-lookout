@@ -6,6 +6,7 @@ import { Grid, Box, InfiniteScroll } from "grommet";
 import { OfferCard } from "@components/Offer";
 import { ReportHeader } from "@components/Report/ReportHeader";
 import { Layout } from "@components/common/Layout";
+import { NotFound } from "@components/common/NotFound";
 
 const ReportPage = () => {
   const router = useRouter();
@@ -17,15 +18,14 @@ const ReportPage = () => {
       .map(({node}) => node)
 
 
-
   return <Layout>
     <ReportHeader refetchOffers={refetchOffers}/>
     <Box overflow="auto" gap="none" fill="vertical" pad="small">
-      <Grid gap="small" columns={{"size": "500px", "count": "fit"}} fill="horizontal" rows={[""]}>
+      {offers.length ? <Grid gap="small" columns={{"size": "500px", "count": "fit"}} fill="horizontal" rows={[""]}>
         <InfiniteScroll items={offers} step={12}>
           {(offer) => <OfferCard {...offer} key={offer.id}/>}
         </InfiniteScroll>
-      </Grid>
+      </Grid> : <NotFound msg={"No items found"}/>}
     </Box>
   </Layout>
 }

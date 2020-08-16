@@ -9,10 +9,15 @@ query LookoutOffers($id: Int! ) {
                 mainImg
                 gallery
                 city
+
                 district
+                street
+                hasExactAddress
+
                 createdAt
                 offerType
 
+                rank
                 indicators_comfort
                 indicators_deal
                 indicators_areaPerRoom
@@ -34,6 +39,10 @@ query LookoutOffers($id: Int! ) {
 
                 userReviewStatus
                 userNotes
+
+                mapFarImg
+                mapCloseImg
+                mapStreetImg
             }
         }
     }

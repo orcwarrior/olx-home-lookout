@@ -12,8 +12,10 @@ interface Node {
     id: ID!
 }
 
-"columns and relationships of \"LookoutRequests\""
-type LookoutRequests implements Node {
+"columns and relationships of \"LookoutReports\""
+type LookoutReports implements Node {
+    "An object relationship"
+    LookoutRequest: LookoutRequests!
     "An array relationship"
     Offers(
         "distinct select on columns"
@@ -53,14 +55,232 @@ type LookoutRequests implements Node {
         "filter the rows returned"
         where: Offers_bool_exp
     ): OffersConnection!
-    comfortSignificance: Int!
+    avgRank: float8!
+    avgRankTrend: float8!
+    createdAt: timestamp!
+    hash: String!
+    id: ID!
+    lookoutRequestId: Int!
+    offersSince: timestamp!
+}
+
+"A Relay Connection object on \"LookoutReports\""
+type LookoutReportsConnection {
+    edges: [LookoutReportsEdge!]!
+    pageInfo: PageInfo!
+}
+
+type LookoutReportsEdge {
+    cursor: String!
+    node: LookoutReports!
+}
+
+"aggregated selection of \"LookoutReports\""
+type LookoutReports_aggregate {
+    aggregate: LookoutReports_aggregate_fields
+    nodes: [LookoutReports!]!
+}
+
+"aggregate fields of \"LookoutReports\""
+type LookoutReports_aggregate_fields {
+    avg: LookoutReports_avg_fields
+    count(columns: [LookoutReports_select_column!], distinct: Boolean): Int
+    max: LookoutReports_max_fields
+    min: LookoutReports_min_fields
+    stddev: LookoutReports_stddev_fields
+    stddev_pop: LookoutReports_stddev_pop_fields
+    stddev_samp: LookoutReports_stddev_samp_fields
+    sum: LookoutReports_sum_fields
+    var_pop: LookoutReports_var_pop_fields
+    var_samp: LookoutReports_var_samp_fields
+    variance: LookoutReports_variance_fields
+}
+
+"aggregate avg on columns"
+type LookoutReports_avg_fields {
+    avgRank: Float
+    avgRankTrend: Float
+    id: Float
+    lookoutRequestId: Float
+}
+
+"aggregate max on columns"
+type LookoutReports_max_fields {
+    avgRank: float8
+    avgRankTrend: float8
+    createdAt: timestamp
+    hash: String
+    id: Int
+    lookoutRequestId: Int
+    offersSince: timestamp
+}
+
+"aggregate min on columns"
+type LookoutReports_min_fields {
+    avgRank: float8
+    avgRankTrend: float8
+    createdAt: timestamp
+    hash: String
+    id: Int
+    lookoutRequestId: Int
+    offersSince: timestamp
+}
+
+"response of any mutation on the table \"LookoutReports\""
+type LookoutReports_mutation_response {
+    "number of affected rows by the mutation"
+    affected_rows: Int!
+    "data of the affected rows by the mutation"
+    returning: [LookoutReports!]!
+}
+
+"aggregate stddev on columns"
+type LookoutReports_stddev_fields {
+    avgRank: Float
+    avgRankTrend: Float
+    id: Float
+    lookoutRequestId: Float
+}
+
+"aggregate stddev_pop on columns"
+type LookoutReports_stddev_pop_fields {
+    avgRank: Float
+    avgRankTrend: Float
+    id: Float
+    lookoutRequestId: Float
+}
+
+"aggregate stddev_samp on columns"
+type LookoutReports_stddev_samp_fields {
+    avgRank: Float
+    avgRankTrend: Float
+    id: Float
+    lookoutRequestId: Float
+}
+
+"aggregate sum on columns"
+type LookoutReports_sum_fields {
+    avgRank: float8
+    avgRankTrend: float8
+    id: Int
+    lookoutRequestId: Int
+}
+
+"aggregate var_pop on columns"
+type LookoutReports_var_pop_fields {
+    avgRank: Float
+    avgRankTrend: Float
+    id: Float
+    lookoutRequestId: Float
+}
+
+"aggregate var_samp on columns"
+type LookoutReports_var_samp_fields {
+    avgRank: Float
+    avgRankTrend: Float
+    id: Float
+    lookoutRequestId: Float
+}
+
+"aggregate variance on columns"
+type LookoutReports_variance_fields {
+    avgRank: Float
+    avgRankTrend: Float
+    id: Float
+    lookoutRequestId: Float
+}
+
+"columns and relationships of \"LookoutRequests\""
+type LookoutRequests implements Node {
+    "An array relationship"
+    LookoutReports(
+        "distinct select on columns"
+        distinct_on: [LookoutReports_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [LookoutReports_order_by!],
+        "filter the rows returned"
+        where: LookoutReports_bool_exp
+    ): [LookoutReports!]!
+    "An aggregated array relationship"
+    LookoutReports_aggregate(
+        "distinct select on columns"
+        distinct_on: [LookoutReports_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [LookoutReports_order_by!],
+        "filter the rows returned"
+        where: LookoutReports_bool_exp
+    ): LookoutReports_aggregate!
+    "An array relationship connection"
+    LookoutReports_connection(
+        after: String,
+        before: String,
+        "distinct select on columns"
+        distinct_on: [LookoutReports_select_column!],
+        first: Int,
+        last: Int,
+        "sort the rows by one or more columns"
+        order_by: [LookoutReports_order_by!],
+        "filter the rows returned"
+        where: LookoutReports_bool_exp
+    ): LookoutReportsConnection!
+    "An array relationship"
+    Offers(
+        "distinct select on columns"
+        distinct_on: [Offers_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [Offers_order_by!],
+        "filter the rows returned"
+        where: Offers_bool_exp
+    ): [Offers!]!
+    "An aggregated array relationship"
+    Offers_aggregate(
+        "distinct select on columns"
+        distinct_on: [Offers_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [Offers_order_by!],
+        "filter the rows returned"
+        where: Offers_bool_exp
+    ): Offers_aggregate!
+    "An array relationship connection"
+    Offers_connection(
+        after: String,
+        before: String,
+        "distinct select on columns"
+        distinct_on: [Offers_select_column!],
+        first: Int,
+        last: Int,
+        "sort the rows by one or more columns"
+        order_by: [Offers_order_by!],
+        "filter the rows returned"
+        where: Offers_bool_exp
+    ): OffersConnection!
+    avgRank: float8
+    comfortSignificance: float8!
+    createdAt: timestamp!
     email: String!
+    emailSubscriptionCanceled: Boolean!
     hash: String!
     id: ID!
     initialLookoutFinished: Boolean!
     lookingFor: String!
     offersProcessed: Int!
-    priceSignificance: Int!
+    priceSignificance: float8!
     url: String!
 }
 
@@ -98,6 +318,7 @@ type LookoutRequests_aggregate_fields {
 
 "aggregate avg on columns"
 type LookoutRequests_avg_fields {
+    avgRank: Float
     comfortSignificance: Float
     id: Float
     offersProcessed: Float
@@ -106,25 +327,29 @@ type LookoutRequests_avg_fields {
 
 "aggregate max on columns"
 type LookoutRequests_max_fields {
-    comfortSignificance: Int
+    avgRank: float8
+    comfortSignificance: float8
+    createdAt: timestamp
     email: String
     hash: String
     id: Int
     lookingFor: String
     offersProcessed: Int
-    priceSignificance: Int
+    priceSignificance: float8
     url: String
 }
 
 "aggregate min on columns"
 type LookoutRequests_min_fields {
-    comfortSignificance: Int
+    avgRank: float8
+    comfortSignificance: float8
+    createdAt: timestamp
     email: String
     hash: String
     id: Int
     lookingFor: String
     offersProcessed: Int
-    priceSignificance: Int
+    priceSignificance: float8
     url: String
 }
 
@@ -138,6 +363,7 @@ type LookoutRequests_mutation_response {
 
 "aggregate stddev on columns"
 type LookoutRequests_stddev_fields {
+    avgRank: Float
     comfortSignificance: Float
     id: Float
     offersProcessed: Float
@@ -146,6 +372,7 @@ type LookoutRequests_stddev_fields {
 
 "aggregate stddev_pop on columns"
 type LookoutRequests_stddev_pop_fields {
+    avgRank: Float
     comfortSignificance: Float
     id: Float
     offersProcessed: Float
@@ -154,6 +381,7 @@ type LookoutRequests_stddev_pop_fields {
 
 "aggregate stddev_samp on columns"
 type LookoutRequests_stddev_samp_fields {
+    avgRank: Float
     comfortSignificance: Float
     id: Float
     offersProcessed: Float
@@ -162,14 +390,16 @@ type LookoutRequests_stddev_samp_fields {
 
 "aggregate sum on columns"
 type LookoutRequests_sum_fields {
-    comfortSignificance: Int
+    avgRank: float8
+    comfortSignificance: float8
     id: Int
     offersProcessed: Int
-    priceSignificance: Int
+    priceSignificance: float8
 }
 
 "aggregate var_pop on columns"
 type LookoutRequests_var_pop_fields {
+    avgRank: Float
     comfortSignificance: Float
     id: Float
     offersProcessed: Float
@@ -178,6 +408,7 @@ type LookoutRequests_var_pop_fields {
 
 "aggregate var_samp on columns"
 type LookoutRequests_var_samp_fields {
+    avgRank: Float
     comfortSignificance: Float
     id: Float
     offersProcessed: Float
@@ -186,6 +417,7 @@ type LookoutRequests_var_samp_fields {
 
 "aggregate variance on columns"
 type LookoutRequests_variance_fields {
+    avgRank: Float
     comfortSignificance: Float
     id: Float
     offersProcessed: Float
@@ -195,7 +427,11 @@ type LookoutRequests_variance_fields {
 "columns and relationships of \"Offers\""
 type Offers implements Node {
     "An object relationship"
+    LookoutReport: LookoutReports
+    "An object relationship"
     LookoutRequest: LookoutRequests!
+    "A computed field, executes function \"offers_rank\""
+    _rank: float8
     attrs_area: float8!
     attrs_bail: float8!
     attrs_bonusRent: float8!
@@ -215,13 +451,20 @@ type Offers implements Node {
     "A computed field, executes function \"offers_prices_perm2_deviation\""
     deviation_price_perM2: float8
     district: String
+    fromReportId: Int
     gallery: _text
+    hasExactAddress: Boolean
     id: ID!
     indicators_areaPerRoom: float8!
     indicators_comfort: float8!
     indicators_deal: float8!
+    isReportHighlight: Boolean
+    location: geography
     lookoutRequestId: Int!
     mainImg: String
+    mapCloseImg: String
+    mapFarImg: String
+    mapStreetImg: String
     offerType: String!
     prices_additional: float8!
     prices_base: float8!
@@ -232,13 +475,15 @@ type Offers implements Node {
     ): jsonb
     prices_full: float8!
     prices_perM2: float8!
+    rank: float8
     rawAttrs(
         "JSON select path"
         path: String
     ): jsonb
+    street: String
     title: String!
     url: String!
-    userNotes: _text
+    userNotes: _jsonb
     userReviewStatus: String!
     views: Int!
     "A computed field, executes function \"offers_weight\""
@@ -289,6 +534,7 @@ type Offers_avg_fields {
     attrs_rooms: Float
     descriptionRating: Float
     deviationAvgM2Price: Float
+    fromReportId: Float
     id: Float
     indicators_areaPerRoom: Float
     indicators_comfort: Float
@@ -299,6 +545,7 @@ type Offers_avg_fields {
     prices_descriptionPricingSum: Float
     prices_full: Float
     prices_perM2: Float
+    rank: Float
     views: Float
 }
 
@@ -316,18 +563,24 @@ type Offers_max_fields {
     descriptionRating: float8
     deviationAvgM2Price: float8
     district: String
+    fromReportId: Int
     id: Int
     indicators_areaPerRoom: float8
     indicators_comfort: float8
     indicators_deal: float8
     lookoutRequestId: Int
     mainImg: String
+    mapCloseImg: String
+    mapFarImg: String
+    mapStreetImg: String
     offerType: String
     prices_additional: float8
     prices_base: float8
     prices_descriptionPricingSum: float8
     prices_full: float8
     prices_perM2: float8
+    rank: float8
+    street: String
     title: String
     url: String
     userReviewStatus: String
@@ -348,18 +601,24 @@ type Offers_min_fields {
     descriptionRating: float8
     deviationAvgM2Price: float8
     district: String
+    fromReportId: Int
     id: Int
     indicators_areaPerRoom: float8
     indicators_comfort: float8
     indicators_deal: float8
     lookoutRequestId: Int
     mainImg: String
+    mapCloseImg: String
+    mapFarImg: String
+    mapStreetImg: String
     offerType: String
     prices_additional: float8
     prices_base: float8
     prices_descriptionPricingSum: float8
     prices_full: float8
     prices_perM2: float8
+    rank: float8
+    street: String
     title: String
     url: String
     userReviewStatus: String
@@ -383,6 +642,7 @@ type Offers_stddev_fields {
     attrs_rooms: Float
     descriptionRating: Float
     deviationAvgM2Price: Float
+    fromReportId: Float
     id: Float
     indicators_areaPerRoom: Float
     indicators_comfort: Float
@@ -393,6 +653,7 @@ type Offers_stddev_fields {
     prices_descriptionPricingSum: Float
     prices_full: Float
     prices_perM2: Float
+    rank: Float
     views: Float
 }
 
@@ -405,6 +666,7 @@ type Offers_stddev_pop_fields {
     attrs_rooms: Float
     descriptionRating: Float
     deviationAvgM2Price: Float
+    fromReportId: Float
     id: Float
     indicators_areaPerRoom: Float
     indicators_comfort: Float
@@ -415,6 +677,7 @@ type Offers_stddev_pop_fields {
     prices_descriptionPricingSum: Float
     prices_full: Float
     prices_perM2: Float
+    rank: Float
     views: Float
 }
 
@@ -427,6 +690,7 @@ type Offers_stddev_samp_fields {
     attrs_rooms: Float
     descriptionRating: Float
     deviationAvgM2Price: Float
+    fromReportId: Float
     id: Float
     indicators_areaPerRoom: Float
     indicators_comfort: Float
@@ -437,6 +701,7 @@ type Offers_stddev_samp_fields {
     prices_descriptionPricingSum: Float
     prices_full: Float
     prices_perM2: Float
+    rank: Float
     views: Float
 }
 
@@ -449,6 +714,7 @@ type Offers_sum_fields {
     attrs_rooms: Int
     descriptionRating: float8
     deviationAvgM2Price: float8
+    fromReportId: Int
     id: Int
     indicators_areaPerRoom: float8
     indicators_comfort: float8
@@ -459,6 +725,7 @@ type Offers_sum_fields {
     prices_descriptionPricingSum: float8
     prices_full: float8
     prices_perM2: float8
+    rank: float8
     views: Int
 }
 
@@ -471,6 +738,7 @@ type Offers_var_pop_fields {
     attrs_rooms: Float
     descriptionRating: Float
     deviationAvgM2Price: Float
+    fromReportId: Float
     id: Float
     indicators_areaPerRoom: Float
     indicators_comfort: Float
@@ -481,6 +749,7 @@ type Offers_var_pop_fields {
     prices_descriptionPricingSum: Float
     prices_full: Float
     prices_perM2: Float
+    rank: Float
     views: Float
 }
 
@@ -493,6 +762,7 @@ type Offers_var_samp_fields {
     attrs_rooms: Float
     descriptionRating: Float
     deviationAvgM2Price: Float
+    fromReportId: Float
     id: Float
     indicators_areaPerRoom: Float
     indicators_comfort: Float
@@ -503,6 +773,7 @@ type Offers_var_samp_fields {
     prices_descriptionPricingSum: Float
     prices_full: Float
     prices_perM2: Float
+    rank: Float
     views: Float
 }
 
@@ -515,6 +786,7 @@ type Offers_variance_fields {
     attrs_rooms: Float
     descriptionRating: Float
     deviationAvgM2Price: Float
+    fromReportId: Float
     id: Float
     indicators_areaPerRoom: Float
     indicators_comfort: Float
@@ -525,6 +797,7 @@ type Offers_variance_fields {
     prices_descriptionPricingSum: Float
     prices_full: Float
     prices_perM2: Float
+    rank: Float
     views: Float
 }
 
@@ -537,6 +810,13 @@ type PageInfo {
 
 "mutation root"
 type mutation_root {
+    "delete data from the table: \"LookoutReports\""
+    delete_LookoutReports(
+        "filter the rows which have to be deleted"
+        where: LookoutReports_bool_exp!
+    ): LookoutReports_mutation_response
+    "delete single row from the table: \"LookoutReports\""
+    delete_LookoutReports_by_pk(id: Int!): LookoutReports
     "delete data from the table: \"LookoutRequests\""
     delete_LookoutRequests(
         "filter the rows which have to be deleted"
@@ -551,6 +831,20 @@ type mutation_root {
     ): Offers_mutation_response
     "delete single row from the table: \"Offers\""
     delete_Offers_by_pk(id: Int!): Offers
+    "insert data into the table: \"LookoutReports\""
+    insert_LookoutReports(
+        "the rows to be inserted"
+        objects: [LookoutReports_insert_input!]!,
+        "on conflict condition"
+        on_conflict: LookoutReports_on_conflict
+    ): LookoutReports_mutation_response
+    "insert a single row into the table: \"LookoutReports\""
+    insert_LookoutReports_one(
+        "the row to be inserted"
+        object: LookoutReports_insert_input!,
+        "on conflict condition"
+        on_conflict: LookoutReports_on_conflict
+    ): LookoutReports
     "insert data into the table: \"LookoutRequests\""
     insert_LookoutRequests(
         "the rows to be inserted"
@@ -579,6 +873,23 @@ type mutation_root {
         "on conflict condition"
         on_conflict: Offers_on_conflict
     ): Offers
+    "update data of the table: \"LookoutReports\""
+    update_LookoutReports(
+        "increments the integer columns with given value of the filtered values"
+        _inc: LookoutReports_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: LookoutReports_set_input,
+        "filter the rows which have to be updated"
+        where: LookoutReports_bool_exp!
+    ): LookoutReports_mutation_response
+    "update single row of the table: \"LookoutReports\""
+    update_LookoutReports_by_pk(
+        "increments the integer columns with given value of the filtered values"
+        _inc: LookoutReports_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: LookoutReports_set_input,
+        pk_columns: LookoutReports_pk_columns_input!
+    ): LookoutReports
     "update data of the table: \"LookoutRequests\""
     update_LookoutRequests(
         "increments the integer columns with given value of the filtered values"
@@ -637,6 +948,19 @@ type mutation_root {
 
 "query root"
 type query_root {
+    "fetch data from the table: \"LookoutReports\""
+    LookoutReports_connection(
+        after: String,
+        before: String,
+        "distinct select on columns"
+        distinct_on: [LookoutReports_select_column!],
+        first: Int,
+        last: Int,
+        "sort the rows by one or more columns"
+        order_by: [LookoutReports_order_by!],
+        "filter the rows returned"
+        where: LookoutReports_bool_exp
+    ): LookoutReportsConnection!
     "fetch data from the table: \"LookoutRequests\""
     LookoutRequests_connection(
         after: String,
@@ -671,6 +995,19 @@ type query_root {
 
 "subscription root"
 type subscription_root {
+    "fetch data from the table: \"LookoutReports\""
+    LookoutReports_connection(
+        after: String,
+        before: String,
+        "distinct select on columns"
+        distinct_on: [LookoutReports_select_column!],
+        first: Int,
+        last: Int,
+        "sort the rows by one or more columns"
+        order_by: [LookoutReports_order_by!],
+        "filter the rows returned"
+        where: LookoutReports_bool_exp
+    ): LookoutReportsConnection!
     "fetch data from the table: \"LookoutRequests\""
     LookoutRequests_connection(
         after: String,
@@ -703,6 +1040,50 @@ type subscription_root {
     ): Node
 }
 
+"unique or primary key constraints on table \"LookoutReports\""
+enum LookoutReports_constraint {
+    "unique or primary key constraint"
+    PK_7bdcb3ec7d564d5e5de13e1b73c
+    "unique or primary key constraint"
+    UQ_df77aa62287b2948009ea3d1ce0
+}
+
+"select columns of table \"LookoutReports\""
+enum LookoutReports_select_column {
+    "column name"
+    avgRank
+    "column name"
+    avgRankTrend
+    "column name"
+    createdAt
+    "column name"
+    hash
+    "column name"
+    id
+    "column name"
+    lookoutRequestId
+    "column name"
+    offersSince
+}
+
+"update columns of table \"LookoutReports\""
+enum LookoutReports_update_column {
+    "column name"
+    avgRank
+    "column name"
+    avgRankTrend
+    "column name"
+    createdAt
+    "column name"
+    hash
+    "column name"
+    id
+    "column name"
+    lookoutRequestId
+    "column name"
+    offersSince
+}
+
 "unique or primary key constraints on table \"LookoutRequests\""
 enum LookoutRequests_constraint {
     "unique or primary key constraint"
@@ -718,9 +1099,15 @@ enum LookoutRequests_constraint {
 "select columns of table \"LookoutRequests\""
 enum LookoutRequests_select_column {
     "column name"
+    avgRank
+    "column name"
     comfortSignificance
     "column name"
+    createdAt
+    "column name"
     email
+    "column name"
+    emailSubscriptionCanceled
     "column name"
     hash
     "column name"
@@ -740,9 +1127,15 @@ enum LookoutRequests_select_column {
 "update columns of table \"LookoutRequests\""
 enum LookoutRequests_update_column {
     "column name"
+    avgRank
+    "column name"
     comfortSignificance
     "column name"
+    createdAt
+    "column name"
     email
+    "column name"
+    emailSubscriptionCanceled
     "column name"
     hash
     "column name"
@@ -763,8 +1156,6 @@ enum LookoutRequests_update_column {
 enum Offers_constraint {
     "unique or primary key constraint"
     PK_e3bb6a7420e9589888fb72d0e43
-    "unique or primary key constraint"
-    UQ_7699d56320469c6d5ab8bd9c71c
 }
 
 "select columns of table \"Offers\""
@@ -798,7 +1189,11 @@ enum Offers_select_column {
     "column name"
     district
     "column name"
+    fromReportId
+    "column name"
     gallery
+    "column name"
+    hasExactAddress
     "column name"
     id
     "column name"
@@ -808,9 +1203,19 @@ enum Offers_select_column {
     "column name"
     indicators_deal
     "column name"
+    isReportHighlight
+    "column name"
+    location
+    "column name"
     lookoutRequestId
     "column name"
     mainImg
+    "column name"
+    mapCloseImg
+    "column name"
+    mapFarImg
+    "column name"
+    mapStreetImg
     "column name"
     offerType
     "column name"
@@ -826,7 +1231,11 @@ enum Offers_select_column {
     "column name"
     prices_perM2
     "column name"
+    rank
+    "column name"
     rawAttrs
+    "column name"
+    street
     "column name"
     title
     "column name"
@@ -870,7 +1279,11 @@ enum Offers_update_column {
     "column name"
     district
     "column name"
+    fromReportId
+    "column name"
     gallery
+    "column name"
+    hasExactAddress
     "column name"
     id
     "column name"
@@ -880,9 +1293,19 @@ enum Offers_update_column {
     "column name"
     indicators_deal
     "column name"
+    isReportHighlight
+    "column name"
+    location
+    "column name"
     lookoutRequestId
     "column name"
     mainImg
+    "column name"
+    mapCloseImg
+    "column name"
+    mapFarImg
+    "column name"
+    mapStreetImg
     "column name"
     offerType
     "column name"
@@ -898,7 +1321,11 @@ enum Offers_update_column {
     "column name"
     prices_perM2
     "column name"
+    rank
+    "column name"
     rawAttrs
+    "column name"
+    street
     "column name"
     title
     "column name"
@@ -953,6 +1380,192 @@ input Int_comparison_exp {
     _nin: [Int!]
 }
 
+"order by aggregate values of table \"LookoutReports\""
+input LookoutReports_aggregate_order_by {
+    avg: LookoutReports_avg_order_by
+    count: order_by
+    max: LookoutReports_max_order_by
+    min: LookoutReports_min_order_by
+    stddev: LookoutReports_stddev_order_by
+    stddev_pop: LookoutReports_stddev_pop_order_by
+    stddev_samp: LookoutReports_stddev_samp_order_by
+    sum: LookoutReports_sum_order_by
+    var_pop: LookoutReports_var_pop_order_by
+    var_samp: LookoutReports_var_samp_order_by
+    variance: LookoutReports_variance_order_by
+}
+
+"input type for inserting array relation for remote table \"LookoutReports\""
+input LookoutReports_arr_rel_insert_input {
+    data: [LookoutReports_insert_input!]!
+    on_conflict: LookoutReports_on_conflict
+}
+
+"order by avg() on columns of table \"LookoutReports\""
+input LookoutReports_avg_order_by {
+    avgRank: order_by
+    avgRankTrend: order_by
+    id: order_by
+    lookoutRequestId: order_by
+}
+
+"Boolean expression to filter rows from the table \"LookoutReports\". All fields are combined with a logical 'AND'."
+input LookoutReports_bool_exp {
+    LookoutRequest: LookoutRequests_bool_exp
+    Offers: Offers_bool_exp
+    _and: [LookoutReports_bool_exp]
+    _not: LookoutReports_bool_exp
+    _or: [LookoutReports_bool_exp]
+    avgRank: float8_comparison_exp
+    avgRankTrend: float8_comparison_exp
+    createdAt: timestamp_comparison_exp
+    hash: String_comparison_exp
+    id: Int_comparison_exp
+    lookoutRequestId: Int_comparison_exp
+    offersSince: timestamp_comparison_exp
+}
+
+"input type for incrementing integer column in table \"LookoutReports\""
+input LookoutReports_inc_input {
+    avgRank: float8
+    avgRankTrend: float8
+    id: Int
+    lookoutRequestId: Int
+}
+
+"input type for inserting data into table \"LookoutReports\""
+input LookoutReports_insert_input {
+    LookoutRequest: LookoutRequests_obj_rel_insert_input
+    Offers: Offers_arr_rel_insert_input
+    avgRank: float8
+    avgRankTrend: float8
+    createdAt: timestamp
+    hash: String
+    id: Int
+    lookoutRequestId: Int
+    offersSince: timestamp
+}
+
+"order by max() on columns of table \"LookoutReports\""
+input LookoutReports_max_order_by {
+    avgRank: order_by
+    avgRankTrend: order_by
+    createdAt: order_by
+    hash: order_by
+    id: order_by
+    lookoutRequestId: order_by
+    offersSince: order_by
+}
+
+"order by min() on columns of table \"LookoutReports\""
+input LookoutReports_min_order_by {
+    avgRank: order_by
+    avgRankTrend: order_by
+    createdAt: order_by
+    hash: order_by
+    id: order_by
+    lookoutRequestId: order_by
+    offersSince: order_by
+}
+
+"input type for inserting object relation for remote table \"LookoutReports\""
+input LookoutReports_obj_rel_insert_input {
+    data: LookoutReports_insert_input!
+    on_conflict: LookoutReports_on_conflict
+}
+
+"on conflict condition type for table \"LookoutReports\""
+input LookoutReports_on_conflict {
+    constraint: LookoutReports_constraint!
+    update_columns: [LookoutReports_update_column!]!
+    where: LookoutReports_bool_exp
+}
+
+"ordering options when selecting data from \"LookoutReports\""
+input LookoutReports_order_by {
+    LookoutRequest: LookoutRequests_order_by
+    Offers_aggregate: Offers_aggregate_order_by
+    avgRank: order_by
+    avgRankTrend: order_by
+    createdAt: order_by
+    hash: order_by
+    id: order_by
+    lookoutRequestId: order_by
+    offersSince: order_by
+}
+
+"primary key columns input for table: \"LookoutReports\""
+input LookoutReports_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"LookoutReports\""
+input LookoutReports_set_input {
+    avgRank: float8
+    avgRankTrend: float8
+    createdAt: timestamp
+    hash: String
+    id: Int
+    lookoutRequestId: Int
+    offersSince: timestamp
+}
+
+"order by stddev() on columns of table \"LookoutReports\""
+input LookoutReports_stddev_order_by {
+    avgRank: order_by
+    avgRankTrend: order_by
+    id: order_by
+    lookoutRequestId: order_by
+}
+
+"order by stddev_pop() on columns of table \"LookoutReports\""
+input LookoutReports_stddev_pop_order_by {
+    avgRank: order_by
+    avgRankTrend: order_by
+    id: order_by
+    lookoutRequestId: order_by
+}
+
+"order by stddev_samp() on columns of table \"LookoutReports\""
+input LookoutReports_stddev_samp_order_by {
+    avgRank: order_by
+    avgRankTrend: order_by
+    id: order_by
+    lookoutRequestId: order_by
+}
+
+"order by sum() on columns of table \"LookoutReports\""
+input LookoutReports_sum_order_by {
+    avgRank: order_by
+    avgRankTrend: order_by
+    id: order_by
+    lookoutRequestId: order_by
+}
+
+"order by var_pop() on columns of table \"LookoutReports\""
+input LookoutReports_var_pop_order_by {
+    avgRank: order_by
+    avgRankTrend: order_by
+    id: order_by
+    lookoutRequestId: order_by
+}
+
+"order by var_samp() on columns of table \"LookoutReports\""
+input LookoutReports_var_samp_order_by {
+    avgRank: order_by
+    avgRankTrend: order_by
+    id: order_by
+    lookoutRequestId: order_by
+}
+
+"order by variance() on columns of table \"LookoutReports\""
+input LookoutReports_variance_order_by {
+    avgRank: order_by
+    avgRankTrend: order_by
+    id: order_by
+    lookoutRequestId: order_by
+}
+
 "order by aggregate values of table \"LookoutRequests\""
 input LookoutRequests_aggregate_order_by {
     avg: LookoutRequests_avg_order_by
@@ -976,6 +1589,7 @@ input LookoutRequests_arr_rel_insert_input {
 
 "order by avg() on columns of table \"LookoutRequests\""
 input LookoutRequests_avg_order_by {
+    avgRank: order_by
     comfortSignificance: order_by
     id: order_by
     offersProcessed: order_by
@@ -984,46 +1598,57 @@ input LookoutRequests_avg_order_by {
 
 "Boolean expression to filter rows from the table \"LookoutRequests\". All fields are combined with a logical 'AND'."
 input LookoutRequests_bool_exp {
+    LookoutReports: LookoutReports_bool_exp
     Offers: Offers_bool_exp
     _and: [LookoutRequests_bool_exp]
     _not: LookoutRequests_bool_exp
     _or: [LookoutRequests_bool_exp]
-    comfortSignificance: Int_comparison_exp
+    avgRank: float8_comparison_exp
+    comfortSignificance: float8_comparison_exp
+    createdAt: timestamp_comparison_exp
     email: String_comparison_exp
+    emailSubscriptionCanceled: Boolean_comparison_exp
     hash: String_comparison_exp
     id: Int_comparison_exp
     initialLookoutFinished: Boolean_comparison_exp
     lookingFor: String_comparison_exp
     offersProcessed: Int_comparison_exp
-    priceSignificance: Int_comparison_exp
+    priceSignificance: float8_comparison_exp
     url: String_comparison_exp
 }
 
 "input type for incrementing integer column in table \"LookoutRequests\""
 input LookoutRequests_inc_input {
-    comfortSignificance: Int
+    avgRank: float8
+    comfortSignificance: float8
     id: Int
     offersProcessed: Int
-    priceSignificance: Int
+    priceSignificance: float8
 }
 
 "input type for inserting data into table \"LookoutRequests\""
 input LookoutRequests_insert_input {
+    LookoutReports: LookoutReports_arr_rel_insert_input
     Offers: Offers_arr_rel_insert_input
-    comfortSignificance: Int
+    avgRank: float8
+    comfortSignificance: float8
+    createdAt: timestamp
     email: String
+    emailSubscriptionCanceled: Boolean
     hash: String
     id: Int
     initialLookoutFinished: Boolean
     lookingFor: String
     offersProcessed: Int
-    priceSignificance: Int
+    priceSignificance: float8
     url: String
 }
 
 "order by max() on columns of table \"LookoutRequests\""
 input LookoutRequests_max_order_by {
+    avgRank: order_by
     comfortSignificance: order_by
+    createdAt: order_by
     email: order_by
     hash: order_by
     id: order_by
@@ -1035,7 +1660,9 @@ input LookoutRequests_max_order_by {
 
 "order by min() on columns of table \"LookoutRequests\""
 input LookoutRequests_min_order_by {
+    avgRank: order_by
     comfortSignificance: order_by
+    createdAt: order_by
     email: order_by
     hash: order_by
     id: order_by
@@ -1060,9 +1687,13 @@ input LookoutRequests_on_conflict {
 
 "ordering options when selecting data from \"LookoutRequests\""
 input LookoutRequests_order_by {
+    LookoutReports_aggregate: LookoutReports_aggregate_order_by
     Offers_aggregate: Offers_aggregate_order_by
+    avgRank: order_by
     comfortSignificance: order_by
+    createdAt: order_by
     email: order_by
+    emailSubscriptionCanceled: order_by
     hash: order_by
     id: order_by
     initialLookoutFinished: order_by
@@ -1079,19 +1710,23 @@ input LookoutRequests_pk_columns_input {
 
 "input type for updating data in table \"LookoutRequests\""
 input LookoutRequests_set_input {
-    comfortSignificance: Int
+    avgRank: float8
+    comfortSignificance: float8
+    createdAt: timestamp
     email: String
+    emailSubscriptionCanceled: Boolean
     hash: String
     id: Int
     initialLookoutFinished: Boolean
     lookingFor: String
     offersProcessed: Int
-    priceSignificance: Int
+    priceSignificance: float8
     url: String
 }
 
 "order by stddev() on columns of table \"LookoutRequests\""
 input LookoutRequests_stddev_order_by {
+    avgRank: order_by
     comfortSignificance: order_by
     id: order_by
     offersProcessed: order_by
@@ -1100,6 +1735,7 @@ input LookoutRequests_stddev_order_by {
 
 "order by stddev_pop() on columns of table \"LookoutRequests\""
 input LookoutRequests_stddev_pop_order_by {
+    avgRank: order_by
     comfortSignificance: order_by
     id: order_by
     offersProcessed: order_by
@@ -1108,6 +1744,7 @@ input LookoutRequests_stddev_pop_order_by {
 
 "order by stddev_samp() on columns of table \"LookoutRequests\""
 input LookoutRequests_stddev_samp_order_by {
+    avgRank: order_by
     comfortSignificance: order_by
     id: order_by
     offersProcessed: order_by
@@ -1116,6 +1753,7 @@ input LookoutRequests_stddev_samp_order_by {
 
 "order by sum() on columns of table \"LookoutRequests\""
 input LookoutRequests_sum_order_by {
+    avgRank: order_by
     comfortSignificance: order_by
     id: order_by
     offersProcessed: order_by
@@ -1124,6 +1762,7 @@ input LookoutRequests_sum_order_by {
 
 "order by var_pop() on columns of table \"LookoutRequests\""
 input LookoutRequests_var_pop_order_by {
+    avgRank: order_by
     comfortSignificance: order_by
     id: order_by
     offersProcessed: order_by
@@ -1132,6 +1771,7 @@ input LookoutRequests_var_pop_order_by {
 
 "order by var_samp() on columns of table \"LookoutRequests\""
 input LookoutRequests_var_samp_order_by {
+    avgRank: order_by
     comfortSignificance: order_by
     id: order_by
     offersProcessed: order_by
@@ -1140,6 +1780,7 @@ input LookoutRequests_var_samp_order_by {
 
 "order by variance() on columns of table \"LookoutRequests\""
 input LookoutRequests_variance_order_by {
+    avgRank: order_by
     comfortSignificance: order_by
     id: order_by
     offersProcessed: order_by
@@ -1183,6 +1824,7 @@ input Offers_avg_order_by {
     attrs_rooms: order_by
     descriptionRating: order_by
     deviationAvgM2Price: order_by
+    fromReportId: order_by
     id: order_by
     indicators_areaPerRoom: order_by
     indicators_comfort: order_by
@@ -1193,11 +1835,13 @@ input Offers_avg_order_by {
     prices_descriptionPricingSum: order_by
     prices_full: order_by
     prices_perM2: order_by
+    rank: order_by
     views: order_by
 }
 
 "Boolean expression to filter rows from the table \"Offers\". All fields are combined with a logical 'AND'."
 input Offers_bool_exp {
+    LookoutReport: LookoutReports_bool_exp
     LookoutRequest: LookoutRequests_bool_exp
     _and: [Offers_bool_exp]
     _not: Offers_bool_exp
@@ -1216,13 +1860,20 @@ input Offers_bool_exp {
     descriptionRatingsDetails: jsonb_comparison_exp
     deviationAvgM2Price: float8_comparison_exp
     district: String_comparison_exp
+    fromReportId: Int_comparison_exp
     gallery: _text_comparison_exp
+    hasExactAddress: Boolean_comparison_exp
     id: Int_comparison_exp
     indicators_areaPerRoom: float8_comparison_exp
     indicators_comfort: float8_comparison_exp
     indicators_deal: float8_comparison_exp
+    isReportHighlight: Boolean_comparison_exp
+    location: geography_comparison_exp
     lookoutRequestId: Int_comparison_exp
     mainImg: String_comparison_exp
+    mapCloseImg: String_comparison_exp
+    mapFarImg: String_comparison_exp
+    mapStreetImg: String_comparison_exp
     offerType: String_comparison_exp
     prices_additional: float8_comparison_exp
     prices_base: float8_comparison_exp
@@ -1230,10 +1881,12 @@ input Offers_bool_exp {
     prices_descriptionPricingsDetails: jsonb_comparison_exp
     prices_full: float8_comparison_exp
     prices_perM2: float8_comparison_exp
+    rank: float8_comparison_exp
     rawAttrs: jsonb_comparison_exp
+    street: String_comparison_exp
     title: String_comparison_exp
     url: String_comparison_exp
-    userNotes: _text_comparison_exp
+    userNotes: _jsonb_comparison_exp
     userReviewStatus: String_comparison_exp
     views: Int_comparison_exp
 }
@@ -1268,6 +1921,7 @@ input Offers_inc_input {
     attrs_rooms: Int
     descriptionRating: float8
     deviationAvgM2Price: float8
+    fromReportId: Int
     id: Int
     indicators_areaPerRoom: float8
     indicators_comfort: float8
@@ -1278,11 +1932,13 @@ input Offers_inc_input {
     prices_descriptionPricingSum: float8
     prices_full: float8
     prices_perM2: float8
+    rank: float8
     views: Int
 }
 
 "input type for inserting data into table \"Offers\""
 input Offers_insert_input {
+    LookoutReport: LookoutReports_obj_rel_insert_input
     LookoutRequest: LookoutRequests_obj_rel_insert_input
     attrs_area: float8
     attrs_bail: float8
@@ -1298,13 +1954,20 @@ input Offers_insert_input {
     descriptionRatingsDetails: jsonb
     deviationAvgM2Price: float8
     district: String
+    fromReportId: Int
     gallery: _text
+    hasExactAddress: Boolean
     id: Int
     indicators_areaPerRoom: float8
     indicators_comfort: float8
     indicators_deal: float8
+    isReportHighlight: Boolean
+    location: geography
     lookoutRequestId: Int
     mainImg: String
+    mapCloseImg: String
+    mapFarImg: String
+    mapStreetImg: String
     offerType: String
     prices_additional: float8
     prices_base: float8
@@ -1312,10 +1975,12 @@ input Offers_insert_input {
     prices_descriptionPricingsDetails: jsonb
     prices_full: float8
     prices_perM2: float8
+    rank: float8
     rawAttrs: jsonb
+    street: String
     title: String
     url: String
-    userNotes: _text
+    userNotes: _jsonb
     userReviewStatus: String
     views: Int
 }
@@ -1334,18 +1999,24 @@ input Offers_max_order_by {
     descriptionRating: order_by
     deviationAvgM2Price: order_by
     district: order_by
+    fromReportId: order_by
     id: order_by
     indicators_areaPerRoom: order_by
     indicators_comfort: order_by
     indicators_deal: order_by
     lookoutRequestId: order_by
     mainImg: order_by
+    mapCloseImg: order_by
+    mapFarImg: order_by
+    mapStreetImg: order_by
     offerType: order_by
     prices_additional: order_by
     prices_base: order_by
     prices_descriptionPricingSum: order_by
     prices_full: order_by
     prices_perM2: order_by
+    rank: order_by
+    street: order_by
     title: order_by
     url: order_by
     userReviewStatus: order_by
@@ -1366,18 +2037,24 @@ input Offers_min_order_by {
     descriptionRating: order_by
     deviationAvgM2Price: order_by
     district: order_by
+    fromReportId: order_by
     id: order_by
     indicators_areaPerRoom: order_by
     indicators_comfort: order_by
     indicators_deal: order_by
     lookoutRequestId: order_by
     mainImg: order_by
+    mapCloseImg: order_by
+    mapFarImg: order_by
+    mapStreetImg: order_by
     offerType: order_by
     prices_additional: order_by
     prices_base: order_by
     prices_descriptionPricingSum: order_by
     prices_full: order_by
     prices_perM2: order_by
+    rank: order_by
+    street: order_by
     title: order_by
     url: order_by
     userReviewStatus: order_by
@@ -1399,6 +2076,7 @@ input Offers_on_conflict {
 
 "ordering options when selecting data from \"Offers\""
 input Offers_order_by {
+    LookoutReport: LookoutReports_order_by
     LookoutRequest: LookoutRequests_order_by
     attrs_area: order_by
     attrs_bail: order_by
@@ -1414,13 +2092,20 @@ input Offers_order_by {
     descriptionRatingsDetails: order_by
     deviationAvgM2Price: order_by
     district: order_by
+    fromReportId: order_by
     gallery: order_by
+    hasExactAddress: order_by
     id: order_by
     indicators_areaPerRoom: order_by
     indicators_comfort: order_by
     indicators_deal: order_by
+    isReportHighlight: order_by
+    location: order_by
     lookoutRequestId: order_by
     mainImg: order_by
+    mapCloseImg: order_by
+    mapFarImg: order_by
+    mapStreetImg: order_by
     offerType: order_by
     prices_additional: order_by
     prices_base: order_by
@@ -1428,7 +2113,9 @@ input Offers_order_by {
     prices_descriptionPricingsDetails: order_by
     prices_full: order_by
     prices_perM2: order_by
+    rank: order_by
     rawAttrs: order_by
+    street: order_by
     title: order_by
     url: order_by
     userNotes: order_by
@@ -1464,13 +2151,20 @@ input Offers_set_input {
     descriptionRatingsDetails: jsonb
     deviationAvgM2Price: float8
     district: String
+    fromReportId: Int
     gallery: _text
+    hasExactAddress: Boolean
     id: Int
     indicators_areaPerRoom: float8
     indicators_comfort: float8
     indicators_deal: float8
+    isReportHighlight: Boolean
+    location: geography
     lookoutRequestId: Int
     mainImg: String
+    mapCloseImg: String
+    mapFarImg: String
+    mapStreetImg: String
     offerType: String
     prices_additional: float8
     prices_base: float8
@@ -1478,10 +2172,12 @@ input Offers_set_input {
     prices_descriptionPricingsDetails: jsonb
     prices_full: float8
     prices_perM2: float8
+    rank: float8
     rawAttrs: jsonb
+    street: String
     title: String
     url: String
-    userNotes: _text
+    userNotes: _jsonb
     userReviewStatus: String
     views: Int
 }
@@ -1495,6 +2191,7 @@ input Offers_stddev_order_by {
     attrs_rooms: order_by
     descriptionRating: order_by
     deviationAvgM2Price: order_by
+    fromReportId: order_by
     id: order_by
     indicators_areaPerRoom: order_by
     indicators_comfort: order_by
@@ -1505,6 +2202,7 @@ input Offers_stddev_order_by {
     prices_descriptionPricingSum: order_by
     prices_full: order_by
     prices_perM2: order_by
+    rank: order_by
     views: order_by
 }
 
@@ -1517,6 +2215,7 @@ input Offers_stddev_pop_order_by {
     attrs_rooms: order_by
     descriptionRating: order_by
     deviationAvgM2Price: order_by
+    fromReportId: order_by
     id: order_by
     indicators_areaPerRoom: order_by
     indicators_comfort: order_by
@@ -1527,6 +2226,7 @@ input Offers_stddev_pop_order_by {
     prices_descriptionPricingSum: order_by
     prices_full: order_by
     prices_perM2: order_by
+    rank: order_by
     views: order_by
 }
 
@@ -1539,6 +2239,7 @@ input Offers_stddev_samp_order_by {
     attrs_rooms: order_by
     descriptionRating: order_by
     deviationAvgM2Price: order_by
+    fromReportId: order_by
     id: order_by
     indicators_areaPerRoom: order_by
     indicators_comfort: order_by
@@ -1549,6 +2250,7 @@ input Offers_stddev_samp_order_by {
     prices_descriptionPricingSum: order_by
     prices_full: order_by
     prices_perM2: order_by
+    rank: order_by
     views: order_by
 }
 
@@ -1561,6 +2263,7 @@ input Offers_sum_order_by {
     attrs_rooms: order_by
     descriptionRating: order_by
     deviationAvgM2Price: order_by
+    fromReportId: order_by
     id: order_by
     indicators_areaPerRoom: order_by
     indicators_comfort: order_by
@@ -1571,6 +2274,7 @@ input Offers_sum_order_by {
     prices_descriptionPricingSum: order_by
     prices_full: order_by
     prices_perM2: order_by
+    rank: order_by
     views: order_by
 }
 
@@ -1583,6 +2287,7 @@ input Offers_var_pop_order_by {
     attrs_rooms: order_by
     descriptionRating: order_by
     deviationAvgM2Price: order_by
+    fromReportId: order_by
     id: order_by
     indicators_areaPerRoom: order_by
     indicators_comfort: order_by
@@ -1593,6 +2298,7 @@ input Offers_var_pop_order_by {
     prices_descriptionPricingSum: order_by
     prices_full: order_by
     prices_perM2: order_by
+    rank: order_by
     views: order_by
 }
 
@@ -1605,6 +2311,7 @@ input Offers_var_samp_order_by {
     attrs_rooms: order_by
     descriptionRating: order_by
     deviationAvgM2Price: order_by
+    fromReportId: order_by
     id: order_by
     indicators_areaPerRoom: order_by
     indicators_comfort: order_by
@@ -1615,6 +2322,7 @@ input Offers_var_samp_order_by {
     prices_descriptionPricingSum: order_by
     prices_full: order_by
     prices_perM2: order_by
+    rank: order_by
     views: order_by
 }
 
@@ -1627,6 +2335,7 @@ input Offers_variance_order_by {
     attrs_rooms: order_by
     descriptionRating: order_by
     deviationAvgM2Price: order_by
+    fromReportId: order_by
     id: order_by
     indicators_areaPerRoom: order_by
     indicators_comfort: order_by
@@ -1637,6 +2346,7 @@ input Offers_variance_order_by {
     prices_descriptionPricingSum: order_by
     prices_full: order_by
     prices_perM2: order_by
+    rank: order_by
     views: order_by
 }
 
@@ -1657,6 +2367,19 @@ input String_comparison_exp {
     _nlike: String
     _nsimilar: String
     _similar: String
+}
+
+"expression to compare columns of type _jsonb. All fields are combined with logical 'AND'."
+input _jsonb_comparison_exp {
+    _eq: _jsonb
+    _gt: _jsonb
+    _gte: _jsonb
+    _in: [_jsonb!]
+    _is_null: Boolean
+    _lt: _jsonb
+    _lte: _jsonb
+    _neq: _jsonb
+    _nin: [_jsonb!]
 }
 
 "expression to compare columns of type _text. All fields are combined with logical 'AND'."
@@ -1683,6 +2406,64 @@ input float8_comparison_exp {
     _lte: float8
     _neq: float8
     _nin: [float8!]
+}
+
+"Expression to compare the result of casting a column of type geography. Multiple cast targets are combined with logical 'AND'."
+input geography_cast_exp {
+    geometry: geometry_comparison_exp
+}
+
+"expression to compare columns of type geography. All fields are combined with logical 'AND'."
+input geography_comparison_exp {
+    _cast: geography_cast_exp
+    _eq: geography
+    _gt: geography
+    _gte: geography
+    _in: [geography!]
+    _is_null: Boolean
+    _lt: geography
+    _lte: geography
+    _neq: geography
+    _nin: [geography!]
+    "is the column within a distance from a geography value"
+    _st_d_within: st_d_within_geography_input
+    "does the column spatially intersect the given geography value"
+    _st_intersects: geography
+}
+
+"Expression to compare the result of casting a column of type geometry. Multiple cast targets are combined with logical 'AND'."
+input geometry_cast_exp {
+    geography: geography_comparison_exp
+}
+
+"expression to compare columns of type geometry. All fields are combined with logical 'AND'."
+input geometry_comparison_exp {
+    _cast: geometry_cast_exp
+    _eq: geometry
+    _gt: geometry
+    _gte: geometry
+    _in: [geometry!]
+    _is_null: Boolean
+    _lt: geometry
+    _lte: geometry
+    _neq: geometry
+    _nin: [geometry!]
+    "does the column contain the given geometry value"
+    _st_contains: geometry
+    "does the column crosses the given geometry value"
+    _st_crosses: geometry
+    "is the column within a distance from a geometry value"
+    _st_d_within: st_d_within_input
+    "is the column equal to given geometry value. Directionality is ignored"
+    _st_equals: geometry
+    "does the column spatially intersect the given geometry value"
+    _st_intersects: geometry
+    "does the column 'spatially overlap' (intersect but not completely contain) the given geometry value"
+    _st_overlaps: geometry
+    "does the column have atleast one point in common with the given geometry value"
+    _st_touches: geometry
+    "is the column contained in the given geometry value"
+    _st_within: geometry
 }
 
 "expression to compare columns of type jsonb. All fields are combined with logical 'AND'."
@@ -1713,6 +2494,17 @@ input offers_weight_args {
     base_comfort: float8
 }
 
+input st_d_within_geography_input {
+    distance: Float!
+    from: geography!
+    use_spheroid: Boolean = true
+}
+
+input st_d_within_input {
+    distance: Float!
+    from: geometry!
+}
+
 "expression to compare columns of type timestamp. All fields are combined with logical 'AND'."
 input timestamp_comparison_exp {
     _eq: timestamp
@@ -1727,9 +2519,15 @@ input timestamp_comparison_exp {
 }
 
 
+scalar _jsonb
+
 scalar _text
 
 scalar float8
+
+scalar geography
+
+scalar geometry
 
 scalar jsonb
 
