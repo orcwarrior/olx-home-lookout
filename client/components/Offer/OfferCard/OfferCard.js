@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useCallback } from "react";
 import {
   Accordion,
   AccordionPanel,
@@ -7,18 +7,37 @@ import {
   Heading,
   Paragraph,
   Text,
+  Button
 } from 'grommet'
 
 import { Clear, Currency, Favorite, Lounge, Task } from 'grommet-icons'
 import { CardTopGallery } from "@components/Offer/OfferCard/CardTopGallery";
+import { useMutation } from "@apollo/react-hooks";
+import MUTATE_OFFER from "@gql-queries/actOnOffer.graphql"
+import { withOfferLogic } from "@components/Offer/OfferCard/withOfferLogic";
 
+global.Buffer = global.Buffer || require('buffer').Buffer;
+
+if (typeof btoa === 'undefined') {
+  global.btoa = function (str) {
+    return new Buffer(str, 'binary').toString('base64');
+  };
+}
+
+if (typeof atob === 'undefined') {
+  global.atob = function (b64Encoded) {
+    return new Buffer(b64Encoded, 'base64').toString('binary');
+  };
+}
 
 const _OfferCard = (offer) => {
 
 
   const {
+    id,
     title, url, district, city, description,
     indicators_comfort, indicators_deal, descriptionRating,
+    userReviewStatus
   } = offer;
   const {
     favoriteColor, rejectedColor,
@@ -40,8 +59,8 @@ const _OfferCard = (offer) => {
           </Anchor>
         </Heading>
         <Box align="center" justify="center" direction="row" gap="medium" pad="small">
-          <Favorite/>
-          <Clear/>
+          <Button icon={<Favorite color={favoriteColor}/>} type="button" onClick={toggleLike}/>
+          <Button icon={<Clear color={rejectedColor}/>} type="button" onClick={toggleReject}/>
         </Box>
       </Box>
       <Box align="center" justify="between" direction="row" pad="small" gap="xsmall">

@@ -1,0 +1,32 @@
+.image-gallery {
+  height: 100%;
+
+  .image-gallery-content {
+    height: 100%;
+
+    .image-gallery-slide-wrapper {
+      height: 100%;
+
+      .image-gallery-swipe {
+        height: 100%;
+
+        .image-gallery-slides {
+          height: 100%;
+
+          .image-gallery-slide.center {
+            height: 100%;
+            & > div {
+              height: 100%;
+            }
+
+            .image-gallery-image {
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
