@@ -9,7 +9,7 @@ import {
     updateLookoutOrdersProcessedCount
 } from "./scrapeAdsList.utils";
 
-const OFFERS_PARSE_CAP = 500;
+const OFFERS_PARSE_CAP = 10;
 
 async function parseOffersDetails(offers: Array<Offer>): Promise<OfferDetailed[]> {
     return Promise.all(offers.map((offer) => {

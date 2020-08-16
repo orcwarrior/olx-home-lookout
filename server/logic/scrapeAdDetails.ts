@@ -4,6 +4,9 @@ import {Offer, OfferDetailed, OfferDetailedPrices} from "./helpers/Offer";
 import {addNotice} from "./helpers/notices";
 import {decorateWithIndicators} from "./helpers/offerIndicators";
 import {extractDescriptionPricing} from "./extractors/extractDescriptionPricing";
+import {extractAdGallery} from "./extractors/extractAdGallery";
+import {extractStreet} from "@logic/extractors/extractStreet";
+import {getAddrGeocode} from "/api/geo/queryAddressGeo";
 
 
 function calculatePrices(offer: Offer, attrs: OfferDetailedAttributes, description: string): OfferDetailedPrices {
@@ -21,7 +24,7 @@ function calculatePrices(offer: Offer, attrs: OfferDetailedAttributes, descripti
 }
 
 function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
-    return function (error, response, done) {
+    return async function (error, response, done) {
         if (error) {
             console.warn(error);
             addNotice(error);
@@ -42,8 +45,11 @@ function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
             attrs, rawAttrs,
             prices: calculatePrices(offer, attrs, description),
             description, descriptionRatingsDetails,
-            descriptionRating
-
+            descriptionRating,
+            gallery: extractAdGallery($),
+            street,
+            location: geoPoint.toTypeOrm(),
+            hasExactAddress: !geoBounds,
         };
         resolveCb(decorateWithIndicators(detailedOffer));
         if (done) done();

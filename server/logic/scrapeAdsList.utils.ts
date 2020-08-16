@@ -11,7 +11,7 @@ function parseOffer(el: CheerioElement, $: CheerioAPI, lookout: LookoutRequest):
     const sub$ = (selector) => $(selector, el);
     const title = sub$("a > strong").text();
     const _priceBase = parseFloat(sub$(".price > strong").text().replace(/zł| /gi, ""));
-    const urlNormalized = sub$("td[valign=top] a").attr("href").replace(";promoted", "");
+    const urlNormalized = sub$("td[valign=top] a").attr("href").replace(/\??#.+$/, "");
     const [city, district] = sub$("[data-icon=location-filled]").parent().text().split(",");
     return {
         title,
@@ -43,7 +43,8 @@ async function offersOverlapsWithDB(offers: Array<Offer>) {
     const lastOfferInDb = await queryBuilder
         .select()
         .from(OfferDB, "offer")
-        .where("offer.url = :url", {url: lastOffer.url})
+        .where("offer.lookoutRequestId = :lookoutRequestId", {lookoutRequestId: lastOffer.lookoutRequestId})
+        .andWhere("offer.url = :url", {url: lastOffer.url})
         // .orWhere("offer.url = :url2", {url2: lastOffer.url})
         .getCount();
 
