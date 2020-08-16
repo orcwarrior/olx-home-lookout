@@ -1,1 +1,11 @@
-[]
+- name: SCHEDULE_UpdateOffers
+  webhook: http://host.docker.internal:4000/events
+  schedule: 58 */3 * * *
+  include_in_metadata: true
+  payload:
+    schedule_name: SCHEDULE_UpdateOffers
+  retry_conf:
+    num_retries: 5
+    timeout_seconds: 360
+    tolerance_seconds: 21600
+    retry_interval_seconds: 180

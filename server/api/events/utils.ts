@@ -13,6 +13,10 @@ type HasuraEvtPayload = {
             old?: object,
             new?: object
         }
+    },
+    payload?: {
+        schedule_name?: string
+        data?: any
     }
 }
 

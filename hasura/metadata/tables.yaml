@@ -1,7 +1,29 @@
 - table:
     schema: public
+    name: LookoutReports
+  object_relationships:
+  - name: LookoutRequest
+    using:
+      foreign_key_constraint_on: lookoutRequestId
+  array_relationships:
+  - name: Offers
+    using:
+      foreign_key_constraint_on:
+        column: fromReportId
+        table:
+          schema: public
+          name: Offers
+- table:
+    schema: public
     name: LookoutRequests
   array_relationships:
+  - name: LookoutReports
+    using:
+      foreign_key_constraint_on:
+        column: lookoutRequestId
+        table:
+          schema: public
+          name: LookoutReports
   - name: Offers
     using:
       foreign_key_constraint_on:
@@ -24,6 +46,9 @@
     schema: public
     name: Offers
   object_relationships:
+  - name: LookoutReport
+    using:
+      foreign_key_constraint_on: fromReportId
   - name: LookoutRequest
     using:
       foreign_key_constraint_on: lookoutRequestId
@@ -40,10 +65,16 @@
         schema: public
         name: offers_prices_perm2_deviation
     comment: ""
+  - name: _rank
+    definition:
+      function:
+        schema: public
+        name: offers_rank
+    comment: ""
   event_triggers:
   - name: offer_created
     definition:
-      enable_manual: true
+      enable_manual: false
       insert:
         columns: '*'
     retry_conf:
