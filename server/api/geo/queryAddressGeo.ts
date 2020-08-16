@@ -11,12 +11,12 @@ const router = Router();
 
 type GeoBounds = {
     northeast: {
-        lat: number,
-        lng: number,
+        lat?: number,
+        lng?: number,
     },
     southwest: {
-        lat: number,
-        lng: number,
+        lat?: number,
+        lng?: number,
     }
 }
 

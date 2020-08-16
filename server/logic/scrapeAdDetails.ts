@@ -49,7 +49,7 @@ function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
             gallery: extractAdGallery($),
             street,
             location: geoPoint.toTypeOrm(),
-            hasExactAddress: !geoBounds,
+            hasExactAddress: street && !geoBounds,
         };
         resolveCb(decorateWithIndicators(detailedOffer));
         if (done) done();
