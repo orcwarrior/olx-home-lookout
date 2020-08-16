@@ -5,6 +5,7 @@ import {LookoutRequest} from "../../db/schemas";
 
 type OFFER_TYPE = "RENT" | "PURCHASE" | "ROOM";
 type Offer = {
+    id?: number,
     title: string,
     url: string,
     mainImg: string,
@@ -55,7 +56,12 @@ type OfferDetails = {
     description: string,
     descriptionRatingsDetails: object
     descriptionRating: number,
-    indicators?: OfferIndicators
+    indicators?: OfferIndicators,
+    street?: string,
+    location?: any
+    hasExactAddress?: boolean,
+    isReportHighlight?: boolean,
+
 }
 
 
