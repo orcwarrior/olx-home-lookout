@@ -8,13 +8,13 @@ import { GRAPHQL } from "@config";
 console.log(`GRAPHQL.URL: `, GRAPHQL.URL);
 console.log(`process.env.SERVER_PARSE_APP_ID: `, process.env.SERVER_PARSE_APP_ID);
 const httpLink = createHttpLink({uri: GRAPHQL.URL, credentials: "include"});
-const parseServerLink = setContext((_, {headers}) => {
+const hasuraServerLink = setContext((_, {headers}) => {
     return { headers: {...headers, ["x-hasura-access-key"]: process.env.HASURA_GRAPHQL_ADMIN_SECRET}};
 });
 
 
 const apolloClientConfig = (initialState) => ({
-    link: parseServerLink.concat(httpLink),
+    link: hasuraServerLink.concat(httpLink),
     cache: new InMemoryCache().restore(initialState || {})
 });
 

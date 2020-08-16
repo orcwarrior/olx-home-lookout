@@ -1,9 +1,9 @@
 function getBigImage(url) {
-  return url.replace(";s=644x461", ";s=1000x716")
+  return url.replace(/;s=\d+?x\d+?/, "")
 }
 
 function getThumbImage(url) {
-  return url.replace(";s=644x461", ";s=100x72")
+  return url.replace(/;s=\d+?x\d+?/, ";s=100x72")
 }
 
 export { getBigImage, getThumbImage }
