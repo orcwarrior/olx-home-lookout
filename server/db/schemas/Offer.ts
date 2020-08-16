@@ -12,6 +12,12 @@ enum USER_REVIEW_STATUS {
 }
 
 @Entity()
+class Offers_userreviewstatus_enum {
+    @PrimaryGeneratedColumn()
+    value: string;
+}
+
+@Entity()
 export class Offer {
     @PrimaryGeneratedColumn()
     id: number;
@@ -37,13 +43,16 @@ export class Offer {
     @Column()
     title: string;
 
-    @Column({unique: true})
+    @Column()
     url: string;
 
     @Column({nullable: true})
     mainImg: string;
 
-    @Column()
+    @Column({nullable: true, array: true, type: "text"})
+    gallery: string[];
+
+    @Column({default: () => "now()"})
     createdAt: Date;
 
     @Column()
@@ -92,11 +101,11 @@ export class Offer {
     @Column()
     description: string;
 
-    @Column({type: "enum", enum: USER_REVIEW_STATUS, default: USER_REVIEW_STATUS.NONE})
+    @Column({default: USER_REVIEW_STATUS.NONE})
     userReviewStatus: USER_REVIEW_STATUS;
 
-    @Column({nullable: true})
-    userNote: string;
+    @Column({type: "jsonb", nullable: true, array: true})
+    userNotes: any[];
 
     @Column()
     offerType: OFFER_TYPE;
