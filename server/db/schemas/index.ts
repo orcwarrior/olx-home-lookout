@@ -2,3 +2,4 @@
 // TODO: Autogenerate this on pre-run
 export * from "./Offer";
 export * from "./LookoutRequest";
+export * from "./LookoutReport";

@@ -11,6 +11,7 @@ export class LookoutRequest {
     @OneToMany(type => Offer, req => req.id)
     offers: Offer[];
 
+    @Index()
     @Column({default: () => "gen_random_uuid()", unique: true})
     hash: string;
 
@@ -20,17 +21,23 @@ export class LookoutRequest {
     @Column({unique: true})
     email: string;
 
-    @Column()
+    @Column({type: "float"})
     priceSignificance: number;
 
-    @Column()
+    @Column({type: "float"})
     comfortSignificance: number;
+
+    @Column({type: "float", nullable: true})
+    avgRank: number;
 
     @Column({default: 0})
     offersProcessed: number;
 
     @Column({default: false})
     initialLookoutFinished: boolean;
+
+    @Column({default: false})
+    emailSubscriptionCanceled: boolean;
 
     @Column()
     lookingFor: OFFER_TYPE;

@@ -40,6 +40,19 @@ export class Offer {
     @Column({nullable: true})
     district?: string;
 
+    @Column({nullable: true})
+    street?: string;
+
+    @Column({type: "geography", nullable: true, spatialFeatureType: "Point", srid: 4326})
+    @JoinColumn()
+    location?: GeographyType;
+
+    @Column({nullable: true})
+    hasExactAddress?: boolean;
+
+    @Column({nullable: true})
+    isReportHighlight?: boolean;
+
     @Column(type => OfferDetailedPrices)
     prices: OfferDetailedPrices;
 
