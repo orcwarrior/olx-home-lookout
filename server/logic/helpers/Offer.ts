@@ -50,6 +50,7 @@ class OfferIndicators {
 
 type OfferDetails = {
     attrs: OfferDetailedAttributes,
+    gallery: string[],
     rawAttrs: any,
     prices: OfferDetailedPrices,
     views: number,
