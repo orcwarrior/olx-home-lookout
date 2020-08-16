@@ -1,11 +1,13 @@
-query LookoutOffers($where: Offers_bool_exp) {
-    Offers_connection(where: $where, order_by: {deviationAvgM2Price: asc}) {
+query LookoutOffers($where: Offers_bool_exp, $orderBy: [Offers_order_by!] ) {
+    Offers_connection(where: $where, order_by: $orderBy) {
         edges {
             node {
+                __typename
                 id
                 url
                 title
                 mainImg
+                gallery
                 city
                 district
                 createdAt
@@ -29,6 +31,9 @@ query LookoutOffers($where: Offers_bool_exp) {
                 descriptionRating
                 descriptionRatingsDetails
                 deviationAvgM2Price
+
+                userReviewStatus
+                userNotes
             }
         }
     }
