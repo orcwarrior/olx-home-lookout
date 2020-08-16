@@ -6,6 +6,7 @@ import * as fs from "fs";
 import * as utils from "./generateOfferMapImages.utils";
 import {StaticMapInput, ZOOM_TYPE, BASE_MAPS_PATH} from "./generateOfferMapImages.utils";
 import {api} from "/config";
+import {Geography} from "@db/schemas/utils";
 
 const router = Router();
 
@@ -68,13 +69,13 @@ async function getMapImg(input: StaticMapInput) {
     const hasImg = await _fExist(imgPath);
 
     if (hasImg) {
-        console.log(`Image: ${imgPath} already exists!`);
+        // console.log(`Image: ${imgPath} already exists!`);
         return {
             img: imgPath.replace(".", api.clientBaseUrl),
             thumb: imgThumbPath.replace(".", api.clientBaseUrl)
         };
     } else {
-        console.log(`Image: ${imgPath} has to be generated...`, process.cwd());
+        // console.log(`Image: ${imgPath} has to be generated...`, process.cwd());
         const [img, thumb] = (input.zoomType === ZOOM_TYPE.STREET)
             ? await generateStreetViewImg(input)
             : await generateStaticMapImg(input);
@@ -89,15 +90,20 @@ async function getMapImg(input: StaticMapInput) {
     };
 }
 
-type OfferMapImages = {
+type OfferMapErr = {
+    error?: any
+}
+type OfferMapImages = OfferMapErr & {
     far: { img: string, thumb: string },
     close: { img: string, thumb: string },
     street?: { img: string, thumb: string },
 }
 
-async function getMapImagesForOffer(offer: Partial<Offer>): Promise<OfferMapImages> {
+async function getMapImagesForOffer(offer: Partial<Offer>, addrGeocode?: [string, string, Geography, GeoBounds]): Promise<OfferMapImages> {
 
-    const [_, fullAddress, geoPoint, geoBounds] = await getAddrGeocode(`${offer.district} ${offer.street || ""}`);
+    const [_err, fullAddress, geoPoint, geoBounds] = addrGeocode || await getAddrGeocode(`${offer.district} ${offer.street || ""}`);
+    if (!geoPoint)
+        return {far: null, close: null, error: _err};
 
     const farInput: StaticMapInput = {
         fullAddress,
@@ -113,6 +119,7 @@ async function getMapImagesForOffer(offer: Partial<Offer>): Promise<OfferMapImag
         close: await getMapImg({...farInput, zoomType: ZOOM_TYPE.CLOSE}),
         ...(hasExactAddress ? {street: await getMapImg({...farInput, zoomType: ZOOM_TYPE.STREET})} : {})
     };
+
 }
 
 

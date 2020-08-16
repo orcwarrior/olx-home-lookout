@@ -9,7 +9,7 @@ const crawler = new Crawler({
 
 let lastRateLimitedQueueInsert = 1;
 
-const RATE_LIMIT_MS = 290;
+const RATE_LIMIT_MS = 390;
 
 function crawlerRateLimitedQueue(options) {
     const nowTS = new Date().valueOf();

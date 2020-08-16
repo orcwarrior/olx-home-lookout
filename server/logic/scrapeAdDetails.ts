@@ -38,9 +38,12 @@ function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
         const [description, descriptionRatingsDetails, descriptionRating] = extractDescription(offer, $);
 
         const street = extractStreet(offer.title, description);
-        const [_, __, geoPoint, geoBounds] = await getAddrGeocode(`${offer.district} ${street || ""}`);
 
-        const mapImgs = await getMapImagesForOffer({...offer, street})
+        const addrGeocode = await getAddrGeocode(`${offer.district} ${street || ""}`);
+        const [_, __, geoPoint, geoBounds] = addrGeocode;
+
+        const mapImgs = await getMapImagesForOffer(offer, addrGeocode);
+
         const detailedOffer: OfferDetailed = {
             ...offer,
             views: Number($(".offer-bottombar__counter > strong").text()),
@@ -50,17 +53,17 @@ function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
             descriptionRating,
             gallery: extractAdGallery($),
             street,
-            location: geoPoint.toTypeOrm(),
+            location: geoPoint && geoPoint.toTypeOrm(),
             hasExactAddress: street && !geoBounds,
 
-            mapCloseImg: mapImgs.close.img,
-            mapFarImg: mapImgs.far.img,
+            mapCloseImg: mapImgs.close?.img,
+            mapFarImg: mapImgs.far?.img,
             mapStreetImg: mapImgs.street?.img,
-
         };
+
         resolveCb(decorateWithIndicators(detailedOffer));
         if (done) done();
     };
-}
+};
 
 export {scrapeAdDetail};

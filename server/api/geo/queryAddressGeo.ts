@@ -28,8 +28,13 @@ async function getAddrGeocode(_address): Promise<[string, string, Geography, Geo
 
     return fetch(_getUri(address))
         .then(res => res.json())
-        .then(({status, results, error_message}) => {
-            if (status !== "OK") throw Error(error_message);
+        .then((response) => {
+            const {status, results} = response;
+            if (status !== "OK") {
+                const errMsg = "Google StreetAPI err: " + JSON.stringify(response);
+                console.error(errMsg);
+                return [null, null, null, null]
+            };
 
             const res: [string, string, Geography, GeoBounds] = [
                 _findStreetName(results),
