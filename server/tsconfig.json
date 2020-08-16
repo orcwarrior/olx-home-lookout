@@ -20,10 +20,24 @@
     "paths": {
       "@config/*": [
         "config/*"
+      ],
+      "@db/*": [
+        "db/*"
+      ],
+      "@logic/*": [
+        "logic/*"
+      ],
+      "@events/*": [
+        "api/events/*"
+      ],
+      "/*": [
+        "*"
       ]
     },
     "lib": [
-      "es2020.string"
+      "es2020.string",
+      "ES2020.Promise",
+      "ES2019"
     ]
   }
 }

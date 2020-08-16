@@ -13,7 +13,7 @@ const INSERT_LookoutRequests = bufferedHandler(async (data: HandlerArgs<LookoutR
     const uniqOffers = uniqBy(offers, (ad: OfferDetailed) => ad.url);
     console.log(`offers collected: ${offers.length} - (uniq) --> ${uniqOffers.length}`);
 
-    return Promise.all(uniqOffers.map(offer => offerBuilder
+    return Promise.allSettled(uniqOffers.map(offer => offerBuilder
         .insert()
         .into(Offer)
     // @ts-ignore
