@@ -1,4 +1,5 @@
 # Project exclude paths
 /node_modules/
 /server/node_modules/
-secret.envg
+local.env
+secret.env
