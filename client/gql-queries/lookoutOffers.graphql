@@ -8,11 +8,16 @@ query LookoutOffers($where: Offers_bool_exp, $orderBy: [Offers_order_by!] ) {
                 title
                 mainImg
                 gallery
+
                 city
                 district
+                street
+                hasExactAddress
+
                 createdAt
                 offerType
 
+                rank
                 indicators_comfort
                 indicators_deal
                 indicators_areaPerRoom
@@ -34,6 +39,10 @@ query LookoutOffers($where: Offers_bool_exp, $orderBy: [Offers_order_by!] ) {
 
                 userReviewStatus
                 userNotes
+
+                mapFarImg
+                mapCloseImg
+                mapStreetImg
             }
         }
     }

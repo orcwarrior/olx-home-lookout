@@ -21,6 +21,7 @@ query LookoutOffers($id: Int! ) {
                 indicators_comfort
                 indicators_deal
                 indicators_areaPerRoom
+                hasExactAddress
 
                 attrs_estateType
                 attrs_area
