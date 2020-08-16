@@ -1,8 +1,5 @@
-import { Box, Image, Meter, Stack, Text, ThemeContext } from "grommet";
-import { getBigImage, getThumbImage } from "@components/Offer/utils";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import React, { useContext, useState } from "react";
-import * as Color from "color";
+import { Box, Image, Meter, Stack, Text } from "grommet";
+import React from "react";
 import { Home } from 'grommet-icons'
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss";
@@ -42,10 +39,8 @@ const CardTopGallery = (offer) => {
          hoverIndicator={false}
          elevation="none">
       {/**/}
-      {gallery.length
-          ? <ImageGallery items={galleryImgs} lazyLoad={true} thumbnailPosition="right"
-                          showPlayButton={false} showNav={false}/>
-          : <Image src={NO_PHOTO_URL} fit="cover" fill/>
+      <ImageGallery items={galleryImgs} lazyLoad={true} thumbnailPosition="right"
+                    showPlayButton={false} showNav={false}/>
       }
     </Box>
     <Box fill={true} round="medium" style={STYLE_BACKDROP}/>

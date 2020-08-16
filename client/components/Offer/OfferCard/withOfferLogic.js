@@ -4,6 +4,7 @@ import MUTATE_OFFER from "@gql-queries/actOnOffer.graphql";
 import * as Color from "color";
 import { getBigImage, getThumbImage } from "@components/Offer/utils";
 import { ThemeContext } from "grommet";
+import { Location, Select, StatusUnknown } from "grommet-icons";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 
@@ -73,25 +74,43 @@ function prepGalleryImages(gallery) {
   }))
 }
 
+function renderLocationIcon({street, hasExactAddress, isEmail}) {
+  if (isEmail) {
+    if (street && hasExactAddress)
+      return <>📍</>
+    else if (street)
+      return <>🗺️</>
+    else return <>❓</>
+  }
+  if (street && hasExactAddress)
+    return <Location size="small"/>
+  else if (street)
+    return <Select size="small"/>
+  else return <StatusUnknown size="small"/>
+}
+
 
 const withOfferLogic = (Component) => (offer) => {
   const {
     id, createdAt: createdAtStr,
-    title, url, district, city, description,
+    title, url, district, city, street, hasExactAddress, description,
     gallery, mainImg, percentageM2PriceDeviation,
     indicators_comfort, indicators_deal, descriptionRating,
     prices_perM2,
+    mapFarImg, mapCloseImg, mapStreetImg,
     userReviewStatus
   } = offer;
 
   const [_, __, ___, dbId] = JSON.parse(atob(id));
   const [changeOffer] = useMutation(MUTATE_OFFER)
 
-  const [galleryImgs, setGalleryImgs] = useState(prepGalleryImages(gallery));
+  const [galleryImgs, setGalleryImgs] = useState(prepGalleryImages([...gallery, mapFarImg, mapCloseImg, mapStreetImg].filter(Boolean)));
   const {global: {colors: themeColors}} = useContext(ThemeContext);
 
   const favoriteColor = (userReviewStatus === "BOOKMARKED") ? "accent-1" : "white";
   const rejectedColor = (userReviewStatus === "REJECTED") ? "dark-3" : "white";
+  const locationIcon = renderLocationIcon({street, hasExactAddress, isEmail: false})
+  const locationIconEmail = renderLocationIcon({street, hasExactAddress, isEmail: true})
 
   function actOnOffer(action) {
 
@@ -115,6 +134,7 @@ const withOfferLogic = (Component) => (offer) => {
     meterPriceDevProps: decorateMeter({percentageM2PriceDeviation, themeColors}),
     meterTxtColor: getMeterColor({themeColors, percentageM2PriceDeviation}),
     meterTxtPriceDeviation: calcPercDeviation(offer)[1],
+    locationIcon, locationIconEmail,
 
     display_priceM2: Math.round(prices_perM2),
 

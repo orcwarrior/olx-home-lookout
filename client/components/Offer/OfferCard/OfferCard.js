@@ -35,13 +35,14 @@ const _OfferCard = (offer) => {
 
   const {
     id,
-    title, url, district, city, description,
+    title, url, district, description, street, hasExactAddress,
     indicators_comfort, indicators_deal, descriptionRating,
     userReviewStatus
   } = offer;
   const {
     favoriteColor, rejectedColor,
-    toggleLike, toggleReject
+    toggleLike, toggleReject,
+    locationIcon,
   } = offer.logic;
 
 
@@ -65,7 +66,8 @@ const _OfferCard = (offer) => {
       </Box>
       <Box align="center" justify="between" direction="row" pad="small" gap="xsmall">
         <Text color="light-5" textAlign="center" size="small">
-          {district}
+          {locationIcon}&nbsp;&nbsp;
+          {district}, {street}
         </Text>
         <Box align="center" justify="end" direction="row" flex="grow">
           <Box align="center" justify="center" direction="row" gap="small"
