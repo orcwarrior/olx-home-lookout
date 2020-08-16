@@ -75,9 +75,7 @@ class OLXHomeLookoutApp extends App {
     return (<RecoilRoot>
           <ApolloProvider client={apollo}>
             <Grommet theme={customizedTheme} full={true}>
-              <Box fill="vertical" justify="center">
-                  <Component {...pageProps} store={store}/>
-              </Box>
+              <Component {...pageProps} store={store}/>
             </Grommet>
           </ApolloProvider>
         </RecoilRoot>

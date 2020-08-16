@@ -4,6 +4,7 @@ import { Box, Heading, Paragraph } from "grommet";
 import { useQuery } from "@apollo/react-hooks";
 import TEST_QUERY from "../gql-queries/test.graphql"
 import { SubmitForLookout } from "@components/SubmitForLookout/SubmitForLookout";
+import { Layout } from "@components/common/Layout";
 
 const Index = () => {
   const {data, loading} = useQuery(TEST_QUERY)
@@ -12,7 +13,8 @@ const Index = () => {
     position: "center",
     opacity: "strong"
   }
-  return <Box background={background} fill="vertical" overflow="none" pad="large">
+  return <Layout>
+    <Box background={background} fill="vertical" overflow="none" pad="large">
     <Heading level={1}>OLX Home lookout</Heading>
     <Paragraph>description lorem ispum</Paragraph>
     <Box pad="medium">
@@ -21,7 +23,8 @@ const Index = () => {
     <Box align="bottom" pad="medium" fill="vertical" justify="center" alignSelf="center" width="large">
       <SubmitForLookout/>
     </Box>
-  </Box>;
+  </Box>
+    </Layout>;
 };
 
 Index.getInitialProps = async ({req, query, apolloClient}) => {
