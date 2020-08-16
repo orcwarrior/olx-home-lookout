@@ -1,6 +1,8 @@
 const envFiles = [
-    // "../../.env",
-    "../../local.env"];
+    // "../../.env", // Those are for running stricly inside container (I guess)
+    "../../local.env",
+    "../../secret.env",
+];
 
 if (process.env.RUNTIME_ENVIROMENT !== "docker_compose") {
     const fs = require("fs"), path = require("path");

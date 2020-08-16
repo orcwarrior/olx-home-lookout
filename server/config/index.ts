@@ -1,3 +1,5 @@
+require("./loadDotEnv.js");
+
 import db from "./db";
 import {api} from "./api";
 

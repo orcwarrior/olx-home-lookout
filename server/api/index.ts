@@ -4,6 +4,9 @@ import {api} from "../config";
 
 import eventsRouter from "./events/events";
 
+import queryAddressRouter from "./geo/queryAddressGeo";
+import genOfferMapRouter from "./geo/generateOfferMapImages";
+
 const app = express();
 
 
@@ -13,6 +16,9 @@ app.get("/", (req, res) => {
 });
 app.use(bodyParser.json());
 app.use(eventsRouter);
+app.use("/api/geo/", queryAddressRouter);
+app.use("/api/geo/", genOfferMapRouter);
+app.use(express.static("static"));
 
 // start the Express server
 app.listen(api.clientPort, () => {

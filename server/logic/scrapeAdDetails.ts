@@ -32,7 +32,11 @@ function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
         console.log(`scrapping detailOf: ${offer.url}`);
         const [attrs, rawAttrs] = extractAttrs(offer, $);
         const [description, descriptionRatingsDetails, descriptionRating] = extractDescription(offer, $);
-        const detailedOffer = {
+
+        const street = extractStreet(offer.title, description);
+        const [_, __, geoPoint, geoBounds] = await getAddrGeocode(`${offer.district} ${street || ""}`);
+
+        const detailedOffer: OfferDetailed = {
             ...offer,
             views: Number($(".offer-bottombar__counter > strong").text()),
             attrs, rawAttrs,

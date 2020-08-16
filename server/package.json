@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "server-test": "ts-node ./logic/index.ts",
-    "api:dev": "ts-node-dev -r tsconfig-paths/register api/index.ts",
-    "db:init": "cross-env-shell SERVER__DB_DROP=1  ts-node -r tsconfig-paths/register db/init.ts",
-    "db:init:once": "cross-env-shell SERVER__DB_INIT_ONCE=1 ts-node -r tsconfig-paths/register db/init.ts",
-    "db:init:dev": "ts-node-dev -r tsconfig-paths/register db/init.ts"
+    "server-test": "ts-node --files ./logic/index.ts",
+    "api:dev": "ts-node-dev --files -r tsconfig-paths/register api/index.ts",
+    "db:init": "cross-env-shell SERVER__DB_DROP=1  ts-node --files -r tsconfig-paths/register db/init.ts",
+    "db:init:once": "cross-env-shell SERVER__DB_INIT_ONCE=1 ts-node --files -r tsconfig-paths/register db/init.ts",
+    "db:init:dev": "ts-node-dev --files -r tsconfig-paths/register db/init.ts"
   },
   "dependencies": {
     "@types/geojson": "^7946.0.7",
@@ -16,8 +16,12 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "glob": "^7.1.4",
+    "jimp": "^0.16.0",
     "knex": "^0.20.12",
-    "knex-postgis": "^0.11.0",
+    "knex-postgis": "^0.12.0",
+    "lru-cache": "^6.0.0",
+    "ms": "^2.1.2",
+    "node-fetch": "^2.6.0",
     "pg": "^7.18.2",
     "pluralize": "^8.0.0",
     "source-map-support": "^0.5.13",
@@ -29,6 +33,7 @@
     "@types/express": "^4.17.7",
     "@types/faker": "^4.1.11",
     "@types/glob": "^7.1.1",
+    "@types/node-fetch": "^2.5.7",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
     "@typescript-eslint/parser": "^2.25.0",
     "cross-env": "^6.0.3",
@@ -40,10 +45,9 @@
     "lodash": "^4.17.15",
     "reflect-metadata": "^0.1.13",
     "sql-fixtures": "^1.0.2",
-    "ts-node": "7.0.1",
-    "ts-node-dev": "^1.0.0-pre.44",
-    "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.6.2"
+    "ts-node": "8.10.2",
+    "ts-node-dev": "^1.0.0-pre.57",
+    "tsconfig-paths": "^3.9.0"
   },
   "engines": {
     "node": ">=8.10.0"
