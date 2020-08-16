@@ -215,6 +215,7 @@ type Offers implements Node {
     "A computed field, executes function \"offers_prices_perm2_deviation\""
     deviation_price_perM2: float8
     district: String
+    gallery: _text
     id: ID!
     indicators_areaPerRoom: float8!
     indicators_comfort: float8!
@@ -237,8 +238,8 @@ type Offers implements Node {
     ): jsonb
     title: String!
     url: String!
-    userNote: String
-    userReviewStatus: Offers_userreviewstatus_enum!
+    userNotes: _text
+    userReviewStatus: String!
     views: Int!
     "A computed field, executes function \"offers_weight\""
     weight(
@@ -329,7 +330,7 @@ type Offers_max_fields {
     prices_perM2: float8
     title: String
     url: String
-    userNote: String
+    userReviewStatus: String
     views: Int
 }
 
@@ -361,7 +362,7 @@ type Offers_min_fields {
     prices_perM2: float8
     title: String
     url: String
-    userNote: String
+    userReviewStatus: String
     views: Int
 }
 
@@ -797,6 +798,8 @@ enum Offers_select_column {
     "column name"
     district
     "column name"
+    gallery
+    "column name"
     id
     "column name"
     indicators_areaPerRoom
@@ -829,7 +832,7 @@ enum Offers_select_column {
     "column name"
     url
     "column name"
-    userNote
+    userNotes
     "column name"
     userReviewStatus
     "column name"
@@ -867,6 +870,8 @@ enum Offers_update_column {
     "column name"
     district
     "column name"
+    gallery
+    "column name"
     id
     "column name"
     indicators_areaPerRoom
@@ -899,7 +904,7 @@ enum Offers_update_column {
     "column name"
     url
     "column name"
-    userNote
+    userNotes
     "column name"
     userReviewStatus
     "column name"
@@ -1211,6 +1216,7 @@ input Offers_bool_exp {
     descriptionRatingsDetails: jsonb_comparison_exp
     deviationAvgM2Price: float8_comparison_exp
     district: String_comparison_exp
+    gallery: _text_comparison_exp
     id: Int_comparison_exp
     indicators_areaPerRoom: float8_comparison_exp
     indicators_comfort: float8_comparison_exp
@@ -1227,8 +1233,8 @@ input Offers_bool_exp {
     rawAttrs: jsonb_comparison_exp
     title: String_comparison_exp
     url: String_comparison_exp
-    userNote: String_comparison_exp
-    userReviewStatus: Offers_userreviewstatus_enum_comparison_exp
+    userNotes: _text_comparison_exp
+    userReviewStatus: String_comparison_exp
     views: Int_comparison_exp
 }
 
@@ -1292,6 +1298,7 @@ input Offers_insert_input {
     descriptionRatingsDetails: jsonb
     deviationAvgM2Price: float8
     district: String
+    gallery: _text
     id: Int
     indicators_areaPerRoom: float8
     indicators_comfort: float8
@@ -1308,8 +1315,8 @@ input Offers_insert_input {
     rawAttrs: jsonb
     title: String
     url: String
-    userNote: String
-    userReviewStatus: Offers_userreviewstatus_enum
+    userNotes: _text
+    userReviewStatus: String
     views: Int
 }
 
@@ -1341,7 +1348,7 @@ input Offers_max_order_by {
     prices_perM2: order_by
     title: order_by
     url: order_by
-    userNote: order_by
+    userReviewStatus: order_by
     views: order_by
 }
 
@@ -1373,7 +1380,7 @@ input Offers_min_order_by {
     prices_perM2: order_by
     title: order_by
     url: order_by
-    userNote: order_by
+    userReviewStatus: order_by
     views: order_by
 }
 
@@ -1407,6 +1414,7 @@ input Offers_order_by {
     descriptionRatingsDetails: order_by
     deviationAvgM2Price: order_by
     district: order_by
+    gallery: order_by
     id: order_by
     indicators_areaPerRoom: order_by
     indicators_comfort: order_by
@@ -1423,7 +1431,7 @@ input Offers_order_by {
     rawAttrs: order_by
     title: order_by
     url: order_by
-    userNote: order_by
+    userNotes: order_by
     userReviewStatus: order_by
     views: order_by
 }
@@ -1456,6 +1464,7 @@ input Offers_set_input {
     descriptionRatingsDetails: jsonb
     deviationAvgM2Price: float8
     district: String
+    gallery: _text
     id: Int
     indicators_areaPerRoom: float8
     indicators_comfort: float8
@@ -1472,8 +1481,8 @@ input Offers_set_input {
     rawAttrs: jsonb
     title: String
     url: String
-    userNote: String
-    userReviewStatus: Offers_userreviewstatus_enum
+    userNotes: _text
+    userReviewStatus: String
     views: Int
 }
 
@@ -1565,19 +1574,6 @@ input Offers_sum_order_by {
     views: order_by
 }
 
-"expression to compare columns of type Offers_userreviewstatus_enum. All fields are combined with logical 'AND'."
-input Offers_userreviewstatus_enum_comparison_exp {
-    _eq: Offers_userreviewstatus_enum
-    _gt: Offers_userreviewstatus_enum
-    _gte: Offers_userreviewstatus_enum
-    _in: [Offers_userreviewstatus_enum!]
-    _is_null: Boolean
-    _lt: Offers_userreviewstatus_enum
-    _lte: Offers_userreviewstatus_enum
-    _neq: Offers_userreviewstatus_enum
-    _nin: [Offers_userreviewstatus_enum!]
-}
-
 "order by var_pop() on columns of table \"Offers\""
 input Offers_var_pop_order_by {
     attrs_area: order_by
@@ -1663,6 +1659,19 @@ input String_comparison_exp {
     _similar: String
 }
 
+"expression to compare columns of type _text. All fields are combined with logical 'AND'."
+input _text_comparison_exp {
+    _eq: _text
+    _gt: _text
+    _gte: _text
+    _in: [_text!]
+    _is_null: Boolean
+    _lt: _text
+    _lte: _text
+    _neq: _text
+    _nin: [_text!]
+}
+
 "expression to compare columns of type float8. All fields are combined with logical 'AND'."
 input float8_comparison_exp {
     _eq: float8
@@ -1718,7 +1727,7 @@ input timestamp_comparison_exp {
 }
 
 
-scalar Offers_userreviewstatus_enum
+scalar _text
 
 scalar float8
 
