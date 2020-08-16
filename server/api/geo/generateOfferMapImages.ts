@@ -4,9 +4,9 @@ import {Offer} from "@db/schemas";
 import knexClient from "/knexClient";
 import * as fs from "fs";
 import * as utils from "./generateOfferMapImages.utils";
-import {StaticMapInput, ZOOM_TYPE, BASE_MAPS_PATH} from "./generateOfferMapImages.utils"
-const router = Router();
+import {StaticMapInput, ZOOM_TYPE, BASE_MAPS_PATH} from "./generateOfferMapImages.utils";
 
+const router = Router();
 
 
 async function generateStaticMapImg(input: StaticMapInput): Promise<[string, string]> {
@@ -38,7 +38,7 @@ async function generateStaticMapImg(input: StaticMapInput): Promise<[string, str
 
 async function generateStreetViewImg(input: StaticMapInput): Promise<[string, string]> {
     const {fullAddress} = input;
-    console.log(`Generate street view for: ${fullAddress}`)
+    console.log(`Generate street view for: ${fullAddress}`);
 
     const params = {
         size: utils.defaultConfig.size,
@@ -82,12 +82,13 @@ async function getMapImg(input: StaticMapInput) {
     };
 }
 
-async function routeMapImagesHandler(req, res) {
+type OfferMapImages = {
+    far: { img: string, thumb: string },
+    close: { img: string, thumb: string },
+    street?: { img: string, thumb: string },
+}
 
-    const {offerId} = req.params;
-    const offer: Offer = await knexClient<Offer>("Offers")
-        .where({id: Number(offerId)})
-        .first();
+async function getMapImagesForOffer(offer: Partial<Offer>): Promise<OfferMapImages> {
 
     const [_, fullAddress, geoPoint, geoBounds] = await getAddrGeocode(`${offer.district} ${offer.street || ""}`);
 
@@ -98,19 +99,24 @@ async function routeMapImagesHandler(req, res) {
         zoomType: ZOOM_TYPE.FAR,
         pathBounds: geoBounds
     };
-    res.json({
+    const hasExactAddress = !geoBounds;
+
+    return {
         far: await getMapImg(farInput),
         close: await getMapImg({...farInput, zoomType: ZOOM_TYPE.CLOSE}),
-        ...(offer.hasExactAddress ? {street: await getMapImg({...farInput, zoomType: ZOOM_TYPE.STREET})} : {})
-    });
+        ...(hasExactAddress ? {street: await getMapImg({...farInput, zoomType: ZOOM_TYPE.STREET})} : {})
+    };
 }
 
-const fakeRes = {json: console.log};
-routeMapImagesHandler({params: {offerId: 20}}, fakeRes);
-routeMapImagesHandler({params: {offerId: 33}}, fakeRes);
-routeMapImagesHandler({params: {offerId: 14}}, fakeRes);
 
-router.get("/map-images/:offerId", routeMapImagesHandler);
+router.get("/map-images/:offerId", async (req, res) => {
+    const {offerId} = req.params;
+    const offer: Offer = await knexClient<Offer>("Offers")
+        .where({id: Number(offerId)})
+        .first();
 
+    res.json(await getMapImagesForOffer(offer));
+});
 
+export {getMapImagesForOffer};
 export default router;

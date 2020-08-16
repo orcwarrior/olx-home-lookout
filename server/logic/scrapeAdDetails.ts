@@ -7,6 +7,7 @@ import {extractDescriptionPricing} from "./extractors/extractDescriptionPricing"
 import {extractAdGallery} from "./extractors/extractAdGallery";
 import {extractStreet} from "@logic/extractors/extractStreet";
 import {getAddrGeocode} from "/api/geo/queryAddressGeo";
+import {getMapImagesForOffer} from "/api/geo/generateOfferMapImages";
 
 
 function calculatePrices(offer: Offer, attrs: OfferDetailedAttributes, description: string): OfferDetailedPrices {
@@ -39,6 +40,7 @@ function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
         const street = extractStreet(offer.title, description);
         const [_, __, geoPoint, geoBounds] = await getAddrGeocode(`${offer.district} ${street || ""}`);
 
+        const mapImgs = await getMapImagesForOffer({...offer, street})
         const detailedOffer: OfferDetailed = {
             ...offer,
             views: Number($(".offer-bottombar__counter > strong").text()),
@@ -50,6 +52,11 @@ function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
             street,
             location: geoPoint.toTypeOrm(),
             hasExactAddress: street && !geoBounds,
+
+            mapCloseImg: mapImgs.close.img,
+            mapFarImg: mapImgs.far.img,
+            mapStreetImg: mapImgs.street?.img,
+
         };
         resolveCb(decorateWithIndicators(detailedOffer));
         if (done) done();

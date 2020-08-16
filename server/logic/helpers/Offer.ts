@@ -62,6 +62,9 @@ type OfferDetails = {
     location?: any
     hasExactAddress?: boolean,
     isReportHighlight?: boolean,
+    mapFarImg?: string,
+    mapCloseImg?: string,
+    mapStreetImg?: string,
 
 }
 

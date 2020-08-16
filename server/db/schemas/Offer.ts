@@ -69,6 +69,15 @@ export class Offer {
     location?: GeographyType;
 
     @Column({nullable: true})
+    mapFarImg?: string;
+
+    @Column({nullable: true})
+    mapCloseImg?: string;
+
+    @Column({nullable: true})
+    mapStreetImg?: string;
+
+    @Column({nullable: true})
     hasExactAddress?: boolean;
 
     @Column({nullable: true})
