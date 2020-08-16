@@ -5,6 +5,7 @@ import knexClient from "/knexClient";
 import * as fs from "fs";
 import * as utils from "./generateOfferMapImages.utils";
 import {StaticMapInput, ZOOM_TYPE, BASE_MAPS_PATH} from "./generateOfferMapImages.utils";
+import {api} from "/config";
 
 const router = Router();
 
@@ -68,13 +69,19 @@ async function getMapImg(input: StaticMapInput) {
 
     if (hasImg) {
         console.log(`Image: ${imgPath} already exists!`);
-        return {img: imgPath, thumb: imgThumbPath};
+        return {
+            img: imgPath.replace(".", api.clientBaseUrl),
+            thumb: imgThumbPath.replace(".", api.clientBaseUrl)
+        };
     } else {
         console.log(`Image: ${imgPath} has to be generated...`, process.cwd());
         const [img, thumb] = (input.zoomType === ZOOM_TYPE.STREET)
             ? await generateStreetViewImg(input)
             : await generateStaticMapImg(input);
-        return {img, thumb};
+        return {
+            img: img.replace(".", api.clientBaseUrl),
+            thumb: thumb.replace(".", api.clientBaseUrl)
+        };
     }
 
     async function _fExist(path) {

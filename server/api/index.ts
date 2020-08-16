@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 app.use(eventsRouter);
 app.use("/api/geo/", queryAddressRouter);
 app.use("/api/geo/", genOfferMapRouter);
-app.use(express.static("static"));
+app.use("/static", express.static("static"));
 
 // start the Express server
 app.listen(api.clientPort, () => {
