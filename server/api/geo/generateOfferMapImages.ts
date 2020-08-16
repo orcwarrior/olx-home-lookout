@@ -12,7 +12,7 @@ const router = Router();
 
 
 async function generateStaticMapImg(input: StaticMapInput): Promise<[string, string]> {
-    const {lat, lng, size, pathBounds, zoomType} = input;
+    const {lat, lng, street, pathBounds, zoomType} = input;
     const params = {
         ...utils.defaultConfig,
         center: `${lat},${lng}`,
@@ -21,7 +21,7 @@ async function generateStaticMapImg(input: StaticMapInput): Promise<[string, str
         ...((zoomType === ZOOM_TYPE.CLOSE) ? {
             maptype: "hybrid"
         } : {
-            path: pathBounds && _toGApiPath(pathBounds)
+            path: pathBounds && street && _toGApiPath(pathBounds)
         })
     };
 
@@ -95,7 +95,7 @@ type OfferMapErr = {
 }
 type OfferMapImages = OfferMapErr & {
     far: { img: string, thumb: string },
-    close: { img: string, thumb: string },
+    close?: { img: string, thumb: string },
     street?: { img: string, thumb: string },
 }
 
@@ -106,6 +106,7 @@ async function getMapImagesForOffer(offer: Partial<Offer>, addrGeocode?: [string
         return {far: null, close: null, error: _err};
 
     const farInput: StaticMapInput = {
+        street: offer.street,
         fullAddress,
         lng: geoPoint.coordinates[0],
         lat: geoPoint.coordinates[1],
@@ -116,7 +117,7 @@ async function getMapImagesForOffer(offer: Partial<Offer>, addrGeocode?: [string
 
     return {
         far: await getMapImg(farInput),
-        close: await getMapImg({...farInput, zoomType: ZOOM_TYPE.CLOSE}),
+        ...(offer.street ? {close: await getMapImg({...farInput, zoomType: ZOOM_TYPE.CLOSE})} : {}),
         ...(hasExactAddress ? {street: await getMapImg({...farInput, zoomType: ZOOM_TYPE.STREET})} : {})
     };
 
