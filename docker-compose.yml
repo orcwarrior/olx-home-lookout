@@ -84,24 +84,43 @@ services:
     command: npm run db:init:once
     depends_on:
       - home-lookout-postgres
+  home-lookout-api:
+    container_name: home-lookout-api
+    build: ./server
+    image: home-lookout/server
+    networks:
+      - home_lookout
+    env_file:
+      - .env
+      - local.env
+      - secret.env
+    environment:
+      - RUNTIME_ENVIROMENT=docker_compose
+    ports:
+      - "${SERVER_PORT:-4000}:${SERVER_PORT:-4000}"
+    depends_on:
+      - graphql-engine
+    restart: on-failure
+    command: npm run api:prod
 
-#  home-lookout-client:
-#    container_name: libigo-client
-#    build: ./client
-#    image: home-lookout/client
-#    networks:
-#      - home_lookout
-#    env_file:
-#      - .env
-#      - local.env
-#      - secret.env
-#    environment:
-#      - RUNTIME_ENVIROMENT=docker_compose
-#      - CLIENT_GRAPHQL_URL_CLIENT
-#    depends_on:
-#      - graphql-engine
-#    ports:
-#      - "80:${CLIENT_PORT:-5000}"
+  home-lookout-client:
+    container_name: home-lookout-client
+    build: ./client
+    image: home-lookout/client
+    networks:
+      - home_lookout
+    env_file:
+      - .env
+      - local.env
+      - secret.env
+    environment:
+      - RUNTIME_ENVIROMENT=docker_compose
+      - CLIENT_GRAPHQL_URL_CLIENT
+    depends_on:
+      - graphql-engine
+    restart: on-failure
+    ports:
+      - "80:${CLIENT_PORT:-5000}"
 
 networks:
   home_lookout:
