@@ -23,7 +23,6 @@
     "typeorm": "^0.2.25"
   },
   "devDependencies": {
-    "typescript": "^3.9.7",
     "touch": "^3.1.0"
   }
 }

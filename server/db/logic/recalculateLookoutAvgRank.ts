@@ -1,4 +1,4 @@
-import knex from"@root/knexClient";
+import knex from "@root/knexClient";
 import {LookoutRequest} from "@db/schemas";
 
 async function recalculateLookoutAvgRank(lookoutId): Promise<LookoutRequest[]> {
@@ -9,7 +9,8 @@ async function recalculateLookoutAvgRank(lookoutId): Promise<LookoutRequest[]> {
         .update<LookoutRequest>({
             // @ts-ignore
             avgRank: knex.raw(`(SELECT avg(rank) FROM "Offers" WHERE "lookoutRequestId" = ${lookoutId})`),
-        });
+        })
+        .returning("*");
 }
 
 
