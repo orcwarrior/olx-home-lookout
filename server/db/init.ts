@@ -5,8 +5,8 @@ import seedDatabase from "./seeds/init";
 
 
 (async () => {
-    const {dropDb, seedDb, uri} = db;
-    console.log("DB Config: ", {dropDb, seedDb});
+    const {dropDb, seedDb, uri, initDbOnce} = db;
+    console.log("DB Config: ", {dropDb, seedDb, initDbOnce});
     const dbExisted = !(await createDbIfNotExists());
 
     console.log(`Connecting to db: ${uri}`);
