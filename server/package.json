@@ -27,7 +27,7 @@
     "pluralize": "^8.0.0",
     "source-map-support": "^0.5.13",
     "sql-fixtures": "^1.0.2",
-    "typeorm": "^0.2.24",
+    "typeorm": "^0.2.25",
     "typescript": "^3.9.7"
   },
   "devDependencies": {
@@ -49,10 +49,8 @@
     "faker": "^4.1.0",
     "lodash": "^4.17.15",
     "reflect-metadata": "^0.1.13",
-    "sql-fixtures": "^1.0.2",
     "ts-node": "8.10.2",
     "ts-node-dev": "^1.0.0-pre.57",
-    "typeorm": "^0.2.25",
     "tsconfig-paths": "^3.9.0"
   },
   "engines": {
