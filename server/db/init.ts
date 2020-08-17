@@ -13,6 +13,9 @@ import seedDatabase from "./seeds/init";
     if (db.initDbOnce && dbExisted) {
         console.log("SERVER__DB_INIT_ONCE is true, and DB was already inited, skipping init...");
         return process.exit();
+    } else if (db.initDbOnce) {
+        await initSchemas();
+        await seedDatabase();
     }
 
     if (dropDb) await initSchemas();

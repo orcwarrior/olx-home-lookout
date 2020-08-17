@@ -11,7 +11,6 @@ services:
     networks:
       - home_lookout
     env_file:
-      - .env
       - local.env
       - secret.env
     environment:
