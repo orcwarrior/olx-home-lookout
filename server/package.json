@@ -8,7 +8,7 @@
     "api:dev": "ts-node-dev --files -r tsconfig-paths/register api/index.ts",
     "api:prod": "ts-node --files -r tsconfig-paths/register api/index.ts",
     "db:init": "cross-env-shell SERVER__DB_DROP=1  ts-node --files -r tsconfig-paths/register db/init.ts",
-    "db:init:once": "cross-env-shell SERVER__DB_INIT_ONCE=1 ts-node --files -r tsconfig-paths/register db/init.ts",
+    "db:init:once": "cross-env-shell SERVER__DB_INIT_ONCE=1 SERVER__DB_DROP= ts-node --files -r tsconfig-paths/register db/init.ts",
     "db:init:dev": "ts-node-dev --files -r tsconfig-paths/register db/init.ts"
   },
   "dependencies": {
