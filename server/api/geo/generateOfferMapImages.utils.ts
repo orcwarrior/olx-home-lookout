@@ -1,6 +1,6 @@
 import * as Jimp from "jimp";
 import {api} from "@config/index";
-import {GeoBounds} from "/api/geo/queryAddressGeo";
+import {GeoBounds} from "@api/geo/queryAddressGeo";
 import {isUndefined} from "lodash";
 import fetch from "node-fetch";
 import * as fs from "fs";

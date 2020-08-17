@@ -1,4 +1,4 @@
-import knex from "/knexClient";
+import knex from"@root/knexClient";
 import {LookoutRequest} from "@db/schemas";
 
 async function recalculateLookoutAvgRank(lookoutId): Promise<LookoutRequest[]> {

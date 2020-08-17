@@ -6,8 +6,8 @@ import {decorateWithIndicators} from "./helpers/offerIndicators";
 import {extractDescriptionPricing} from "./extractors/extractDescriptionPricing";
 import {extractAdGallery} from "./extractors/extractAdGallery";
 import {extractStreet} from "@logic/extractors/extractStreet";
-import {getAddrGeocode} from "/api/geo/queryAddressGeo";
-import {getMapImagesForOffer} from "/api/geo/generateOfferMapImages";
+import {getAddrGeocode} from "@api/geo/queryAddressGeo";
+import {getMapImagesForOffer} from "@api/geo/generateOfferMapImages";
 
 
 function calculatePrices(offer: Offer, attrs: OfferDetailedAttributes, description: string): OfferDetailedPrices {

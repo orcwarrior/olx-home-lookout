@@ -1,7 +1,7 @@
 import {LookoutRequest, Offer} from "@db/schemas";
 import {getQueryBuilder} from "@db/typeOrmInstance";
 import scrapeAdsList from "../../../logic/scrapeAdsList";
-import knex from "/knexClient";
+import knex from"@root/knexClient";
 import {recalculateLookoutOffersComputedFields} from "@db/logic/recalculateOfferComputedFields";
 import {buildupReport} from "@logic/buildupReport";
 import {uniqBy} from "lodash";

@@ -1,11 +1,11 @@
 import {Router} from "express";
-import {GeoBounds, getAddrGeocode} from "/api/geo/queryAddressGeo";
+import {GeoBounds, getAddrGeocode} from "@api/geo/queryAddressGeo";
 import {Offer} from "@db/schemas";
-import knexClient from "/knexClient";
+import knexClient from"@root/knexClient";
 import * as fs from "fs";
 import * as utils from "./generateOfferMapImages.utils";
 import {StaticMapInput, ZOOM_TYPE, BASE_MAPS_PATH} from "./generateOfferMapImages.utils";
-import {api} from "/config";
+import {api} from "@config/index";
 import {Geography} from "@db/schemas/utils";
 
 const router = Router();

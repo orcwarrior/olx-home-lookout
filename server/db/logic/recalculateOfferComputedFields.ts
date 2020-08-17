@@ -1,4 +1,4 @@
-import knex from "/knexClient";
+import knex from"@root/knexClient";
 import {Offer} from "@db/schemas";
 import {OfferDetailed} from "@logic/helpers/Offer";
 

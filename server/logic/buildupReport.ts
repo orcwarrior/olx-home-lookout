@@ -1,5 +1,5 @@
 import {LookoutReport, LookoutRequest, Offer} from "@db/schemas";
-import knexClient from "/knexClient";
+import knexClient from"@root/knexClient";
 import {chain, drop} from "lodash";
 
 function selectFeaturedOffers(newOffers: Offer[], report: LookoutReport, lookout: LookoutRequest): Offer[] {
