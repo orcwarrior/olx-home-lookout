@@ -15,8 +15,8 @@ services:
       - local.env
       - secret.env
     environment:
-      POSTGRES_USER: ${POSTGRES__USER}
-      POSTGRES_PASSWORD: ${POSTGRES__PASSWORD}
+      POSTGRES_USER: ${POSTGRES__USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES__PASSWORD:-strongpwd}
       POSTGRES_DB: ${POSTGRES__PG_DB:-postgres}
       PGDATA: /data/postgres
     healthcheck:
