@@ -52,9 +52,9 @@ services:
     restart: always
     networks:
       - home_lookout
-#    volumes:
-#      - ./hasura/migrations/:/hasura-migrations/
-#      - ./hasura/metadata/:/hasura-metadata/
+    volumes:
+      - ./hasura/migrations/:/hasura-migrations/
+      - ./hasura/metadata/:/hasura-metadata/
     env_file:
       - .env
       - local.env
@@ -83,6 +83,7 @@ services:
     command: npm run db:init:once
     depends_on:
       - home-lookout-postgres
+      -
   home-lookout-api:
     container_name: home-lookout-api
     build: ./server
