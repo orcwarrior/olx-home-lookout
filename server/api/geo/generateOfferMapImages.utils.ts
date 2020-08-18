@@ -4,7 +4,12 @@ import {GeoBounds} from "@api/geo/queryAddressGeo";
 import {isUndefined} from "lodash";
 import fetch from "node-fetch";
 import * as fs from "fs";
+import * as path from "path";
 
+const BASE_MAPS_PATH = "./static/maps/";
+//DK: Pre-create path if not exists once
+const fullPath = path.resolve(BASE_MAPS_PATH);
+if (!fs.existsSync(fullPath)) fs.mkdirSync(fullPath, {recursive: true});
 
 type StaticMapInput = {
     lat: number,
@@ -35,7 +40,6 @@ const defaultConfig = {
     key: api.GOOGLE_MAPS_API_KEY
 };
 
-const BASE_MAPS_PATH = "./static/maps/";
 
 function serializeObjToUrlParams(obj) {
     return Object.entries(obj)
