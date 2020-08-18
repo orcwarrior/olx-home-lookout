@@ -4,6 +4,7 @@ import {snakeCase} from "lodash";
 import Knex = require("knex");
 import {db} from "@config/index";
 import {namingStrategy} from "./naming";
+import knexClient from "@root/knexClient";
 
 export type SchemaExecutor = (knex: Knex<any, unknown[]>) => Promise<any>
 
@@ -43,7 +44,8 @@ export async function createDbIfNotExists() {
 
     if (!row || !row.exists) {
         await knexPreClient.raw(`CREATE DATABASE ${db.dbName}`);
-        await knexPreClient.raw(`CREATE EXTENSION pgcrypto;`);
+        console.log(`Create pgcrypto in: ${db.typeOrmConnection.url}`);
+        await knexClient.raw(`CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;`)
         await knexPreClient;
         return true;
 
