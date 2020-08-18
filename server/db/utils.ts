@@ -43,6 +43,7 @@ export async function createDbIfNotExists() {
 
     if (!row || !row.exists) {
         await knexPreClient.raw(`CREATE DATABASE ${db.dbName}`);
+        await knexPreClient.raw(`CREATE EXTENSION pgcrypto;`);
         await knexPreClient;
         return true;
 
