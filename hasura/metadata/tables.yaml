@@ -41,7 +41,7 @@
       num_retries: 5
       interval_sec: 10
       timeout_sec: 60
-    webhook: http://host.docker.internal:4000/events
+    webhook_from_env: HASURA__WEBHOOK_EVENTS_URL
 - table:
     schema: public
     name: Offers
@@ -81,7 +81,7 @@
       num_retries: 5
       interval_sec: 10
       timeout_sec: 60
-    webhook: http://host.docker.internal:4000/events
+    webhook_from_env: HASURA__WEBHOOK_EVENTS_URL
     headers:
     - value: "yes"
       name: custom

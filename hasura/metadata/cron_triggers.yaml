@@ -1,5 +1,5 @@
 - name: SCHEDULE_UpdateOffers
-  webhook: http://host.docker.internal:4000/events
+  webhook: '{{HASURA__WEBHOOK_EVENTS_URL}}'
   schedule: 58 */3 * * *
   include_in_metadata: true
   payload:
