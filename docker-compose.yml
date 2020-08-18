@@ -83,7 +83,7 @@ services:
     command: npm run db:init:once
     depends_on:
       - home-lookout-postgres
-      -
+
   home-lookout-api:
     container_name: home-lookout-api
     build: ./server
