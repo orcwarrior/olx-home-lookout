@@ -13,8 +13,9 @@
         .image-gallery-slides {
           height: 100%;
 
-          .image-gallery-slide.center {
+          .image-gallery-slide {
             height: 100%;
+
             & > div {
               height: 100%;
             }
@@ -23,6 +24,10 @@
               height: 100%;
               object-fit: cover;
             }
+          }
+
+          .image-gallery-slide.center {
+            height: 100%;
           }
         }
       }

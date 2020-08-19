@@ -30,6 +30,7 @@ const CardTopGallery = (offer) => {
     meterPriceDevProps, meterTxtColor, meterTxtPriceDeviation,
     display_priceM2
   } = offer.logic;
+  console.log(`meterPriceDevProps: `, meterPriceDevProps);
 
 
 
@@ -41,7 +42,6 @@ const CardTopGallery = (offer) => {
       {/**/}
       <ImageGallery items={galleryImgs} lazyLoad={true} thumbnailPosition="right"
                     showPlayButton={false} showNav={false}/>
-      }
     </Box>
     <Box fill={true} round="medium" style={STYLE_BACKDROP}/>
     <Box align="start" justify="start" pad="medium" direction="row" fill="vertical" style={STYLE_NOPOINTER}>

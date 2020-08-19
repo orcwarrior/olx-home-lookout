@@ -32,6 +32,7 @@ query LookoutOffers($where: Offers_bool_exp, $orderBy: [Offers_order_by!] ) {
                 prices_base
                 prices_descriptionPricingsDetails
 
+
                 description
                 descriptionRating
                 descriptionRatingsDetails

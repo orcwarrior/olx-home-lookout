@@ -47,7 +47,7 @@ const STYLE_MIRRORED_METER = {transform: "scaleX(-1)"}
 
 function calcPercDeviation({prices_perM2, deviationAvgM2Price}) {
   const avgPrice = prices_perM2 - (deviationAvgM2Price);
-  // console.log(`avgPrice: `, avgPrice);
+  console.log(`avgPrice: `, avgPrice);
   const deviation = (deviationAvgM2Price * 100 / avgPrice).toFixed(0);
   const deviationTxt = (deviation > 0) ? `+${deviation}` : `-${-1 * (deviation)}`;
   return [deviation, deviationTxt];
@@ -58,11 +58,12 @@ function getMeterColor({themeColors, percentageM2PriceDeviation}) {
       negativeColor = themeColors["status-error"],
       midColor = themeColors["light-3"];
 
+  console.log({themeColors, percentageM2PriceDeviation})
   const isPositive = (percentageM2PriceDeviation < 0);
   const absDeviation = Math.abs(percentageM2PriceDeviation)
   const dstColor = isPositive ? positiveColor : negativeColor;
   const fulfillment = Math.max(0, (Math.min(1, absDeviation / METER_MAX)));
-  // console.log({fulfillment})
+  console.log({fulfillment})
   return Color(midColor).mix(Color(dstColor), fulfillment).hex();
 
 }
@@ -93,13 +94,13 @@ function renderLocationIcon({street, hasExactAddress, isEmail}) {
 const withOfferLogic = (Component) => (offer) => {
   const {
     id, createdAt: createdAtStr,
-    title, url, district, city, street, hasExactAddress, description,
-    gallery, mainImg, percentageM2PriceDeviation,
-    indicators_comfort, indicators_deal, descriptionRating,
+    title, url, district, city, street, hasExactAddress,
+    gallery, mainImg, deviation_price_perM2,
     prices_perM2,
     mapFarImg, mapCloseImg, mapStreetImg,
     userReviewStatus
   } = offer;
+  const [percentageM2PriceDeviation, meterTxtPriceDeviation] = calcPercDeviation(offer);
 
   const [_, __, ___, dbId] = JSON.parse(atob(id));
   const [changeOffer] = useMutation(MUTATE_OFFER)
@@ -133,7 +134,7 @@ const withOfferLogic = (Component) => (offer) => {
     createdAgo: createdAt && `${formatDistanceToNow(createdAt)} ago`,
     meterPriceDevProps: decorateMeter({percentageM2PriceDeviation, themeColors}),
     meterTxtColor: getMeterColor({themeColors, percentageM2PriceDeviation}),
-    meterTxtPriceDeviation: calcPercDeviation(offer)[1],
+    meterTxtPriceDeviation,
     locationIcon, locationIconEmail,
 
     display_priceM2: Math.round(prices_perM2),

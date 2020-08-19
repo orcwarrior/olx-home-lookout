@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, DropButton, Image, RangeSelector, Text } from "grommet";
 import MultiToggle from "react-multi-toggle";
-import { Ascend, Descend } from "grommet-icons";
+import { Ascend, Descend, Achievement } from "grommet-icons";
 import { debounce } from "@utils/debounce";
 import "./ReportHeader.scss";
 
@@ -133,41 +133,51 @@ const ReportHeader = ({refetchOffers}) => {
           <DropButton label="Sortowanie" dropAlign={{"top": "bottom"}} dropContent={(
               <Box align="center" justify="center" pad="medium" name="dropContent" background={"black"}
                    animation="fadeIn" hoverIndicator={false} border={{"size": "small"}} gap="small">
-                <Text color="accent-1" onClick={() => setOrderBy({indicators_deal: "desc"})}>
+                <Box align="center" justify="center" direction="row" gap="xsmall"
+                     onClick={() => setOrderBy({prices_full: "desc"})}>
+                  <Text color="accent-4" onClick={() => setOrderBy({rank: "desc"})}>
+                    Ocena
+                  </Text>
+                  <Achievement color="accent-4" size="medium"/>
+                </Box>
+                <Text color="accent-4" onClick={() => setOrderBy({rank: "desc"})}>
+                  Ocena oferty
+                </Text>
+                <Text color="accent-4" onClick={() => setOrderBy({indicators_deal: "desc"})}>
                   Okazja cenowa
                 </Text>
-                <Text color="accent-1" onClick={() => setOrderBy({indicators_comfort: "desc"})}>
+                <Text color="accent-4" onClick={() => setOrderBy({indicators_comfort: "desc"})}>
                   Komfort
                 </Text>
-                <Text color="accent-1" onClick={() => setOrderBy({deviationAvgM2Price: "asc"})}>
+                <Text color="accent-4" onClick={() => setOrderBy({deviationAvgM2Price: "asc"})}>
                   Odchyl. cenowe
                 </Text>
-                <Text color="accent-1" onClick={() => setOrderBy({prices_perM2: "asc"})}>
+                <Text color="accent-4" onClick={() => setOrderBy({prices_perM2: "asc"})}>
                   Cena m²
                 </Text>
                 <Box align="center" justify="center" direction="row" gap="xsmall"
                      onClick={() => setOrderBy({prices_full: "asc"})}>
-                  <Text color="accent-1">
+                  <Text color="accent-4">
                     Cena {/* rosnaco */}
                   </Text>
-                  <Ascend color="accent-1" size="medium"/>
+                  <Ascend color="accent-4" size="medium"/>
                 </Box>
                 <Box align="center" justify="center" direction="row" gap="xsmall"
                      onClick={() => setOrderBy({prices_full: "desc"})}>
-                  <Text color="accent-1">
+                  <Text color="accent-4">
                     Cena {/* malejaco */}
                   </Text>
-                  <Descend color="accent-1" size="medium"/>
+                  <Descend color="accent-4" size="medium"/>
                 </Box>
                 <Box align="center" justify="center" direction="row" gap="xsmall"
                      onClick={() => setOrderBy({attrs_area: "asc"})}>
-                  <Text color="accent-1">Powierzchnia {/* rosnaco */}</Text>
-                  <Ascend color="accent-1" size="medium"/>
+                  <Text color="accent-4">Powierzchnia {/* rosnaco */}</Text>
+                  <Ascend color="accent-4" size="medium"/>
                 </Box>
                 <Box align="center" justify="center" direction="row" gap="xsmall"
                      onClick={() => setOrderBy({attrs_area: "desc"})}>
-                  <Text color="accent-1">Powierzchnia {/* malejaco */}</Text>
-                  <Descend color="accent-1" size="medium"/>
+                  <Text color="accent-4">Powierzchnia {/* malejaco */}</Text>
+                  <Descend color="accent-4" size="medium"/>
                 </Box>
               </Box>
           )}
