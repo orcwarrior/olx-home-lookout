@@ -9,7 +9,7 @@ function extractStreet(title, description) {
     const fullStr = deburr(`${title} ${description}`);
     let streetMatch, groups;
     while (groups = STREET_RGX.exec(fullStr)) {
-        const streetGr = groups[7];
+        const streetGr = groups[10];
         if (
             (!streetMatch && streetGr && streetGr.length > 2)
             || streetMatch && (!DIGIT_RGX.test(streetMatch) && DIGIT_RGX.test(streetGr))
