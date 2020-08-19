@@ -6,6 +6,10 @@ import fetch from "node-fetch";
 import * as fs from "fs";
 import * as path from "path";
 
+const fetchWithRetry = require("fetch-retry")(fetch, {
+    retries: 4,
+    retryDelay: 700
+});
 const BASE_MAPS_PATH = "./static/maps/";
 //DK: Pre-create path if not exists once
 const fullPath = path.resolve(BASE_MAPS_PATH);
@@ -57,7 +61,7 @@ async function generateThumbnail(imgPath: string, input: StaticMapInput) {
 }
 
 async function downloadFile(url, path) {
-    const res = await fetch(url);
+    const res = await fetchWithRetry(url);
     const fileStream = fs.createWriteStream(path);
     await new Promise((resolve, reject) => {
         res.body.pipe(fileStream);

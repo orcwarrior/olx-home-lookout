@@ -5,6 +5,10 @@ import fetch from "node-fetch";
 import {api} from "@config/index";
 import {Geography} from "@db/schemas/utils";
 
+const fetchWithRetry = require("fetch-retry")(fetch, {
+    retries: 4,
+    retryDelay: 700
+});
 
 const lruCache = new LRU({max: 1000, maxAge: ms("1y")});
 const router = Router();
@@ -26,7 +30,7 @@ async function getAddrGeocode(_address): Promise<[string, string, Geography, Geo
     if (lruCache.has(address))
         return lruCache.get(address);
 
-    return fetch(_getUri(address))
+    return fetchWithRetry(_getUri(address))
         .then(res => res.json())
         .then((response) => {
             const {status, results} = response;
