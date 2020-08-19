@@ -14,4 +14,4 @@ COPY . .
 COPY /package.json ./
 # Copy should skip node_modules
 
-CMD npm run docker:deploy
+CMD npm run start:docker:prod

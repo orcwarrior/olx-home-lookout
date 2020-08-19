@@ -1,7 +1,7 @@
 {
   "name": "olx-home-lookout-client",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "repository": {
     "url": "https://github.com/orcwarrior/olx-home-lookout"
   },
@@ -13,7 +13,8 @@
     "export": "next export",
     "build:server": "cross-env NEXT_TARGET=server next build",
     "export:server": "cross-env NEXT_TARGET=server next export",
-    "docker:deploy": "npm run build:server && npm run export:server && serve",
+    "old__:docker:deploy": "npm run build:server && npm run export:server && serve",
+    "start:docker:prod": "cross-env NODE_ENV=production && next build && next start -p ${CLIENT_PORT:-5000}",
     "start:static": "serve"
   },
   "dependencies": {
