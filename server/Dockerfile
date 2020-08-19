@@ -5,7 +5,7 @@ COPY ./package.json ./package_org.json
 RUN cat package_org.json | jq '{dependencies, devDependencies}' > package.json
 
 #actual application
-FROM node:12.8.0-alpine as run-server
+FROM node:12.18.3-alpine as run-server
 WORKDIR /usr/src/app
 COPY  --from=pkg-deps-only /package.json ./
 
