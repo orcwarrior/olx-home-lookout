@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Box, DropButton, Image, RangeSelector, Text } from "grommet";
+import { Box, DropButton, Image, RangeSelector, Text, Anchor } from "grommet";
 import MultiToggle from "react-multi-toggle";
-import { Ascend, Descend, Achievement } from "grommet-icons";
+import { Ascend, Descend, Achievement, History, Currency, Lounge, Task } from "grommet-icons";
 import { debounce } from "@utils/debounce";
 import "./ReportHeader.scss";
 
@@ -24,7 +24,7 @@ const USER_REVIEW_FILTER = [
 ];
 
 const whereDefaults = {userReviewStatus: {_neq: "REJECTED"}}
-const queryDefaults = {where: whereDefaults, orderBy: {deviationAvgM2Price: "asc"}};
+const queryDefaults = {where: whereDefaults, orderBy: {rank: "desc"}};
 
 function updateOfferWhereAndOrder({pricesRange, areaRange, comfortRange, userReviewStatus, orderBy}) {
   console.log("updateOfferWhereAndOrder...")
@@ -52,7 +52,7 @@ const ReportHeader = ({refetchOffers}) => {
   const [areaRange, setAreaRange] = useState(AREA_RANGE)
   const [comfortRange, setComfortRange] = useState(AREA_RANGE)
   const [userReviewStatus, setUserReviewStatus] = useState(whereDefaults.userReviewStatus)
-  const [orderBy, setOrderBy] = useState({deviationAvgM2Price: "asc"})
+  const [orderBy, setOrderBy] = useState({rank: "desc"})
   const [queryVarsJSON, setQueryVarsJSON] = useState(JSON.stringify(queryDefaults))
 
   const refetchDebounced = React.useCallback(debounce(refetchOffers, 1500), [])
@@ -134,50 +134,57 @@ const ReportHeader = ({refetchOffers}) => {
               <Box align="center" justify="center" pad="medium" name="dropContent" background={"black"}
                    animation="fadeIn" hoverIndicator={false} border={{"size": "small"}} gap="small">
                 <Box align="center" justify="center" direction="row" gap="xsmall"
-                     onClick={() => setOrderBy({prices_full: "desc"})}>
-                  <Text color="accent-4" onClick={() => setOrderBy({rank: "desc"})}>
-                    Ocena
-                  </Text>
-                  <Achievement color="accent-4" size="medium"/>
+                     onClick={() => setOrderBy({rank: "desc"})}>
+                  <Anchor color="light-2">Ocena</Anchor>
+                  <Achievement color="light-2" size="medium"/>
                 </Box>
-                <Text color="accent-4" onClick={() => setOrderBy({rank: "desc"})}>
-                  Ocena oferty
-                </Text>
-                <Text color="accent-4" onClick={() => setOrderBy({indicators_deal: "desc"})}>
-                  Okazja cenowa
-                </Text>
-                <Text color="accent-4" onClick={() => setOrderBy({indicators_comfort: "desc"})}>
-                  Komfort
-                </Text>
-                <Text color="accent-4" onClick={() => setOrderBy({deviationAvgM2Price: "asc"})}>
-                  Odchyl. cenowe
-                </Text>
-                <Text color="accent-4" onClick={() => setOrderBy({prices_perM2: "asc"})}>
+
+                <Box align="center" justify="center" direction="row" gap="xsmall"
+                     onClick={() => setOrderBy({createdAt: "desc"})}>
+                  <Anchor color="light-2">Od najnowszych</Anchor>
+                  <History color="light-2" size="medium"/>
+                </Box>
+
+                <Box align="center" justify="center" direction="row" gap="xsmall"
+                     onClick={() => setOrderBy({indicators_deal: "desc"})}>
+                  <Anchor color="light-2">Okazja cenowa</Anchor>
+                  <Currency color="light-2" size="medium"/>
+                </Box>
+
+                <Box align="center" justify="center" direction="row" gap="xsmall"
+                     onClick={() => setOrderBy({indicators_comfort: "desc"})}>
+                  <Anchor color="light-2">Komfort</Anchor>
+                  <Lounge color="light-2" size="medium"/>
+                </Box>
+                <Anchor color="light-2" onClick={() => setOrderBy({deviationAvgM2Price: "asc"})}>
+                Odchyl. cenowe  📈
+                </Anchor>
+                <Anchor color="light-2" onClick={() => setOrderBy({prices_perM2: "asc"})}>
                   Cena m²
-                </Text>
+                </Anchor>
                 <Box align="center" justify="center" direction="row" gap="xsmall"
                      onClick={() => setOrderBy({prices_full: "asc"})}>
-                  <Text color="accent-4">
+                  <Anchor color="light-2">
                     Cena {/* rosnaco */}
-                  </Text>
-                  <Ascend color="accent-4" size="medium"/>
+                  </Anchor>
+                  <Ascend color="light-2" size="medium"/>
                 </Box>
                 <Box align="center" justify="center" direction="row" gap="xsmall"
                      onClick={() => setOrderBy({prices_full: "desc"})}>
-                  <Text color="accent-4">
+                  <Anchor color="light-2">
                     Cena {/* malejaco */}
-                  </Text>
-                  <Descend color="accent-4" size="medium"/>
+                  </Anchor>
+                  <Descend color="light-2" size="medium"/>
                 </Box>
                 <Box align="center" justify="center" direction="row" gap="xsmall"
                      onClick={() => setOrderBy({attrs_area: "asc"})}>
-                  <Text color="accent-4">Powierzchnia {/* rosnaco */}</Text>
-                  <Ascend color="accent-4" size="medium"/>
+                  <Anchor color="light-2">Powierzchnia {/* rosnaco */}</Anchor>
+                  <Ascend color="light-2" size="medium"/>
                 </Box>
                 <Box align="center" justify="center" direction="row" gap="xsmall"
                      onClick={() => setOrderBy({attrs_area: "desc"})}>
-                  <Text color="accent-4">Powierzchnia {/* malejaco */}</Text>
-                  <Descend color="accent-4" size="medium"/>
+                  <Anchor color="light-2">Powierzchnia {/* malejaco */}</Anchor>
+                  <Descend color="light-2" size="medium"/>
                 </Box>
               </Box>
           )}

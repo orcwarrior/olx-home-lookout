@@ -35,7 +35,7 @@ const _OfferCard = (offer) => {
 
   const {
     id,
-    title, url, district, description, street, hasExactAddress,
+    title, url, district, description, street, rank, _rank,
     indicators_comfort, indicators_deal, descriptionRating,
     userReviewStatus
   } = offer;
@@ -73,6 +73,9 @@ const _OfferCard = (offer) => {
           <Box align="center" justify="center" direction="row" gap="small"
                border={{"color": "dark-6", "side": "left"}} pad={{"left": "medium"}}>
             <Box align="center" justify="center" direction="row" gap="xsmall">
+              <Text size="small">☆ {rank.toFixed()}</Text>
+            </Box>
+            <Box align="center" justify="center" direction="row" gap="xsmall">
               <Lounge size="small"/>
               <Text size="small">{indicators_comfort.toFixed(2)}</Text>
             </Box>
@@ -87,12 +90,12 @@ const _OfferCard = (offer) => {
           </Box>
         </Box>
       </Box>
-      <Box align="stretch" justify="center" gap="xxsmall">
-        <Accordion animate={false}>
+      <Box align="stretch" justify="center" gap="xxsmall" flex="grow">
+        <Accordion animate={false} fill="vertical">
           <AccordionPanel label="Opis">
             <Box align="stretch" justify="start" flex={false} direction="row" basis="small" pad="small"
-                 alignContent="stretch">
-              <Paragraph fill="vertical" size="small" flex={{grow: 1.5}} width={{max: "large"}}>
+                 alignContent="stretch" flex="grow">
+              <Paragraph fill="vertical" size="small" flex={{grow: 1.5}} width={"large"} basis="medium" flex="grow">
                 {description}
               </Paragraph>
             </Box>
