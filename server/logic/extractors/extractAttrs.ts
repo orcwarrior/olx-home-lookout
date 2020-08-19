@@ -59,8 +59,6 @@ function extractAttrsOLX($: CheerioAPI): [OfferDetailedAttributes, any] {
 }
 
 
-
-
 function extractAttrsOtoDom($: CheerioAPI): [OfferDetailedAttributes, any] {
     const detail: ScrappedDetails = fromPairs($(".section-overview ul > li")
         .toArray()
@@ -102,10 +100,14 @@ function _getEstateType(detail): ESTATE_TYPE {
 }
 
 function extractAttrs(offer: Offer, $: CheerioAPI): [OfferDetailedAttributes, any] {
-    if (offer.url.includes("olx"))
-        return extractAttrsOLX($);
-    else if (offer.url.includes("otodom"))
-        return extractAttrsOtoDom($);
+    let [attrs, rawAttrs] = offer.url.includes("olx")
+        ? extractAttrsOLX($)
+        : extractAttrsOtoDom($);
+    // DK: Lol @ the ppl
+    if (attrs.bonusRent === offer._priceBase)
+        attrs.bonusRent = 0;
+
+    return [attrs, rawAttrs];
 }
 
 export {extractAttrs, ESTATE_TYPE};
