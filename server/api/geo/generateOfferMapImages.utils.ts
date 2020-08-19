@@ -15,7 +15,7 @@ type StaticMapInput = {
     lat: number,
     lng: number,
     fullAddress?: string,
-    street?: string,
+    hasExactAddress?: boolean,
     size?: string,
     pathBounds?: GeoBounds,
     zoomType: ZOOM_TYPE
