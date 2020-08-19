@@ -100,6 +100,8 @@ services:
       - "${SERVER_PORT:-4000}:${SERVER_PORT:-4000}"
     depends_on:
       - graphql-engine
+    volumes:
+      - ./volumes/server/static/:/usr/src/app/static/
     restart: on-failure
     command: npm run api:prod
 
