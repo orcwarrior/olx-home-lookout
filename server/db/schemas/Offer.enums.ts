@@ -1,0 +1,5 @@
+export enum USER_REVIEW_STATUS {
+    NONE = "NONE",
+    REJECTED = "REJECTED",
+    BOOKMARKED = "BOOKMARKED",
+}

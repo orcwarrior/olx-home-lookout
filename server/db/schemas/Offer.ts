@@ -4,12 +4,8 @@ import {OfferDetailedAttributes} from "../../logic/extractors/extractAttrs";
 import {LookoutRequest} from "./LookoutRequest";
 import {LookoutReport} from "@db/schemas/LookoutReport";
 import {GeographyType} from "@db/schemas/utils";
+import {USER_REVIEW_STATUS} from "./Offer.enums";
 
-enum USER_REVIEW_STATUS {
-    NONE = "NONE",
-    REJECTED = "REJECTED",
-    BOOKMARKED = "BOOKMARKED",
-}
 
 @Entity()
 class Offers_userreviewstatus_enum {
