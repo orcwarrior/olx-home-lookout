@@ -1,0 +1,50 @@
+query LookoutOffers($where: Offers_bool_exp, $orderBy: [Offers_order_by!] ) {
+    Offers_connection(where: $where, order_by: $orderBy) {
+        edges {
+            node {
+                __typename
+                id
+                url
+                title
+                mainImg
+                gallery
+
+                city
+                district
+                street
+                hasExactAddress
+
+                createdAt
+                offerType
+
+                rank
+                indicators_comfort
+                indicators_deal
+                indicators_areaPerRoom
+
+                attrs_estateType
+                attrs_area
+                attrs_floor
+                attrs_rooms
+
+                prices_full
+                prices_perM2
+                prices_base
+                prices_descriptionPricingsDetails
+
+
+                description
+                descriptionRating
+                descriptionRatingsDetails
+                deviationAvgM2Price
+
+                userReviewStatus
+                userNotes
+
+                mapFarImg
+                mapCloseImg
+                mapStreetImg
+            }
+        }
+    }
+}

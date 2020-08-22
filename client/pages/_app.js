@@ -1,16 +1,8 @@
 import React from "react";
-import ReactDom from "react-dom";
 import { ApolloProvider } from "react-apollo";
 import App from "next/app";
 import withApollo from "../hoc/withApollo";
-import * as Sentry from "@sentry/browser";
-import { SHARED_SENTRY_DSN } from "@config";
-import { RecoilRoot } from "recoil";
-import { Box, grommet, Grommet, Main } from 'grommet';
 import "../styles/global.scss";
-
-import { dark } from 'grommet/themes';
-import { deepMerge } from 'grommet/utils';
 
 
 class OLXHomeLookoutApp extends App {

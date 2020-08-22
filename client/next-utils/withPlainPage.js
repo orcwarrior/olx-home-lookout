@@ -1,7 +1,7 @@
 import React from "react";
 
 const withPlainPage = (Component) => (props) => {
-  const {pageProps} = props;
+  const {pageProps, store} = props;
 
   return <Component {...pageProps} store={store}/>;
 }

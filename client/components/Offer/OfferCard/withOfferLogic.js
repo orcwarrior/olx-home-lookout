@@ -3,10 +3,17 @@ import { useMutation } from "@apollo/react-hooks";
 import MUTATE_OFFER from "@gql-queries/actOnOffer.graphql";
 import * as Color from "color";
 import { getBigImage, getThumbImage } from "@components/Offer/utils";
-import { ThemeContext } from "grommet";
+import { ThemeContext as GrommetThemeContext } from "grommet";
 import { Location, Select, StatusUnknown } from "grommet-icons";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
+const LocalThemeContext = React.createContext({
+  global: {colors: {
+    "status-ok": "#00C781",
+    "status-error": "#FF4040",
+    "light-3": "#EDEDED",
+    }}
+});
 
 global.Buffer = global.Buffer || require('buffer').Buffer;
 if (typeof btoa === 'undefined') {
@@ -47,7 +54,7 @@ const STYLE_MIRRORED_METER = {transform: "scaleX(-1)"}
 
 function calcPercDeviation({prices_perM2, deviationAvgM2Price}) {
   const avgPrice = prices_perM2 - (deviationAvgM2Price);
-  console.log(`avgPrice: `, avgPrice);
+  // console.log(`avgPrice: `, avgPrice);
   const deviation = (deviationAvgM2Price * 100 / avgPrice).toFixed(0);
   const deviationTxt = (deviation > 0) ? `+${deviation}` : `-${-1 * (deviation)}`;
   return [deviation, deviationTxt];
@@ -58,14 +65,21 @@ function getMeterColor({themeColors, percentageM2PriceDeviation}) {
       negativeColor = themeColors["status-error"],
       midColor = themeColors["light-3"];
 
-  console.log({themeColors, percentageM2PriceDeviation})
+  // console.log({themeColors, percentageM2PriceDeviation})
   const isPositive = (percentageM2PriceDeviation < 0);
   const absDeviation = Math.abs(percentageM2PriceDeviation)
   const dstColor = isPositive ? positiveColor : negativeColor;
   const fulfillment = Math.max(0, (Math.min(1, absDeviation / METER_MAX)));
-  console.log({fulfillment})
+  // console.log({fulfillment})
   return Color(midColor).mix(Color(dstColor), fulfillment).hex();
 
+}
+
+function buildColorByValueFn(themeColors) {
+  return (val) => {
+    if (val === 0) return themeColors["light-3"];
+    else return (val > 0) ? themeColors["status-ok"] : themeColors["status-error"];
+  }
 }
 
 function prepGalleryImages(gallery) {
@@ -91,7 +105,7 @@ function renderLocationIcon({street, hasExactAddress, isEmail}) {
 }
 
 
-const withOfferLogic = (Component) => (offer) => {
+const withOfferLogic = (Component, {skipGrommet}) => (offer) => {
   const {
     id, createdAt: createdAtStr,
     title, url, district, city, street, hasExactAddress,
@@ -106,7 +120,8 @@ const withOfferLogic = (Component) => (offer) => {
   const [changeOffer] = useMutation(MUTATE_OFFER)
 
   const [galleryImgs, setGalleryImgs] = useState(prepGalleryImages([...gallery, mapFarImg, mapCloseImg, mapStreetImg].filter(Boolean)));
-  const {global: {colors: themeColors}} = useContext(ThemeContext);
+  const {global: {colors: themeColors}} = useContext(skipGrommet ? LocalThemeContext : ThemeContext);
+  const getColorByValue = buildColorByValueFn(themeColors);
 
   const favoriteColor = (userReviewStatus === "BOOKMARKED") ? "accent-1" : "white";
   const rejectedColor = (userReviewStatus === "REJECTED") ? "dark-3" : "white";
@@ -126,6 +141,7 @@ const withOfferLogic = (Component) => (offer) => {
   const createdAt = Date.parse(createdAtStr);
 
   const logic = {
+    dbId,
     toggleLike, toggleReject,
     favoriteColor, rejectedColor,
 
@@ -135,7 +151,7 @@ const withOfferLogic = (Component) => (offer) => {
     meterPriceDevProps: decorateMeter({percentageM2PriceDeviation, themeColors}),
     meterTxtColor: getMeterColor({themeColors, percentageM2PriceDeviation}),
     meterTxtPriceDeviation,
-    locationIcon, locationIconEmail,
+    locationIcon, locationIconEmail, getColorByValue,
 
     display_priceM2: Math.round(prices_perM2),
 

@@ -1,7 +1,16 @@
 {
   "presets": [
     [
-      "next/babel"
+      "next/babel",
+      {
+        "throwIfNamespace": false
+      }
+    ],
+    [
+      "@babel/preset-react",
+      {
+        "throwIfNamespace": true
+      }
     ]
   ],
   "plugins": [
@@ -55,7 +64,9 @@
         ]
       }
     ],
-    ["import", {
+    [
+      "import",
+      {
         "libraryName": "antd",
         "libraryDirectory": "lib",
         "style": true
