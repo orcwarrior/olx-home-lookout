@@ -7,8 +7,9 @@ import { OfferCard } from "@components/Offer";
 import { ReportHeader } from "@components/Report/ReportHeader";
 import { Layout } from "@components/common/Layout";
 import { NotFound } from "@components/common/NotFound";
+import { withPage } from "../../next-utils";
 
-const ReportPage = () => {
+const ReportPage = withPage(() => {
   const router = useRouter();
   const {uuid} = router.query;
   const defaultWhere = {LookoutRequest: {hash: {_eq: uuid}}, userReviewStatus: {_neq: "REJECTED"}};
@@ -28,6 +29,6 @@ const ReportPage = () => {
       </Grid> : <NotFound msg={"No items found"}/>}
     </Box>
   </Layout>
-}
+})
 
 export default ReportPage;

@@ -5,8 +5,9 @@ import OFFER_QUERY from "@gql-queries/offer.graphql";
 import { OfferCard } from "@components/Offer";
 import { Box } from "grommet";
 import { NotFound } from "@components/common/NotFound";
+import { withPage } from "../../../next-utils";
 
-const OfferPage = () => {
+const OfferPage = withPage(() => {
   const router = useRouter();
   const {id, email} = router.query;
   console.log({id, email});
@@ -27,6 +28,6 @@ const OfferPage = () => {
 
   return offer.id ? renderOffer() : <NotFound msg={"Offer not found"}/>
 
-}
+})
 
 export default OfferPage;

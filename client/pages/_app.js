@@ -12,23 +12,6 @@ import "../styles/global.scss";
 import { dark } from 'grommet/themes';
 import { deepMerge } from 'grommet/utils';
 
-const customizedTheme = deepMerge(dark, {
-  global: {
-    colors: {
-      brand: "#FEE715"
-    },
-  },
-  button: {
-    border: {
-      radius: "2px",
-    },
-    size: {
-      small: {border: {radius: "2px"}},
-      medium: {border: {radius: "3px"}},
-      large: {border: {radius: "4px"}},
-    }
-  }
-})
 
 class OLXHomeLookoutApp extends App {
   static async getInitialProps({Component, ctx}) {
@@ -48,37 +31,12 @@ class OLXHomeLookoutApp extends App {
     };
   }
 
-  componentDidCatch(error, errorInfo) {
-    Sentry.withScope((scope) => {
-      Object.keys(errorInfo).forEach((key) => {
-        scope.setExtra(key, errorInfo[key]);
-      });
-
-      Sentry.captureException(error);
-    });
-
-    super.componentDidCatch(error, errorInfo);
-  }
-
-  componentDidMount() {
-    return; // DK: Temporarly remove react-axe
-
-    if (process.env.NODE_ENV !== "production") {
-      const axe = require("react-axe");
-      axe(React, ReactDom, 1000);
-    }
-  }
-
   render() {
     const {Component, pageProps, apollo, store} = this.props;
 
-    return (<RecoilRoot>
-          <ApolloProvider client={apollo}>
-            <Grommet theme={customizedTheme} full={true}>
+    return (<ApolloProvider client={apollo}>
               <Component {...pageProps} store={store}/>
-            </Grommet>
           </ApolloProvider>
-        </RecoilRoot>
     );
   }
 }
