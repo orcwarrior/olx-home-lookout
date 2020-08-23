@@ -38,12 +38,19 @@ async function getAddrGeocode(_address): Promise<[string, string, Geography, Geo
             if (status !== "OK") {
                 const errMsg = "Google StreetAPI err: " + JSON.stringify(response);
                 console.error(errMsg);
-                return [null, null, null, null]
-            };
+                return [null, null, null, null];
+            }
+            ;
 
-            const geoBounds = _findAddrBounds(results);
-            if (geoBounds)
-                console.log(`Query "${address}" returned geo-bounds meaning it's not exact address, res: ${JSON.stringify(response, null, 1)}`)
+            let geoBounds = _findAddrBounds(results);
+            if (geoBounds) {
+                const bndsSize = _boundsSizeKm(geoBounds);
+                if (bndsSize < 0.15) {// less than 150m -> "convert" to point
+                    console.log(`Query "${address}" bounds removed as they size was ${bndsSize * 1000}m`);
+                    geoBounds = undefined;
+                } else
+                    console.log(`Query "${address}" returned geo-bounds meaning it's not exact address, res: ${JSON.stringify(response, null, 1)}`);
+            }
 
             const res: [string, string, Geography, GeoBounds] = [
                 _findStreetName(results),
@@ -77,6 +84,20 @@ async function getAddrGeocode(_address): Promise<[string, string, Geography, Geo
     function _findAddrBounds([result]): GeoBounds {
         const {bounds} = result?.geometry;
         return bounds;
+    }
+
+    function _boundsSizeKm(bounds: GeoBounds) {
+        const {
+            northeast: {lat: lat1, lng: lon1},
+            southwest: {lat: lat2, lng: lon2}
+        } = bounds;
+        const p = 0.017453292519943295;    // Math.PI / 180
+        const cos = Math.cos;
+        const a = 0.5 - cos((lat2 - lat1) * p) / 2 +
+            cos(lat1 * p) * cos(lat2 * p) *
+            (1 - cos((lon2 - lon1) * p)) / 2;
+
+        return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
     }
 }
 
