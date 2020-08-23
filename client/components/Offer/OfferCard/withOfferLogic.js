@@ -10,9 +10,11 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 const LocalThemeContext = React.createContext({
   global: {
     colors: {
+      "brand": "#FEE715",
       "status-ok": "#00C781",
       "status-error": "#FF4040",
       "light-3": "#EDEDED",
+      "dark-6": "#999999",
     }
   }
 });
@@ -91,19 +93,19 @@ function prepGalleryImages(gallery) {
   }))
 }
 
-function renderLocationIcon({street, hasExactAddress, isEmail}) {
+function renderLocationIcon({street, hasExactAddress, isEmail, themeColors}) {
   if (isEmail) {
     if (street && hasExactAddress)
-      return <>📍</>
+      return <span color={themeColors.brand}>📍</span>
     else if (street)
-      return <>🗺️</>
-    else return <>❓</>
+      return <span color={themeColors["light-3"]}>🗺️</span>
+    else return <span color={themeColors["dark-6"]}>❓</span>
   }
   if (street && hasExactAddress)
-    return <Location size="small"/>
+    return <Location size="small" color={themeColors.brand}/>
   else if (street)
-    return <Select size="small"/>
-  else return <StatusUnknown size="small"/>
+    return <Select size="small" color={themeColors["light-3"]}/>
+  else return <StatusUnknown size="small" color={themeColors["dark-6"]}/>
 }
 
 
@@ -127,8 +129,8 @@ const withOfferLogic = (Component, {skipGrommet}) => (offer) => {
 
   const favoriteColor = (userReviewStatus === "BOOKMARKED") ? "accent-1" : "white";
   const rejectedColor = (userReviewStatus === "REJECTED") ? "dark-3" : "white";
-  const locationIcon = renderLocationIcon({street, hasExactAddress, isEmail: false})
-  const locationIconEmail = renderLocationIcon({street, hasExactAddress, isEmail: true})
+  const locationIcon = renderLocationIcon({street, hasExactAddress, isEmail: false, themeColors})
+  const locationIconEmail = renderLocationIcon({street, hasExactAddress, isEmail: true, themeColors})
 
   function actOnOffer(action) {
 
