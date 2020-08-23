@@ -1,6 +1,7 @@
 import {Router} from "express";
 import {HasuraEvtPayload} from "./utils";
 import {INSERT_Offers} from "./Offers/insert";
+import {UPDATE_Offers} from "./Offers/update";
 import {INSERT_LookoutRequests} from "./LookoutRequests/insert";
 import {SCHEDULE_UpdateOffers} from "./schedule/SCHEDULE_UpdateOffers";
 
@@ -8,6 +9,7 @@ const router = Router();
 
 
 const handlers = {
+    UPDATE_Offers: UPDATE_Offers,
     INSERT_Offers: INSERT_Offers,
     INSERT_LookoutRequests: INSERT_LookoutRequests,
     SCHEDULE_UpdateOffers: SCHEDULE_UpdateOffers
