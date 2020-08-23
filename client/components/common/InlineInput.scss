@@ -1,5 +1,6 @@
 .inline-form {
-  display: inline-block;
+  display: inline-flex;
+  flex: 0 1 auto;
   cursor: text;
 
   &.disabled {
@@ -14,20 +15,22 @@ input.inline-edit {
   display: inline-flex;
   font-family: inherit;
   font-size: inherit;
-  padding: 0;
   width: auto;
-  background-color: #1a1a1a;
-  padding-bottom: 2px;
+  background-color: transparent;
+  padding: 0 0 2px 0;
+  margin-top: 2px;
+  margin-right: 4px;
   border-bottom: 1px dashed #FFCA58;
   color: #FFCA58;
-  max-width: 150px;
-  flex-shrink: 1;
-  min-width: 80px;
+  //max-width: 110px;
+  flex: 0 1 auto;
+  min-width: 50px;
 
   &:disabled{
   border-bottom-color: #ccc;
     cursor: pointer;
     color: #ddd;
+    background-color: transparent;
   }
 }
 
