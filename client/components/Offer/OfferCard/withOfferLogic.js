@@ -103,12 +103,14 @@ function renderLocationIcon({city, street, hasExactAddress, isEmail, themeColors
     else if (street)
       icon = <span color={themeColors["light-3"]}>🗺️</span>
     else icon = <span color={themeColors["dark-6"]}>❓</span>
+  } else {
+
+    if (street && hasExactAddress)
+      icon = <Location size="22px" color={themeColors.brand}/>
+    else if (street)
+      icon = <Select size="22px" color={themeColors["light-3"]}/>
+    else icon = <StatusUnknown size="22px" color={themeColors["dark-6"]}/>
   }
-  if (street && hasExactAddress)
-    icon = <Location size="22px" color={themeColors.brand}/>
-  else if (street)
-    icon = <Select size="22px" color={themeColors["light-3"]}/>
-  else icon = <StatusUnknown size="22px" color={themeColors["dark-6"]}/>
 
   return (street) ? <a href={gMapsQuery} target="_blank">{icon}</a> : icon;
 
