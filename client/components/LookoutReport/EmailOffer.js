@@ -10,6 +10,7 @@ const _EmailOfferEven = (offer) => {
     prices_full,
     attrs_rooms, attrs_area,
   } = offer;
+  console.log(`offer: `, offer);
   const {
     dbId, galleryImgs,
     meterTxtPriceDeviation, meterTxtColor,
@@ -21,7 +22,7 @@ const _EmailOfferEven = (offer) => {
   const rank = offer.rank.toFixed(0);
   const emailGalleryRow1 = galleryImgs.slice(1, 5).map(({original}) => original);
   const emailGalleryRow2 = galleryImgs.slice(5, 9).map(({original}) => original);
-  const homeLookoutUrl = `/lookout/offer/${dbId}`
+  const homeLookoutUrl = (process.browser) ? `${location.origin}/lookout/offer/${dbId}` : "";
 
   return <div style={{backgroundColor: '#222222'}}>
     <div className="email-row-container" style={{padding: '0px 10px'}}>
@@ -135,7 +136,7 @@ const _EmailOfferEven = (offer) => {
                       fontFamily: '"Montserrat",sans-serif'
                     }} align="left">
                       <div>
-                                    <span style={{color: '#FEE715', fontSize: '20px', fontWeight: 600}}>{prices_full}zł
+                                    <span style={{color: '#2dc2a3', fontSize: '20px', fontWeight: 600}}>{prices_full}zł
                                     </span></div>
                       <div style={{
                         display: 'inline-block',
@@ -207,6 +208,7 @@ const _EmailOfferEven = (offer) => {
                     }} align="left">
                       <div className="v-text-align" align="center">
                         {/*[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Montserrat',sans-serif;"><tr><td class="v-text-align" style="font-family:'Montserrat',sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://google.pl" style="height:34px; v-text-anchor:middle; width:280px;" arcsize="12%" stroke="f" fillcolor="#2dc2a3"><w:anchorlock/><center style="color:#FFFFFF;font-family:'Montserrat',sans-serif;"><![endif]*/}
+
                         <a href={url} target="_blank" className="v-size-width" style={{
                           boxSizing: 'border-box',
                           display: 'inline-block',
@@ -260,10 +262,10 @@ const _EmailOfferEven = (offer) => {
     </div>
     <div className="email-row-container" style={{padding: '0px', backgroundColor: '#222222'}}>
       <OfferImgsWrap>
-        {emailGalleryRow1.map(img => <OfferImg imgSrc={img}/>)}
+        {emailGalleryRow1.map(img => <OfferImg imgSrc={img} key={img}/>)}
       </OfferImgsWrap>
       {emailGalleryRow2.length ? <OfferImgsWrap>
-        {emailGalleryRow2.map(img => <OfferImg imgSrc={img}/>)}
+        {emailGalleryRow2.map(img => <OfferImg imgSrc={img} key={img}/>)}
       </OfferImgsWrap> : null}
 
       <table id="u_content_button_7" className="u_content_button hide-desktop"
@@ -347,7 +349,7 @@ const _EmailOfferOdd = (offer) => {
   const rank = offer.rank.toFixed(0);
   const emailGalleryRow1 = galleryImgs.slice(1, 5).map(({original}) => original);
   const emailGalleryRow2 = galleryImgs.slice(5, 9).map(({original}) => original);
-  const homeLookoutUrl = `/lookout/offer/${dbId}`
+  const homeLookoutUrl = (process.browser) ? `${location.origin}/lookout/offer/${dbId}` : "";
 
   return <div style={{backgroundColor: '#111111'}}>
     <div className="email-row-container" style={{padding: '0px 10px'}}>
@@ -403,7 +405,7 @@ const _EmailOfferOdd = (offer) => {
                       <div>
                         <div style={{display: 'block'}}>
                           <div style={{
-                            color: '#2DC2A3',
+                            color: '#FEE715',
                             fontSize: '20px',
                             display: 'inline-block',
                             float: 'right',
@@ -577,10 +579,10 @@ const _EmailOfferOdd = (offer) => {
 
     <div className="email-row-container" style={{padding: '0px', backgroundColor: 'transparent'}}>
        <OfferImgsWrap>
-        {emailGalleryRow1.map(img => <OfferImg imgSrc={img}/>)}
+        {emailGalleryRow1.map(img => <OfferImg imgSrc={img} key={img}/>)}
       </OfferImgsWrap>
       {emailGalleryRow2.length ? <OfferImgsWrap>
-        {emailGalleryRow2.map(img => <OfferImg imgSrc={img}/>)}
+        {emailGalleryRow2.map(img => <OfferImg imgSrc={img} key={img}/>)}
       </OfferImgsWrap> : null}
 
       <table id="u_content_button_7" className="u_content_button hide-desktop"

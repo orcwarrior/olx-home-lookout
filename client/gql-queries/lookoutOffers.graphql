@@ -20,6 +20,7 @@ query LookoutReport($where: LookoutReports_bool_exp) {
                     id
                     title
                     prices_full
+                    url
 
                     attrs_rooms
                     attrs_area

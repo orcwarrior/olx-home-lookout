@@ -5,6 +5,7 @@ import { EmailOfferEven, EmailOfferOdd } from "@components/LookoutReport/EmailOf
 import { EmailHtmlHead } from "@components/LookoutReport/EmailHtmlHead";
 import { EmailRankTrend } from "@components/LookoutReport/EmailRankTrend";
 import { EmailOffersHeading } from "@components/LookoutReport/EmailOffersHeading";
+import { EmailCancelSubscription } from "@components/LookoutReport/EmailCancelSubscription";
 
 const LookoutReport = ({report = {}}) => {
   const {Offers = []} = report;
@@ -38,12 +39,12 @@ const LookoutReport = ({report = {}}) => {
 
 
           {Offers.map((offer, idx) => (idx % 2 === 0)
-              ? <EmailOfferEven {...offer} />
-              : <EmailOfferOdd {...offer} />)}
+              ? <EmailOfferEven {...offer} key={offer.id} />
+              : <EmailOfferOdd {...offer} key={offer.id}/>)}
 
 
 
-
+          <EmailCancelSubscription />
           {/*[if (mso)|(IE)]></td></tr></table><![endif]*/}
         </td>
       </tr>

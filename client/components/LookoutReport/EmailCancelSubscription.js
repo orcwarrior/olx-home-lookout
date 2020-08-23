@@ -65,7 +65,7 @@ const EmailCancelSubscription = (props) => {
                   }} align="left">
                     <div className="v-text-align" align="center">
                       {/*[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:'Montserrat',sans-serif;"><tr><td class="v-text-align" style="font-family:'Montserrat',sans-serif;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:52px; v-text-anchor:middle; width:294px;" arcsize="71%" stroke="f" fillcolor="#111111"><w:anchorlock/><center style="color:#ecf0f1;font-family:'Montserrat',sans-serif;"><![endif]*/}
-                      <a href target="_blank" className="v-size-width" style={{
+                      <a href={process.browser ? (location?.href + "?cancel") : ""} target="_blank" className="v-size-width" style={{
                         boxSizing: 'border-box',
                         display: 'inline-block',
                         fontFamily: '"Montserrat",sans-serif',
