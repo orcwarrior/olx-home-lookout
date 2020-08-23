@@ -1,47 +1,51 @@
-query LookoutReport($where: LookoutReports_bool_exp) {
-    LookoutReports_connection(where: $where){
-        edges{
-            node{
+
+
+query LookoutOffers($where: Offers_bool_exp, $orderBy: [Offers_order_by!] ) {
+    Offers_connection(where: $where, order_by: $orderBy) {
+        edges {
+            node {
+                __typename
                 id
-                hash
-                offersSince
+                url
+                title
+                mainImg
+                gallery
+
+                city
+                district
+                street
+                hasExactAddress
+
                 createdAt
+                offerType
 
-                avgRank
-                avgRankTrend
+                rank
+                indicators_comfort
+                indicators_deal
+                indicators_areaPerRoom
 
-                Offers_aggregate{
-                    aggregate{
-                        count
-                    }
-                }
+                attrs_estateType
+                attrs_area
+                attrs_floor
+                attrs_rooms
 
-                Offers(order_by: {rank: desc, isReportHighlight: desc}, limit: 4){
-                    id
-                    title
-                    prices_full
-                    url
+                prices_full
+                prices_perM2
+                prices_base
+                prices_descriptionPricingsDetails
 
-                    attrs_rooms
-                    attrs_area
-                    prices_perM2
 
-                    district
-                    street
-                    hasExactAddress
+                description
+                descriptionRating
+                descriptionRatingsDetails
+                deviationAvgM2Price
 
-                    rank
-                    indicators_deal
-                    indicators_comfort
-                    deviationAvgM2Price
+                userReviewStatus
+                userNotes
 
-                    mainImg
-                    gallery
-                    mapFarImg
-                    mapCloseImg
-                    mapStreetImg
-
-                }
+                mapFarImg
+                mapCloseImg
+                mapStreetImg
             }
         }
     }

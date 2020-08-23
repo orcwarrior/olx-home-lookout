@@ -12,9 +12,8 @@ import {
 
 import { Clear, Currency, Favorite, Lounge, Task } from 'grommet-icons'
 import { CardTopGallery } from "@components/Offer/OfferCard/CardTopGallery";
-import { useMutation } from "@apollo/react-hooks";
-import MUTATE_OFFER from "@gql-queries/actOnOffer.graphql"
 import { withOfferLogic } from "@components/Offer/OfferCard/withOfferLogic";
+import { InlineInput } from "@components/common/InlineInput";
 
 global.Buffer = global.Buffer || require('buffer').Buffer;
 
@@ -41,7 +40,7 @@ const _OfferCard = (offer) => {
   } = offer;
   const {
     favoriteColor, rejectedColor,
-    toggleLike, toggleReject,
+    toggleLike, toggleReject, updateStreet,
     locationIcon,
   } = offer.logic;
 
@@ -65,9 +64,9 @@ const _OfferCard = (offer) => {
         </Box>
       </Box>
       <Box align="center" justify="between" direction="row" pad="small" gap="xsmall">
-        <Text color="light-5" textAlign="center" size="small">
+        <Text color="light-5" textAlign="center" size="small" fill="horizontal" wrap>
           {locationIcon}&nbsp;&nbsp;
-          {district}, {street}
+          {district}, <InlineInput value={street} onSubmit={(val, e) => updateStreet(val)} />
         </Text>
         <Box align="center" justify="end" direction="row" flex="grow">
           <Box align="center" justify="center" direction="row" gap="small"
@@ -94,8 +93,8 @@ const _OfferCard = (offer) => {
         <Accordion animate={false} fill="vertical">
           <AccordionPanel label="Opis">
             <Box align="stretch" justify="start" flex={false} direction="row" basis="small" pad="small"
-                 alignContent="stretch" flex="grow">
-              <Paragraph fill="vertical" size="small" flex={{grow: 1.5}} width={"large"} basis="medium" flex="grow">
+                 alignContent="stretch" flex="grow" overflow={"auto"}>
+              <Paragraph fill="vertical" size="small" flex={{grow: 1.5}} width={"large"} basis="medium">
                 {description}
               </Paragraph>
             </Box>
@@ -106,6 +105,6 @@ const _OfferCard = (offer) => {
   </Box>;
 }
 
-const OfferCard = withOfferLogic(_OfferCard)
+const OfferCard = withOfferLogic(_OfferCard, {skipGrommet: false})
 
 export { OfferCard }

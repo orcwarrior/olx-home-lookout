@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/react-hooks";
-import LOOKOUT_OFFERS_QUERY from "../../gql-queries/lookoutOffers.graphql";
+import LOOKOUT_OFFERS_QUERY from "../../gql-queries/lookoutReport.graphql";
 import { LookoutReport } from "@components/LookoutReport";
 import { withPlainPage } from "../../next-utils";
 

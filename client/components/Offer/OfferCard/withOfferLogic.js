@@ -8,11 +8,13 @@ import { Location, Select, StatusUnknown } from "grommet-icons";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 const LocalThemeContext = React.createContext({
-  global: {colors: {
-    "status-ok": "#00C781",
-    "status-error": "#FF4040",
-    "light-3": "#EDEDED",
-    }}
+  global: {
+    colors: {
+      "status-ok": "#00C781",
+      "status-error": "#FF4040",
+      "light-3": "#EDEDED",
+    }
+  }
 });
 
 global.Buffer = global.Buffer || require('buffer').Buffer;
@@ -120,7 +122,7 @@ const withOfferLogic = (Component, {skipGrommet}) => (offer) => {
   const [changeOffer] = useMutation(MUTATE_OFFER)
 
   const [galleryImgs, setGalleryImgs] = useState(prepGalleryImages([...gallery, mapFarImg, mapCloseImg, mapStreetImg].filter(Boolean)));
-  const {global: {colors: themeColors}} = useContext(skipGrommet ? LocalThemeContext : ThemeContext);
+  const {global: {colors: themeColors}} = useContext(skipGrommet ? LocalThemeContext : GrommetThemeContext);
   const getColorByValue = buildColorByValueFn(themeColors);
 
   const favoriteColor = (userReviewStatus === "BOOKMARKED") ? "accent-1" : "white";
@@ -132,8 +134,12 @@ const withOfferLogic = (Component, {skipGrommet}) => (offer) => {
 
     return () => {
       if (userReviewStatus === action) action = "NONE";
-      return changeOffer({variables: {id: dbId, userReviewStatus: action}})
+      return changeOffer({variables: {id: dbId, _set: {userReviewStatus: action}}})
     }
+  }
+
+  function updateStreet(newStreet) {
+    return changeOffer({variables: {id: dbId, _set: {street: newStreet}}})
   }
 
   const toggleLike = actOnOffer("BOOKMARKED"), toggleReject = actOnOffer("REJECTED")
@@ -142,7 +148,7 @@ const withOfferLogic = (Component, {skipGrommet}) => (offer) => {
 
   const logic = {
     dbId,
-    toggleLike, toggleReject,
+    toggleLike, toggleReject, updateStreet,
     favoriteColor, rejectedColor,
 
     mainImg: mainImg || NO_PHOTO_URL,

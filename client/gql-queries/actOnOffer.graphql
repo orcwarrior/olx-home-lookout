@@ -1,5 +1,5 @@
-mutation actOnOffer($id: Int!, $userReviewStatus: String) {
-    update_Offers_by_pk(pk_columns: {id: $id}, _set: {userReviewStatus: $userReviewStatus}) {
+mutation actOnOffer($id: Int!, $_set: Offers_set_input = {}) {
+    update_Offers_by_pk(pk_columns: {id: $id}, _set: $_set) {
         __typename
         id
         userReviewStatus
