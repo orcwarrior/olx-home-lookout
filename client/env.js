@@ -1,5 +1,6 @@
 const {version: CLIENT_VER} = require("./package.json");
 
+console.log(`process.env: `, process.env);
 const ENV = {
   CLIENT_GRAPHQL_URL_SERVER: process.env.CLIENT_GRAPHQL_URL_SERVER || "http://localhost:8080/v1beta1/relay",
   CLIENT_GRAPHQL_URL_CLIENT: process.env.CLIENT_GRAPHQL_URL_CLIENT || "http://127.0.0.1:8080/v1beta1/relay",
