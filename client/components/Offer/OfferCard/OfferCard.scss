@@ -15,6 +15,12 @@
     white-space: nowrap !important;
   }
 }
+.description {
+ div > button {
+   border: 0;
+   background: transparent;
+ }
+}
 
 @media (max-width: 600px) {
   .middle-infos{
