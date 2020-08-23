@@ -93,19 +93,25 @@ function prepGalleryImages(gallery) {
   }))
 }
 
-function renderLocationIcon({street, hasExactAddress, isEmail, themeColors}) {
+function renderLocationIcon({city, street, hasExactAddress, isEmail, themeColors}) {
+  const gMapsQuery = `https://www.google.pl/maps/search/${encodeURIComponent(`${city}, ${street}`)}`;
+  let icon;
+
   if (isEmail) {
     if (street && hasExactAddress)
-      return <span color={themeColors.brand}>📍</span>
+      icon = <span color={themeColors.brand}>📍</span>
     else if (street)
-      return <span color={themeColors["light-3"]}>🗺️</span>
-    else return <span color={themeColors["dark-6"]}>❓</span>
+      icon = <span color={themeColors["light-3"]}>🗺️</span>
+    else icon = <span color={themeColors["dark-6"]}>❓</span>
   }
   if (street && hasExactAddress)
-    return <Location size="small" color={themeColors.brand}/>
+    icon = <Location size="22px" color={themeColors.brand}/>
   else if (street)
-    return <Select size="small" color={themeColors["light-3"]}/>
-  else return <StatusUnknown size="small" color={themeColors["dark-6"]}/>
+    icon = <Select size="22px" color={themeColors["light-3"]}/>
+  else icon = <StatusUnknown size="22px" color={themeColors["dark-6"]}/>
+
+  return (street) ? <a href={gMapsQuery} target="_blank">{icon}</a> : icon;
+
 }
 
 
@@ -129,8 +135,8 @@ const withOfferLogic = (Component, {skipGrommet}) => (offer) => {
 
   const favoriteColor = (userReviewStatus === "BOOKMARKED") ? "accent-1" : "white";
   const rejectedColor = (userReviewStatus === "REJECTED") ? "dark-3" : "white";
-  const locationIcon = renderLocationIcon({street, hasExactAddress, isEmail: false, themeColors})
-  const locationIconEmail = renderLocationIcon({street, hasExactAddress, isEmail: true, themeColors})
+  const locationIcon = renderLocationIcon({city, street, hasExactAddress, isEmail: false, themeColors})
+  const locationIconEmail = renderLocationIcon({city, street, hasExactAddress, isEmail: true, themeColors})
 
   function actOnOffer(action) {
 

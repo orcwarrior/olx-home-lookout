@@ -12,7 +12,6 @@ import { withPage } from "../../next-utils";
 const LookoutPage = withPage(() => {
   const router = useRouter();
   const size = useContext(ResponsiveContext);
-  console.log(`size: `, size);
   const {uuid} = router.query;
   const defaultWhere = {LookoutRequest: {hash: {_eq: uuid}}, userReviewStatus: {_neq: "REJECTED"}};
   const {data, refetch: refetchOffers} = useQuery(LOOKOUT_OFFERS_QUERY,
@@ -25,7 +24,7 @@ const LookoutPage = withPage(() => {
   : {"size": "500px", "count": "fit"}
   const wrapperOverflow = (size === "small") ? "visible" : "auto";
 
-
+  console.log("offers.cnt: ", offers.length)
   return <Layout>
     <ReportHeader refetchOffers={refetchOffers}/>
     <Box overflow={wrapperOverflow} gap="none" fill="vertical" pad="small">

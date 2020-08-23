@@ -49,7 +49,7 @@ async function getAddrGeocode(_address): Promise<[string, string, Geography, Geo
                     console.log(`Query "${address}" bounds removed as they size was ${bndsSize * 1000}m`);
                     geoBounds = undefined;
                 } else
-                    console.log(`Query "${address}" returned geo-bounds meaning it's not exact address, res: ${JSON.stringify(response, null, 1)}`);
+                    console.log(`Query "${address}" returned geo-bounds of ${bndsSize.toFixed(2)}km size, meaning it's not exact address, res: ${JSON.stringify(response, null, 1)}`);
             }
 
             const res: [string, string, Geography, GeoBounds] = [

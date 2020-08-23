@@ -1,5 +1,5 @@
-import { Box, Image, Meter, Stack, Text } from "grommet";
-import React from "react";
+import { Box, Image, Meter, ResponsiveContext, Stack, Text } from "grommet";
+import React, { useContext } from "react";
 import { Home } from 'grommet-icons'
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss";
@@ -31,7 +31,17 @@ const CardTopGallery = (offer) => {
     display_priceM2
   } = offer.logic;
 
-
+  const size = useContext(ResponsiveContext);
+  const isMobile = (size === "small");
+  const topTextSize = isMobile ? "xsmall" : "small"
+  const btmProps = {
+    meter: (isMobile)
+        ? {size: "xxsmall", thickness: "xsmall"}
+        : {size: "xsmall", thickness: "small"},
+    percent: (isMobile)
+    ? {size: "small"}
+    : {size: "large"}
+  }
 
 
   return <Stack fill={true} interactiveChild="first">
@@ -46,19 +56,19 @@ const CardTopGallery = (offer) => {
     <Box align="start" justify="start" pad="medium" direction="row" fill="vertical" style={STYLE_NOPOINTER}>
       <Box align="center" justify="center" direction="row" gap="xsmall" pad={{"horizontal": "small"}}
            border={{"side": "right", "color": "active"}}>
-        <Text size="small" style={STYLE_TXT_SHADOW_STRONG}>
+        <Text size={topTextSize} style={STYLE_TXT_SHADOW_STRONG}>
           {attrs_rooms} pokoje
         </Text>
       </Box>
       <Box align="center" justify="center" direction="row" gap="xsmall" pad={{"horizontal": "small"}}
            border={{"side": "right", "color": "active"}}>
-        <Home size="small"/>
-        <Text size="small" weight="bold" style={STYLE_TXT_SHADOW_STRONG}>
+        <Home size={topTextSize}/>
+        <Text size={topTextSize} weight="bold" style={STYLE_TXT_SHADOW_STRONG}>
           {attrs_area}m²
         </Text>
       </Box>
       <Box align="center" justify="center" direction="row" gap="xsmall" pad={{"horizontal": "small"}}>
-        <Text size="small" textAlign="start" style={STYLE_TXT_SHADOW_STRONG}>
+        <Text size={topTextSize} textAlign="start" style={STYLE_TXT_SHADOW_STRONG}>
           {createdAgo}
         </Text>
       </Box>
@@ -82,10 +92,10 @@ const CardTopGallery = (offer) => {
           <Stack fill={false} anchor="center">
             <Box align="stretch" justify="center" pad="xsmall" fill direction="column" gap="xsmall">
               <Meter type="circle" background="active" round
-                     size="xsmall" thickness="small" {...meterPriceDevProps}/>
+                     {...btmProps.meter}  {...meterPriceDevProps}/>
             </Box>
             <Box align="center" justify="center" direction="column" gap="medium" margin={{"bottom": "xsmall"}}>
-              <Text textAlign="center" size="large" weight="bold" style={STYLE_TXT_SHADOW}
+              <Text textAlign="center" {...btmProps.percent}weight="bold" style={STYLE_TXT_SHADOW}
                     color={meterTxtColor}>
                 {meterTxtPriceDeviation}%
               </Text>
