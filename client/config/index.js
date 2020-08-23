@@ -5,19 +5,13 @@ const GRAPHQL = {
         return (process.browser) ? this.URL_CLIENT : this.URL_SERVER;
     }
 };
+console.log(`GRAPHQL: `, GRAPHQL);
 
-const LIBIGO_VER = process.env.LIBIGO_VER;
+const CLIENT_VER = process.env.CLIENT_VER;
 const SHARED_SENTRY_DSN = process.env.SHARED_SENTRY_DSN;
-
-const THEME_COLOR = {
-
-    LIGHT: {BASE: "#e2e2e2"},
-    DARK: {BASE: "#333333"},
-};
 
 export {
     GRAPHQL,
     SHARED_SENTRY_DSN,
-    THEME_COLOR,
-    LIBIGO_VER
+    CLIENT_VER
 };
