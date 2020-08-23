@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { getUser } from "@components/generic/NotificationsSection/Notifications.fixtures";
 
 function getSize() {
     return {
@@ -29,7 +28,7 @@ function useWindowSize() {
 
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
-    }, [height, width]); // Empty array ensures that effect is only run on mount and unmount
+    }, []); // Empty array ensures that effect is only run on mount and unmount
 
     return {width, height};
 }

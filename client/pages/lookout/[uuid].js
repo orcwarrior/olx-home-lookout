@@ -3,11 +3,12 @@ import { useRouter } from "next/router";
 import { useQuery } from "@apollo/react-hooks";
 import LOOKOUT_OFFERS_QUERY from "../../gql-queries/lookoutOffers.graphql";
 import { Grid, Box, InfiniteScroll, ResponsiveContext } from "grommet";
-import { OfferCard } from "@components/Offer";
 import { ReportHeader } from "@components/Report/ReportHeader";
 import { Layout } from "@components/common/Layout";
 import { NotFound } from "@components/common/NotFound";
 import { withPage } from "../../next-utils";
+import { OffersGrid } from "@components/Offer/Grid/OffersGrid";
+
 
 const LookoutPage = withPage(() => {
   const router = useRouter();
@@ -27,16 +28,10 @@ const LookoutPage = withPage(() => {
   const infiniteScrollAncestorRef = isMobile ? ".offers-grid" : undefined;
   const infiniteScrollStep = isMobile ? 8 : 12;
 
-  console.log("offers.cnt: ", offers.length)
+
   return <Layout>
     <ReportHeader refetchOffers={refetchOffers}/>
-    <Box overflow={wrapperOverflow} gap="none" pad="small" height="auto" >
-      {offers.length ? <Grid gap="small" columns={gridColumns} rows={[""]}>
-        <InfiniteScroll items={offers} step={infiniteScrollStep} onMore={() => alert("load more items")} >
-          {(offer, idx) => <OfferCard {...offer} key={idx}/>}
-        </InfiniteScroll>
-      </Grid> : <NotFound msg={"No items found"}/>}
-    </Box>
+    <OffersGrid offers={offers}/>
   </Layout>
 })
 

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import {
   Accordion,
   AccordionPanel,
@@ -30,7 +30,7 @@ if (typeof atob === 'undefined') {
   };
 }
 
-const _OfferCard = (offer) => {
+const _OfferCard = React.forwardRef(({listRef, rowIndex, ...offer}, cellMeasureRef) => {
 
 
   const {
@@ -45,9 +45,14 @@ const _OfferCard = (offer) => {
     locationIcon,
   } = offer.logic;
 
+      useEffect(() => {
+        console.log(`listRef: `, listRef);
+        listRef.recomputeRowHeights(rowIndex);
+        console.log("offer.id changd: ", id);
+      }, [id])
 
   return <Box align="center" justify="center" pad="small" background={{"color": "light-1", "opacity": "weak"}}
-              round="medium">
+              round="medium" ref={cellMeasureRef}>
 
     <CardTopGallery {...offer} />
 
@@ -104,7 +109,7 @@ const _OfferCard = (offer) => {
     </Box>
   </Box>;
 }
-
+)
 const OfferCard = withOfferLogic(_OfferCard, {skipGrommet: false})
 
 export { OfferCard }
