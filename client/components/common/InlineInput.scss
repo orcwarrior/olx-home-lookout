@@ -1,36 +1,37 @@
 .inline-form {
   display: inline-flex;
   flex: 0 1 auto;
-  cursor: text;
+  cursor: text !important;
 
   &.disabled {
-    cursor: pointer;
-    .inline-edit {
-    }
+    cursor: pointer !important;
   }
 }
 
-input.inline-edit {
-  border: none;
-  display: inline-flex;
-  font-family: inherit;
-  font-size: inherit;
-  width: auto;
-  background-color: transparent;
-  padding: 0 0 2px 0;
-  margin-top: 2px;
-  margin-right: 4px;
-  border-bottom: 1px dashed #FFCA58;
-  color: #FFCA58;
-  //max-width: 110px;
-  flex: 0 1 auto;
-  min-width: 50px;
+.inline-edit {
 
-  &:disabled{
-  border-bottom-color: #ccc;
-    cursor: pointer;
-    color: #ddd;
+  input {
+    border: none;
+    display: inline-flex;
+
+    width: auto;
     background-color: transparent;
+    padding: 0 0 2px 0;
+    margin-top: 2px;
+    margin-right: 4px;
+    border-bottom: 1px dashed #FFCA58;
+    color: #FFCA58;
+    //max-width: 110px;
+    flex: 0 1 auto;
+    min-width: 50px;
+
+    &[disabled] {
+      border-bottom-color: #ccc;
+      cursor: pointer;
+      color: #eee;
+      background-color: transparent;
+    }
   }
+
 }
 

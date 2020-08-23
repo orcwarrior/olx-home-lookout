@@ -30,7 +30,6 @@ const CardTopGallery = (offer) => {
     meterPriceDevProps, meterTxtColor, meterTxtPriceDeviation,
     display_priceM2
   } = offer.logic;
-  console.log(`meterPriceDevProps: `, meterPriceDevProps);
 
 
 

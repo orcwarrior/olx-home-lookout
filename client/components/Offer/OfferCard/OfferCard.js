@@ -59,7 +59,7 @@ const _OfferCard = (offer) => {
             {title}
           </Anchor>
         </Heading>
-        <Box align="center" justify="center" direction="row" gap="medium" pad="small" className="actions">
+        <Box align="center" justify="center" direction="row" gap="small" pad="small" className="actions">
           <Button icon={<Favorite color={favoriteColor}/>} type="button" onClick={toggleLike} />
           <Button icon={<Clear color={rejectedColor}/>} type="button" onClick={toggleReject} />
         </Box>
@@ -70,8 +70,7 @@ const _OfferCard = (offer) => {
           {district},&nbsp;<InlineInput value={street} onSubmit={updateStreet} />
         </div>
         <div className="indicators">
-          <Box align="center" justify="center" direction="row" gap="small"
-               border={{"color": "dark-6", "side": "left"}} pad={{"left": "medium"}}>
+          <Box align="center" justify="center" direction="row" gap="small" pad={{"left": "medium"}}>
             <Box align="center" justify="center" direction="row" gap="xsmall" style={{wordWrap:"nowrap"}}>
               <Text size="small">☆ {rank.toFixed()}</Text>
             </Box>
