@@ -44,7 +44,6 @@ const _OfferCard = (offer) => {
     toggleLike, toggleReject, updateStreet,
     locationIcon,
   } = offer.logic;
-  const btnStyleFixProps = {style: {border: 0}, background: "transparent"};
 
 
   return <Box align="center" justify="center" pad="small" background={{"color": "light-1", "opacity": "weak"}}
@@ -60,9 +59,9 @@ const _OfferCard = (offer) => {
             {title}
           </Anchor>
         </Heading>
-        <Box align="center" justify="center" direction="row" gap="medium" pad="small">
-          <Button icon={<Favorite color={favoriteColor}/>} type="button" onClick={toggleLike} {...btnStyleFixProps}/>
-          <Button icon={<Clear color={rejectedColor}/>} type="button" onClick={toggleReject} {...btnStyleFixProps}/>
+        <Box align="center" justify="center" direction="row" gap="medium" pad="small" className="actions">
+          <Button icon={<Favorite color={favoriteColor}/>} type="button" onClick={toggleLike} />
+          <Button icon={<Clear color={rejectedColor}/>} type="button" onClick={toggleReject} />
         </Box>
       </Box>
       <div className="middle-infos">
@@ -93,7 +92,7 @@ const _OfferCard = (offer) => {
       </div>
       <Box align="stretch" justify="center" gap="xxsmall" flex="grow">
         <Accordion animate={false} fill="vertical" className="description">
-          <AccordionPanel label="Opis" {...btnStyleFixProps} panelBorder={0}>
+          <AccordionPanel label="Opis" panelBorder={0}>
             <Box align="stretch" justify="start" flex={false} direction="row" basis="small" pad="small"
                  alignContent="stretch" flex="grow" overflow={"auto"}>
               <Paragraph fill="vertical" size="small" flex={{grow: 1.5}} width={"large"} basis="medium">

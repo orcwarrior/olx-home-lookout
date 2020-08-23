@@ -15,6 +15,12 @@
     white-space: nowrap !important;
   }
 }
+.actions {
+  button {
+    border: 0 !important;
+    background: transparent !important;
+  }
+}
 .description {
  div > button {
    border: 0;
