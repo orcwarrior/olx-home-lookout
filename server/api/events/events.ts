@@ -28,11 +28,12 @@ router.post("/events", async (req, res) => {
         : (() => ({msg: `No handler for: ${handlerKey}.`}));
 
     const handlerData = payload?.payload?.data || payload?.event?.data;
+
+    res.status(hasEvtHandler ? 200 : 500)
+        .json({status: (hasEvtHandler) ? "ok" : "error"});
+
     const result = handlerFn(handlerData);
 
-    return res
-        .status(hasEvtHandler ? 200 : 500)
-        .json({status: (hasEvtHandler) ? "ok" : "error", result});
 
 });
 
