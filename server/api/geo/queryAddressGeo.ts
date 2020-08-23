@@ -41,15 +41,15 @@ async function getAddrGeocode(_address): Promise<[string, string, Geography, Geo
                 return [null, null, null, null]
             };
 
-            const streetName = _findStreetName(results);
-            if (!streetName)
-                console.log(`Wasn't able to find street for: "${address}", res: ${JSON.stringify(response, null, 1)}`)
+            const geoBounds = _findAddrBounds(results);
+            if (geoBounds)
+                console.log(`Query "${address}" returned geo-bounds meaning it's not exact address, res: ${JSON.stringify(response, null, 1)}`)
 
             const res: [string, string, Geography, GeoBounds] = [
-                streetName,
+                _findStreetName(results),
                 _findFullAddr(results),
                 _findAddrGeo(results),
-                _findAddrBounds(results),
+                geoBounds,
             ];
             lruCache.set(res);
             return res;

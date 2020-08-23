@@ -21,7 +21,7 @@ async function generateStaticMapImg(input: StaticMapInput): Promise<[string, str
         ...((zoomType === ZOOM_TYPE.CLOSE) ? {
             maptype: "hybrid"
         } : { /* FAR */
-            path: pathBounds && hasExactAddress && _toGApiPath(pathBounds)
+            path: pathBounds && !hasExactAddress && _toGApiPath(pathBounds)
         })
     };
 
