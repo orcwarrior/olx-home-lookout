@@ -21,6 +21,6 @@ app.use("/api/geo/", genOfferMapRouter);
 app.use("/static", express.static("static"));
 
 // start the Express server
-app.listen(api.clientPort, () => {
-    console.log(`server started at http://localhost:${api.clientPort}`);
+app.listen(api.serverPort, () => {
+    console.log(`server started at http://localhost:${api.serverPort}`);
 });

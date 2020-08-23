@@ -71,8 +71,8 @@ async function getMapImg(input: StaticMapInput) {
     if (hasImg) {
         // console.log(`Image: ${imgPath} already exists!`);
         return {
-            img: imgPath.replace(".", api.clientBaseUrl),
-            thumb: imgThumbPath.replace(".", api.clientBaseUrl)
+            img: imgPath.replace(".", api.serverBaseUrl),
+            thumb: imgThumbPath.replace(".", api.serverBaseUrl)
         };
     } else {
         // console.log(`Image: ${imgPath} has to be generated...`, process.cwd());
@@ -80,8 +80,8 @@ async function getMapImg(input: StaticMapInput) {
             ? await generateStreetViewImg(input)
             : await generateStaticMapImg(input);
         return {
-            img: img.replace(".", api.clientBaseUrl),
-            thumb: thumb.replace(".", api.clientBaseUrl)
+            img: img.replace(".", api.serverBaseUrl),
+            thumb: thumb.replace(".", api.serverBaseUrl)
         };
     }
 

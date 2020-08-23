@@ -1,14 +1,19 @@
 const {
     GENERAL__DOMAIN_NAME = "localhost",
-    CLIENT__PORT = "4000",
-    GOOGLE_MAPS_API_KEY
+    GENERAL__ORIGIN = "http://localhost",
+    SERVER__PORT = "4000",
+    CLIENT__PORT = "80",
+    GOOGLE_MAPS_API_KEY,
+    SERVER__SENDGRID_API_KEY,
+    SERVER__EMAIL_SENDER
 } = process.env;
 
 
 const api = {
-    clientPort: CLIENT__PORT,
+    serverPort: SERVER__PORT,
     domainName: GENERAL__DOMAIN_NAME,
-    clientBaseUrl: `//${GENERAL__DOMAIN_NAME}:${CLIENT__PORT}`,
+    serverBaseUrl: `${GENERAL__ORIGIN}:${SERVER__PORT}`,
+    clientBaseUrl: `${GENERAL__ORIGIN}${CLIENT__PORT ?`:${CLIENT__PORT}`:""}`,
     GOOGLE_MAPS_API_KEY,
     SERVER__SENDGRID_API_KEY,
     SERVER__EMAIL_SENDER,

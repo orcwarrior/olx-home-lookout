@@ -54,7 +54,8 @@ async function buildupReport(lookout: LookoutRequest, offers: Offer[], newOffers
 
     const highlightOffers = selectFeaturedOffers(newOffers, dbReport, lookout);
 
-    if (highlightOffers.length)
+    if (highlightOffers.length) {
+
         await knexClient<Offer>("Offers")
             .whereIn("id", highlightOffers.map(o => o.id))
             .update({
