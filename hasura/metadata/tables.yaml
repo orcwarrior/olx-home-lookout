@@ -77,6 +77,11 @@
       enable_manual: false
       insert:
         columns: '*'
+      update:
+        columns:
+        - attrs_area
+        - prices_full
+        - street
     retry_conf:
       num_retries: 5
       interval_sec: 10
