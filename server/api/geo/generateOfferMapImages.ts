@@ -101,7 +101,8 @@ type OfferMapImages = OfferMapErr & {
 
 async function getMapImagesForOffer(offer: Partial<Offer>, addrGeocode?: [string, string, Geography, GeoBounds]): Promise<OfferMapImages> {
 
-    const [_err, fullAddress, geoPoint, geoBounds] = addrGeocode || await getAddrGeocode(`${offer.district} ${offer.street || ""}`);
+    const queryAddr = (offer.street) ? `${offer.city}, ${offer.street}` : offer.district;
+    const [_err, fullAddress, geoPoint, geoBounds] = addrGeocode || await getAddrGeocode(queryAddr);
     if (!geoPoint)
         return {far: null, close: null, error: _err};
 

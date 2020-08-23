@@ -1,6 +1,7 @@
 import {Router} from "express";
 import * as LRU from "lru-cache";
 import * as ms from "ms";
+import {deburr} from "lodash";
 import fetch from "node-fetch";
 import {api} from "@config/index";
 import {Geography} from "@db/schemas/utils";
@@ -25,7 +26,7 @@ type GeoBounds = {
 }
 
 async function getAddrGeocode(_address): Promise<[string, string, Geography, GeoBounds]> {
-    const address = _address.trim();
+    const address = deburr(_address.trim());
 
     if (lruCache.has(address))
         return lruCache.get(address);
