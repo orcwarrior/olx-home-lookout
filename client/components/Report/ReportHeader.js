@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Box, DropButton, Image, RangeSelector, Text, Anchor, ResponsiveContext } from "grommet";
+import React, { useContext, useEffect, useState } from "react";
+import { Anchor, Box, DropButton, Image, RangeSelector, ResponsiveContext, Text } from "grommet";
 import MultiToggle from "react-multi-toggle";
-import { Ascend, Descend, Achievement, History, Currency, Lounge, Task } from "grommet-icons";
+import { Achievement, Ascend, Currency, Descend, History, Lounge } from "grommet-icons";
 import { debounce } from "@utils/debounce";
 import "./ReportHeader.scss";
+import useQueryString from "@hooks/useQueryString";
 
 const PRICE_RANGE = [0, 3000];
 const AREA_RANGE = [10, 120];
@@ -45,28 +46,52 @@ function updateOfferWhereAndOrder({pricesRange, areaRange, comfortRange, userRev
     }
   }
 }
+
 function getSortColor(itemOrderBy, currentOrderBy) {
   if (JSON.stringify(itemOrderBy) === JSON.stringify(currentOrderBy))
     return "brand";
   else return "light-2";
 
 }
+
 const SortItem = ({sortObj, setOrderBy, orderBy, icon: Icon, children}) => {
   const color = getSortColor(sortObj, orderBy);
   return <Box align="center" justify="center" direction="row" gap="xsmall"
-                              onClick={() => setOrderBy(sortObj)} color="light-2">
+              onClick={() => setOrderBy(sortObj)} color="light-2">
     <Anchor color={color}>{children}</Anchor>
     {Icon ? <Icon size="medium" color={color}/> : null}
   </Box>
 }
-
+const QSHookJSONOpts = {
+  toValue: (str) => {
+    if (!str) return str;
+    else {
+      try {
+        return JSON.parse(str);
+      } catch (err) {
+        console.log(`err: `, err);
+        return undefined;
+      }
+    }
+  }, toQuery: (v) => {
+    if (!v) return v;
+    else {
+      try {
+        return JSON.stringify(v);
+      } catch (err) {
+        console.log(`err: `, err);
+        return undefined;
+      }
+    }
+  }
+};
 const ReportHeader = ({refetchOffers}) => {
 
-  const [pricesRange, setPricesRange] = useState(PRICE_RANGE)
-  const [areaRange, setAreaRange] = useState(AREA_RANGE)
-  const [comfortRange, setComfortRange] = useState(AREA_RANGE)
-  const [userReviewStatus, setUserReviewStatus] = useState(whereDefaults.userReviewStatus)
-  const [orderBy, setOrderBy] = useState({rank: "desc"})
+  const [pricesRange, setPricesRange] = useQueryString("price", PRICE_RANGE)
+  const [areaRange, setAreaRange] = useQueryString("area", AREA_RANGE)
+  const [comfortRange, setComfortRange] = useQueryString("comfort", COMFORT_RANGE)
+  const [userReviewStatus, setUserReviewStatus] = useQueryString("review", whereDefaults.userReviewStatus, QSHookJSONOpts)
+  const [orderBy, setOrderBy] = useQueryString("order", {rank: "desc"}, QSHookJSONOpts)
   const [queryVarsJSON, setQueryVarsJSON] = useState(JSON.stringify(queryDefaults))
 
   const size = useContext(ResponsiveContext);
@@ -143,7 +168,7 @@ const ReportHeader = ({refetchOffers}) => {
             />
           </Box>
           <Box align="center" justify="between" gap="medium" pad="small" basis="1/4"
-          style={{marginTop: "14px"}}>
+               style={{marginTop: "14px"}}>
             <MultiToggle
                 options={USER_REVIEW_FILTER}
                 selectedOption={userReviewStatus}
@@ -175,16 +200,16 @@ const ReportHeader = ({refetchOffers}) => {
                 <SortItem sortObj={{prices_perM2: "asc"}} {...sortByItemProps}>
                   Cena m²
                 </SortItem>
-                <SortItem icon={Ascend}  sortObj={{prices_full: "asc"}} {...sortByItemProps}>
+                <SortItem icon={Ascend} sortObj={{prices_full: "asc"}} {...sortByItemProps}>
                   Cena {/* rosnaco */}
                 </SortItem>
-                <SortItem icon={Descend}  sortObj={{prices_full: "desc"}} {...sortByItemProps}>
+                <SortItem icon={Descend} sortObj={{prices_full: "desc"}} {...sortByItemProps}>
                   Cena {/* malejaco */}
                 </SortItem>
-                <SortItem icon={Ascend}  sortObj={{attrs_area: "asc"}} {...sortByItemProps}>
+                <SortItem icon={Ascend} sortObj={{attrs_area: "asc"}} {...sortByItemProps}>
                   Powierzchnia {/* rosnaco */}
                 </SortItem>
-                <SortItem icon={Descend}  sortObj={{attrs_area: "desc"}} {...sortByItemProps}>
+                <SortItem icon={Descend} sortObj={{attrs_area: "desc"}} {...sortByItemProps}>
                   Powierzchnia {/* malejaco */}
                 </SortItem>
 

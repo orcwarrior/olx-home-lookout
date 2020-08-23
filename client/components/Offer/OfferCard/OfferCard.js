@@ -64,32 +64,6 @@ const _OfferCard = (offer) => {
           <Button icon={<Clear color={rejectedColor}/>} type="button" onClick={toggleReject}/>
         </Box>
       </Box>
-{/*      <Box align="center" justify="between" direction="row" pad="small" gap="xsmall" flex="grow" className="middle-infos" >
-        <Box color="light-5" textAlign="center" size="small" fill="horizontal" style={{whiteSpace: "nowrap"}} flex="shrink" >
-          {locationIcon}&nbsp;
-          {district}, <InlineInput value={street} onSubmit={updateStreet} />
-        </Box>
-        <Box align="center" justify="end" direction="row" flex="grow">
-          <Box align="center" justify="center" direction="row" gap="small"
-               border={{"color": "dark-6", "side": "left"}} pad={{"left": "medium"}}>
-            <Box align="center" justify="center" direction="row" gap="xsmall">
-              <Text size="small">☆ {rank.toFixed()}</Text>
-            </Box>
-            <Box align="center" justify="center" direction="row" gap="xsmall">
-              <Lounge size="small"/>
-              <Text size="small">{indicators_comfort.toFixed(2)}</Text>
-            </Box>
-            <Box align="center" justify="center" direction="row" gap="xsmall">
-              <Task size="small"/>
-              <Text size="small">{descriptionRating.toFixed(2)}</Text>
-            </Box>
-            <Box align="center" justify="center" direction="row" gap="xsmall">
-              <Currency size="small"/>
-              <Text size="small">{indicators_deal.toFixed(2)}</Text>
-            </Box>
-          </Box>
-        </Box>
-      </Box>*/}
       <div className="middle-infos">
         <div className="location">
           {locationIcon}&nbsp;
