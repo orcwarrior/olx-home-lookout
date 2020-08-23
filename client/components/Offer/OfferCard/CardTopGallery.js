@@ -3,7 +3,7 @@ import React from "react";
 import { Home } from 'grommet-icons'
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss";
-import "./CartTopGallery.style.scss";
+import "./CardTopGallery.style.scss";
 
 const STYLE_TXT_SHADOW = {textShadow: "2px 2px 6px rgba(0,0,0,0.3)"}
 const STYLE_TXT_SHADOW_STRONG = {textShadow: "1px 1px 3px rgba(0,0,0,0.6)"}
