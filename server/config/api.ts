@@ -10,6 +10,8 @@ const api = {
     domainName: GENERAL__DOMAIN_NAME,
     clientBaseUrl: `//${GENERAL__DOMAIN_NAME}:${CLIENT__PORT}`,
     GOOGLE_MAPS_API_KEY,
+    SERVER__SENDGRID_API_KEY,
+    SERVER__EMAIL_SENDER,
 };
 
 export {api}

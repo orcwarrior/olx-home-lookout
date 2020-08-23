@@ -12,6 +12,7 @@
     "db:init:dev": "ts-node-dev --files -r tsconfig-paths/register db/init.ts"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.2.4",
     "@types/geojson": "^7946.0.7",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",

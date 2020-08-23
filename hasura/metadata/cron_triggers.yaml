@@ -1,6 +1,6 @@
 - name: SCHEDULE_UpdateOffers
   webhook: '{{HASURA__WEBHOOK_EVENTS_URL}}'
-  schedule: 58 */3 * * *
+  schedule: 58 */4 * * *
   include_in_metadata: true
   payload:
     schedule_name: SCHEDULE_UpdateOffers

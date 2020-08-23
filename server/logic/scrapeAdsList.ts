@@ -10,6 +10,7 @@ import {
 } from "./scrapeAdsList.utils";
 
 const OFFERS_PARSE_CAP = 900;
+const OFFERS_START_PAGE = 1;
 
 async function parseOffersDetails(offers: Array<Offer>): Promise<OfferDetailed[]> {
     return Promise.all(offers.map((offer) => {
@@ -25,7 +26,7 @@ async function parseOffersDetails(offers: Array<Offer>): Promise<OfferDetailed[]
 }
 
 
-export default async function scrapeAdsList(lookout: LookoutRequest, previouslyParsed = [], page = 1): Promise<OfferDetailed[]> {
+export default async function scrapeAdsList(lookout: LookoutRequest, previouslyParsed = [], page = OFFERS_START_PAGE): Promise<OfferDetailed[]> {
 
     return new Promise((resolve, reject) => {
 

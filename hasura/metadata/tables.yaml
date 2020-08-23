@@ -34,7 +34,7 @@
   event_triggers:
   - name: lookout_created
     definition:
-      enable_manual: true
+      enable_manual: false
       insert:
         columns: '*'
     retry_conf:
@@ -74,7 +74,7 @@
   event_triggers:
   - name: offer_created
     definition:
-      enable_manual: true
+      enable_manual: false
       insert:
         columns: '*'
     retry_conf:
