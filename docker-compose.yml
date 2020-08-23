@@ -117,7 +117,6 @@ services:
       - secret.env
     environment:
       - RUNTIME_ENVIROMENT=docker_compose
-      - CLIENT_GRAPHQL_URL_CLIENT
     depends_on:
       - graphql-engine
     restart: on-failure
