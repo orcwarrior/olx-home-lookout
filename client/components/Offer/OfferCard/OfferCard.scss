@@ -1,0 +1,23 @@
+.middle-infos{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  width: 100%;
+  margin: 8px 0;
+
+  .location {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    flex-shrink: 1;
+  }
+
+  .indicators {
+    white-space: nowrap !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .middle-infos{
+    flex-wrap: wrap;
+  }
+}

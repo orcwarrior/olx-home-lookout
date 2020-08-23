@@ -14,6 +14,7 @@ import { Clear, Currency, Favorite, Lounge, Task } from 'grommet-icons'
 import { CardTopGallery } from "@components/Offer/OfferCard/CardTopGallery";
 import { withOfferLogic } from "@components/Offer/OfferCard/withOfferLogic";
 import { InlineInput } from "@components/common/InlineInput";
+import "./OfferCard.scss"
 
 global.Buffer = global.Buffer || require('buffer').Buffer;
 
@@ -63,11 +64,11 @@ const _OfferCard = (offer) => {
           <Button icon={<Clear color={rejectedColor}/>} type="button" onClick={toggleReject}/>
         </Box>
       </Box>
-      <Box align="center" justify="between" direction="row" pad="small" gap="xsmall">
-        <Text color="light-5" textAlign="center" size="small" fill="horizontal" wrap>
-          {locationIcon}&nbsp;&nbsp;
-          {district}, <InlineInput value={street} onSubmit={(val, e) => updateStreet(val)} />
-        </Text>
+{/*      <Box align="center" justify="between" direction="row" pad="small" gap="xsmall" flex="grow" className="middle-infos" >
+        <Box color="light-5" textAlign="center" size="small" fill="horizontal" style={{whiteSpace: "nowrap"}} flex="shrink" >
+          {locationIcon}&nbsp;
+          {district}, <InlineInput value={street} onSubmit={updateStreet} />
+        </Box>
         <Box align="center" justify="end" direction="row" flex="grow">
           <Box align="center" justify="center" direction="row" gap="small"
                border={{"color": "dark-6", "side": "left"}} pad={{"left": "medium"}}>
@@ -88,7 +89,33 @@ const _OfferCard = (offer) => {
             </Box>
           </Box>
         </Box>
-      </Box>
+      </Box>*/}
+      <div className="middle-infos">
+        <div className="location">
+          {locationIcon}&nbsp;
+          {district},&nbsp;<InlineInput value={street} onSubmit={updateStreet} />
+        </div>
+        <div className="indicators">
+          <Box align="center" justify="center" direction="row" gap="small"
+               border={{"color": "dark-6", "side": "left"}} pad={{"left": "medium"}}>
+            <Box align="center" justify="center" direction="row" gap="xsmall" style={{wordWrap:"nowrap"}}>
+              <Text size="small">☆ {rank.toFixed()}</Text>
+            </Box>
+            <Box align="center" justify="center" direction="row" gap="xsmall">
+              <Lounge size="small"/>
+              <Text size="small">{indicators_comfort.toFixed(2)}</Text>
+            </Box>
+            <Box align="center" justify="center" direction="row" gap="xsmall">
+              <Task size="small"/>
+              <Text size="small">{descriptionRating.toFixed(2)}</Text>
+            </Box>
+            <Box align="center" justify="center" direction="row" gap="xsmall">
+              <Currency size="small"/>
+              <Text size="small">{indicators_deal.toFixed(2)}</Text>
+            </Box>
+          </Box>
+        </div>
+      </div>
       <Box align="stretch" justify="center" gap="xxsmall" flex="grow">
         <Accordion animate={false} fill="vertical">
           <AccordionPanel label="Opis">
