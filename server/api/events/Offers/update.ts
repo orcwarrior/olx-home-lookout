@@ -1,10 +1,12 @@
-import {Offer} from "@db/schemas";
+
 import {bufferedHandler, HandlerArgs} from "../utils";
 import {recalculateOfferComputedFields} from "@db/logic/recalculateOfferComputedFields";
 import {getMapImagesForOffer} from "@api/geo/generateOfferMapImages";
 import knexClient from "@root/knexClient";
+import {OfferDetailed} from "@logic/helpers/Offer";
+import {Offer} from "@db/schemas";
 
-const UPDATE_Offers = bufferedHandler(async (data: HandlerArgs<Offer>) => {
+const UPDATE_Offers = bufferedHandler(async (data: HandlerArgs<any>) => {
 
     const offerId = data?.new?.id;
     const hasStreetChanged = _streetChanged(data);
@@ -12,11 +14,14 @@ const UPDATE_Offers = bufferedHandler(async (data: HandlerArgs<Offer>) => {
 
     if (hasStreetChanged) {
         const mapImages = await getMapImagesForOffer(data.new);
+        const hasExactAddress = !!mapImages.street;
         await knexClient<Offer>("Offers")
+            .where({id: offerId})
             .update({
-                mapFarImg: mapImages.far.img,
-                mapCloseImg: mapImages.close.img,
-                mapStreetImg: mapImages.street.img
+                mapFarImg: mapImages.far?.img,
+                mapCloseImg: mapImages.close?.img,
+                mapStreetImg: mapImages.street?.img,
+                hasExactAddress
             });
     }
     if (hasRankChanged)
@@ -33,8 +38,8 @@ const UPDATE_Offers = bufferedHandler(async (data: HandlerArgs<Offer>) => {
         return old.street !== _new.street;
     }
 
-    function _rankAffectingFieldChanged({old, new: _new}: { old?: Offer, new?: Offer }) {
-        return old.prices.full !== _new.prices.full || old.attrs.area !== _new.attrs.area;
+    function _rankAffectingFieldChanged({old, new: _new}: { old?: any, new?: any }) {
+        return old.prices_full !== _new.prices_full || old.attrs_area !== _new.attrs_area;
     }
 });
 
