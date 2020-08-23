@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Box, DropButton, Image, RangeSelector, Text, Anchor } from "grommet";
+import React, { useState, useEffect, useContext } from "react";
+import { Box, DropButton, Image, RangeSelector, Text, Anchor, ResponsiveContext } from "grommet";
 import MultiToggle from "react-multi-toggle";
 import { Ascend, Descend, Achievement, History, Currency, Lounge, Task } from "grommet-icons";
 import { debounce } from "@utils/debounce";
@@ -45,6 +45,20 @@ function updateOfferWhereAndOrder({pricesRange, areaRange, comfortRange, userRev
     }
   }
 }
+function getSortColor(itemOrderBy, currentOrderBy) {
+  if (JSON.stringify(itemOrderBy) === JSON.stringify(currentOrderBy))
+    return "brand";
+  else return "light-2";
+
+}
+const SortItem = ({sortObj, setOrderBy, orderBy, icon: Icon, children}) => {
+  const color = getSortColor(sortObj, orderBy);
+  return <Box align="center" justify="center" direction="row" gap="xsmall"
+                              onClick={() => setOrderBy(sortObj)} color="light-2">
+    <Anchor color={color}>{children}</Anchor>
+    {Icon ? <Icon size="medium" color={color}/> : null}
+  </Box>
+}
 
 const ReportHeader = ({refetchOffers}) => {
 
@@ -54,6 +68,9 @@ const ReportHeader = ({refetchOffers}) => {
   const [userReviewStatus, setUserReviewStatus] = useState(whereDefaults.userReviewStatus)
   const [orderBy, setOrderBy] = useState({rank: "desc"})
   const [queryVarsJSON, setQueryVarsJSON] = useState(JSON.stringify(queryDefaults))
+
+  const size = useContext(ResponsiveContext);
+  const isMobile = size === "small";
 
   const refetchDebounced = React.useCallback(debounce(refetchOffers, 1500), [])
 
@@ -65,12 +82,18 @@ const ReportHeader = ({refetchOffers}) => {
     }
   }, [pricesRange, areaRange, comfortRange, userReviewStatus, orderBy])
 
+  const logoProps = isMobile ? {
+    fill: "horizontal",
+    pad: {horizontal: "xlarge"}
+
+  } : {fill: "vertical"};
+  const sortByItemProps = {setOrderBy, orderBy};
 
   return (
       <Box align="center" justify="center" fill="horizontal" direction="row-responsive" basis="xsmall" flex="grow"
-           pad={{"horizontal": "large"}}>
-        <Box align="center" justify="center" flex="shrink" fill="vertical">
-          <Image src="http://localhost:3000/assets/home-lookout-logo.PNG" fit="contain" fill="vertical"/>
+           pad={{"horizontal": "large"}} background="black">
+        <Box align="center" justify="center" flex="shrink" {...logoProps}>
+          <Image src="/assets/home-lookout-logo.png" fit="contain" fill={logoProps.fill}/>
         </Box>
 
         <Box align="stretch" justify="center" flex="grow" direction="row-responsive" gap="medium">
@@ -119,7 +142,8 @@ const ReportHeader = ({refetchOffers}) => {
                 onChange={setComfortRange}
             />
           </Box>
-          <Box align="center" justify="between" gap="small" pad="medium" basis="1/4">
+          <Box align="center" justify="between" gap="medium" pad="small" basis="1/4"
+          style={{marginTop: "14px"}}>
             <MultiToggle
                 options={USER_REVIEW_FILTER}
                 selectedOption={userReviewStatus}
@@ -133,59 +157,37 @@ const ReportHeader = ({refetchOffers}) => {
           <DropButton label="Sortowanie" dropAlign={{"top": "bottom"}} dropContent={(
               <Box align="center" justify="center" pad="medium" name="dropContent" background={"black"}
                    animation="fadeIn" hoverIndicator={false} border={{"size": "small"}} gap="small">
-                <Box align="center" justify="center" direction="row" gap="xsmall"
-                     onClick={() => setOrderBy({rank: "desc"})}>
-                  <Anchor color="light-2">Ocena</Anchor>
-                  <Achievement color="light-2" size="medium"/>
-                </Box>
-
-                <Box align="center" justify="center" direction="row" gap="xsmall"
-                     onClick={() => setOrderBy({createdAt: "desc"})}>
-                  <Anchor color="light-2">Od najnowszych</Anchor>
-                  <History color="light-2" size="medium"/>
-                </Box>
-
-                <Box align="center" justify="center" direction="row" gap="xsmall"
-                     onClick={() => setOrderBy({indicators_deal: "desc"})}>
-                  <Anchor color="light-2">Okazja cenowa</Anchor>
-                  <Currency color="light-2" size="medium"/>
-                </Box>
-
-                <Box align="center" justify="center" direction="row" gap="xsmall"
-                     onClick={() => setOrderBy({indicators_comfort: "desc"})}>
-                  <Anchor color="light-2">Komfort</Anchor>
-                  <Lounge color="light-2" size="medium"/>
-                </Box>
-                <Anchor color="light-2" onClick={() => setOrderBy({deviationAvgM2Price: "asc"})}>
-                Odchyl. cenowe  📈
-                </Anchor>
-                <Anchor color="light-2" onClick={() => setOrderBy({prices_perM2: "asc"})}>
+                <SortItem icon={Achievement} sortObj={{rank: "desc"}} {...sortByItemProps}>
+                  Ocena
+                </SortItem>
+                <SortItem icon={History} sortObj={{createdAt: "desc"}} {...sortByItemProps}>
+                  Od najnowszych
+                </SortItem>
+                <SortItem icon={Lounge} sortObj={{indicators_comfort: "desc"}} {...sortByItemProps}>
+                  Komfort
+                </SortItem>
+                <SortItem icon={Lounge} sortObj={{deviationAvgM2Price: "asc"}} {...sortByItemProps}>
+                  Odchyl. cenowe 📈
+                </SortItem>
+                <SortItem icon={Currency} sortObj={{indicators_deal: "desc"}} {...sortByItemProps}>
+                  Okazja cenowa
+                </SortItem>
+                <SortItem sortObj={{prices_perM2: "asc"}} {...sortByItemProps}>
                   Cena m²
-                </Anchor>
-                <Box align="center" justify="center" direction="row" gap="xsmall"
-                     onClick={() => setOrderBy({prices_full: "asc"})}>
-                  <Anchor color="light-2">
-                    Cena {/* rosnaco */}
-                  </Anchor>
-                  <Ascend color="light-2" size="medium"/>
-                </Box>
-                <Box align="center" justify="center" direction="row" gap="xsmall"
-                     onClick={() => setOrderBy({prices_full: "desc"})}>
-                  <Anchor color="light-2">
-                    Cena {/* malejaco */}
-                  </Anchor>
-                  <Descend color="light-2" size="medium"/>
-                </Box>
-                <Box align="center" justify="center" direction="row" gap="xsmall"
-                     onClick={() => setOrderBy({attrs_area: "asc"})}>
-                  <Anchor color="light-2">Powierzchnia {/* rosnaco */}</Anchor>
-                  <Ascend color="light-2" size="medium"/>
-                </Box>
-                <Box align="center" justify="center" direction="row" gap="xsmall"
-                     onClick={() => setOrderBy({attrs_area: "desc"})}>
-                  <Anchor color="light-2">Powierzchnia {/* malejaco */}</Anchor>
-                  <Descend color="light-2" size="medium"/>
-                </Box>
+                </SortItem>
+                <SortItem icon={Ascend}  sortObj={{prices_full: "asc"}} {...sortByItemProps}>
+                  Cena {/* rosnaco */}
+                </SortItem>
+                <SortItem icon={Descend}  sortObj={{prices_full: "desc"}} {...sortByItemProps}>
+                  Cena {/* malejaco */}
+                </SortItem>
+                <SortItem icon={Ascend}  sortObj={{attrs_area: "asc"}} {...sortByItemProps}>
+                  Powierzchnia {/* rosnaco */}
+                </SortItem>
+                <SortItem icon={Descend}  sortObj={{attrs_area: "desc"}} {...sortByItemProps}>
+                  Powierzchnia {/* malejaco */}
+                </SortItem>
+
               </Box>
           )}
                       plain={false} reverse={false} dropProps={{"elevation": "xsmall", "plain": true}}/>
