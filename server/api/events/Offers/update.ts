@@ -1,4 +1,3 @@
-
 import {bufferedHandler, HandlerArgs} from "../utils";
 import {recalculateOfferComputedFields} from "@db/logic/recalculateOfferComputedFields";
 import {getMapImagesForOffer} from "@api/geo/generateOfferMapImages";
@@ -12,8 +11,10 @@ const UPDATE_Offers = bufferedHandler(async (data: HandlerArgs<any>) => {
     const hasStreetChanged = _streetChanged(data);
     const hasRankChanged = _rankAffectingFieldChanged(data);
 
+    console.log(`Offer updated: ${offerId}`, {hasStreetChanged, hasRankChanged});
     if (hasStreetChanged) {
         const mapImages = await getMapImagesForOffer(data.new);
+        console.log(`mapImages: `, mapImages);
         const hasExactAddress = !!mapImages.street;
         await knexClient<Offer>("Offers")
             .where({id: offerId})
