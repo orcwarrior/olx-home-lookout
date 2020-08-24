@@ -6,7 +6,7 @@ import {sendReportEmail} from "@logic/sendReportEmail";
 function selectFeaturedOffers(newOffers: Offer[], report: LookoutReport, lookout: LookoutRequest): Offer[] {
 
     const higherAvg = Math.max(report.avgRank, lookout.avgRank);
-    const highlightedOffers = newOffers.filter(o => o.rank > higherAvg * (4 / 4));
+    const highlightedOffers = newOffers.filter(o => o.rank > higherAvg * (3 / 4));
 
     const offersToTake = Math.max(
         highlightedOffers.length / 2,
