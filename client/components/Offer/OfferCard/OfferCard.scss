@@ -1,3 +1,17 @@
+.offer-card{
+  margin: 6px 2px;
+  min-width: 440px !important;
+  width: auto;
+  max-width: 670px !important;
+}
+
+@media (max-width: 600px) {
+  .offer-card{
+    min-width: 300px !important;
+  }
+}
+
+
 .middle-infos{
   display: flex;
   flex-wrap: nowrap;
@@ -10,7 +24,7 @@
     display: inline-flex;
     align-items: center;
     flex-wrap: nowrap;
-    flex-shrink: 1;
+    flex-grow: 2;
   }
 
   .indicators {

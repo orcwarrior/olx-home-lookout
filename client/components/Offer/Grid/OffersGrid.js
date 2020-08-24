@@ -1,54 +1,101 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useWindowSize } from "@hooks/useWindowSize";
-import { CellMeasurer, CellMeasurerCache, ColumnSizer, Grid } from "react-virtualized";
+import { AutoSizer, CellMeasurer, CellMeasurerCache, ColumnSizer, List, Grid } from "react-virtualized";
+import './OffersGrid.react-virtualized.scss';
 import './OffersGrid.scss';
 import { OfferCard } from "@components/Offer";
 import { ResponsiveContext } from "grommet";
+import { chunk, debounce } from "lodash";
+import { NotFound } from "@components/common/NotFound";
+import { useRecoilState } from "recoil";
+import { gridScrollState } from "../../../pages/lookout/[uuid]";
 
 
 const COL_MAX_WIDTH = 670;
+const COL_MIN_WIDTH = 440;
+const COL_MIN_MOBILE_WIDTH = 310;
+
+function calculateGridCols(screenWidth, isMobile) {
+  const minWidth = (isMobile) ? COL_MIN_MOBILE_WIDTH : COL_MIN_WIDTH;
+  const _colsMax = Math.floor(screenWidth / minWidth);
+  const _colWidthMax = screenWidth / _colsMax;
+  // const cols = (_colWidthMax < COL_MAX_WIDTH) ? _colsMax
+  //     : Math.ceil(screenWidth / COL_MAX_WIDTH);
+  // const colsWidth = Math.round(screenWidth / cols);
+  return [_colsMax, _colWidthMax];
+}
+
 const gridCache = new CellMeasurerCache({
   fixedWidth: true,
-  // minHeight: 500,
+  minHeight: 350,
 });
 
 
 const OffersGrid = ({offers}) => {
-  const {width} = useWindowSize();
+  if (!offers.length)
+    return <NotFound msg={"No offers found!"}/>;
+
+
   const size = useContext(ResponsiveContext);
-  const numColumns = Math.ceil(width / COL_MAX_WIDTH);
-  const [colWidth, setColWidth] = React.useState(0);
   const gridOverscan = (size === "small") ? 8 : 1;
-  const listRef = useRef(null);
-  // const cache = useMemo(() => colWidth > 0 && _getCellCache(colWidth), [colWidth]);
-  console.log({autoWidth: colWidth, numColumns});
 
-  return <ColumnSizer
-      columnMaxWidth={COL_MAX_WIDTH}
-      columnMinWidth={310}
-      columnCount={numColumns}
-      width={width}>
-    {({adjustedWidth, getColumnWidth, registerChild}) => {
-      console.log({adjustedWidth, getColumnWidth, registerChild, colWidth: getColumnWidth()})
-      setColWidth(getColumnWidth())
+  const {width} = useWindowSize();
+  const isMobile = width < 480;
+  const [gridScroll, setGridScroll] = useRecoilState(gridScrollState);
+  const [colWidth, setColWidth] = React.useState(width);
+  const [colsCnt, setColsCnt] = React.useState(1);
+  const prepdOffers = useMemo(() => chunk(offers, colsCnt), [offers, colsCnt]);
+  const rowCount = Math.ceil(prepdOffers.length);
 
-      return <Grid
-          ref={listRef}
-          columnWidth={getColumnWidth}
-          columnCount={numColumns}
-          deferredMeasurementCache={gridCache}
-          height={1000}
-          overscanRowCount={gridOverscan}
-          cellRenderer={OfferGridCell}
-          rowHeight={gridCache?.rowHeight}
-          listRef={listRef}
-          offers={offers}
-          rowCount={offers.length / numColumns}
-          width={adjustedWidth}
-      />
-    }
-    }
-  </ColumnSizer>;
+  useEffect(() => {
+    const [colsCnt, colWidth] = calculateGridCols(width, isMobile);
+    setColsCnt(colsCnt);
+    setColWidth(colWidth);
+  }, [width])
+  // console.log({colsCnt, rowCount, colWidth});
+
+
+  return <AutoSizer>
+    {({height, width}) => (
+        <List
+            deferredMeasurementCache={gridCache}
+            height={height}
+            rowCount={rowCount}
+            rowHeight={gridCache.rowHeight}
+            rowRenderer={OfferGridCell}
+            width={width}
+            overscanRowCount={gridOverscan}
+            offers={prepdOffers}
+            vCols={colsCnt}
+            vColWidth={colWidth}
+
+            onScroll={({scrollTop}) => {
+              console.log(`List.scrollTop: `, scrollTop);
+              setGridScroll(scrollTop)
+            }}
+
+        />
+    )}
+  </AutoSizer>;
+
+  // return <AutoSizer
+  //     defaultWidth={320}
+  //     defaultHeight={500}>
+  //   {({height, width}) => (
+  //       <Grid
+  //           deferredMeasurementCache={gridCache}
+  //           cellRenderer={OfferGridCell}
+  //           columnCount={colsCnt}
+  //           columnWidth={colWidth}
+  //           height={height}
+  //           rowCount={rowCount}
+  //           rowHeight={500}
+  //           overscanRowCount={gridOverscan}
+  //           width={width}
+  //       />
+  //   )}
+  // </AutoSizer>;
+
 }
 //
 // let cellCache = new CellMeasurerCache({
@@ -68,17 +115,31 @@ const OffersGrid = ({offers}) => {
 //   return cellCache;
 // }
 
+const OfferRow = ({rowOffers, measure, registerChild, style}) => {
+
+  const measureOpt = useCallback(debounce(measure, 500), [measure]);
+  // const measureRoute = (...args) => {
+  //   console.log("measure called!", args)
+  //   measure(...args);
+  // }
+  const cols = rowOffers.length;
+  return <div style={style} className="offers-row">
+    {rowOffers.map(offer => <OfferCard {...offer} key={offer.id}
+                                       measure={measureOpt} ref={registerChild}
+                                       style={{width: `${100 / cols}%`}}/>
+    )}
+  </div>
+}
 const OfferGridCell = ({
-                         columnIndex, // Horizontal (column) index of cell
+                         index, // Horizontal (column) index of cell
                          key, // Unique key within array of cells
                          parent, // Reference to the parent Grid (instance)
-                         rowIndex, // Vertical (row) index of cell
                          style, // Style object to be applied to cell (to position it);
                        }) => {
   // const {width} = style;
-  const {props: {columnCount, offers, listRef}} = parent;
-  console.log(`listRef: `, listRef);
-  console.log(`parent.props: `, parent.props);
+  const {props: {vCols, vColWidth, offers, listRef}} = parent;
+  // console.log(`style: `, style);
+  // console.log(`parent.props: `, parent.props);
   // const cache = useMemo(() => _getCellCache(width), [width]);
   // const cache = cellCache;
 
@@ -89,21 +150,18 @@ const OfferGridCell = ({
   //   if (width !== cache._defaultWidth)
   //     setCache(_getCellCache(width))
   // }, [width])
-  const flatIdx = rowIndex * columnCount + columnIndex;
-  const offer = offers[flatIdx];
-
+  // const flatIdx = rowIndex * columnCount + columnIndex;
+  const offersRow = offers[index];
 
 
   return <CellMeasurer
       cache={gridCache}
-      columnIndex={columnIndex}
       key={key}
       parent={parent}
-      rowIndex={rowIndex}>
-    {({registerChild}) => (
-        <div style={{...style, height: "auto"}}>
-          <OfferCard {...offer} ref={registerChild} listRef={listRef} rowIndex={rowIndex}/>
-        </div>
+      columnIndex={0}
+      rowIndex={index}>
+    {({measure, registerChild}) => (
+        <OfferRow rowOffers={offersRow} style={style} measure={measure} registerChild={registerChild}/>
     )}
   </CellMeasurer>
 }

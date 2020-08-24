@@ -18,7 +18,7 @@ const STYLE_BACKDROP = {
 
 
 const NO_PHOTO_URL = "/assets/no-photo.png"
-const CardTopGallery = (offer) => {
+const CardTopGallery = ({onImageLoad,...offer}) => {
   const {
     createdAt: createdAtStr,
     mainImg: _mainImg, gallery,
@@ -49,7 +49,7 @@ const CardTopGallery = (offer) => {
          hoverIndicator={false}
          elevation="none">
       {/**/}
-      <ImageGallery items={galleryImgs} lazyLoad={true} thumbnailPosition="right"
+      <ImageGallery items={galleryImgs} lazyLoad={true} thumbnailPosition="right" onImageLoad={onImageLoad}
                     showPlayButton={false} showNav={false}/>
     </Box>
     <Box fill={true} round="medium" style={STYLE_BACKDROP}/>

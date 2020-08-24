@@ -30,7 +30,7 @@ if (typeof atob === 'undefined') {
   };
 }
 
-const _OfferCard = React.forwardRef(({listRef, rowIndex, ...offer}, cellMeasureRef) => {
+const _OfferCard = React.forwardRef(({measure, style, ...offer}, cellMeasureRef) => {
 
 
   const {
@@ -44,17 +44,17 @@ const _OfferCard = React.forwardRef(({listRef, rowIndex, ...offer}, cellMeasureR
     toggleLike, toggleReject, updateStreet,
     locationIcon,
   } = offer.logic;
+  const delayMeasure = () => setTimeout(measure, 100);
 
-      useEffect(() => {
-        console.log(`listRef: `, listRef);
-        listRef.recomputeRowHeights(rowIndex);
-        console.log("offer.id changd: ", id);
-      }, [id])
+      // useEffect(() => {
+      //   measure();
+      //   console.log("offer.id changd: ", id);
+      // }, [id])
 
   return <Box align="center" justify="center" pad="small" background={{"color": "light-1", "opacity": "weak"}}
-              round="medium" ref={cellMeasureRef}>
+              round="medium" ref={cellMeasureRef} className="offer-card" style={style}>
 
-    <CardTopGallery {...offer} />
+    <CardTopGallery {...offer} onImageLoad={measure}/>
 
     <Box align="stretch" justify="start" direction="column" fill={true} flex="shrink"
          pad="small">
@@ -95,7 +95,7 @@ const _OfferCard = React.forwardRef(({listRef, rowIndex, ...offer}, cellMeasureR
         </div>
       </div>
       <Box align="stretch" justify="center" gap="xxsmall" flex="grow">
-        <Accordion animate={false} fill="vertical" className="description">
+        <Accordion animate={false} fill="vertical" className="description" onActive={delayMeasure}>
           <AccordionPanel label="Opis" panelBorder={0}>
             <Box align="stretch" justify="start" flex={false} direction="row" basis="small" pad="small"
                  alignContent="stretch" flex="grow" overflow={"auto"}>
