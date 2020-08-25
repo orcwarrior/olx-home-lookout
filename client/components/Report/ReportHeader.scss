@@ -6,15 +6,18 @@
   .menu-collapsible {
     transition: all 200ms ease;
     overflow: hidden;
+      transform: translateY(0);
+    height: auto;
     max-height: 600px;
   }
 
   &.collapsed {
-    max-height: 60px;
+    max-height: 50px;
     transition: all 200ms ease;
 
     .menu-collapsible{
-      max-height: 0;
+      transform: translateY(-100);
+      max-height: 1px;
       transition: all 200ms ease;
     }
   }

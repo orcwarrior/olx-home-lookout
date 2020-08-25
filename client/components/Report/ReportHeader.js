@@ -115,20 +115,22 @@ const ReportHeader = ({refetchOffers}) => {
 
   const logoProps = isMobile ? {
     fill: "horizontal",
-    pad: {horizontal: "xlarge"}
+    pad: {horizontal: "xlarge"},
+    height: {min: "auto", max: "100%"}
 
   } : {fill: "vertical", width: "auto"};
   const sortByItemProps = {setOrderBy, orderBy};
+  console.log(`logoProps: `, logoProps);
 
   const headerClass = (isCollapsed) ? "lookout-header collapsed" : "lookout-header";
   return (
       <Box align="center" justify="center" fill="horizontal" direction="row-responsive" basis="xsmall"
-           pad={{"horizontal": "large"}} background="black" height="medium" className={headerClass}>
+           pad={{"horizontal": "large"}} background="black" height="auto" className={headerClass}>
         <Box align="center" justify="center" flex="shrink" {...logoProps}>
           <Image src="/assets/home-lookout-logo.png" fit="contain" fill={logoProps.fill}/>
         </Box>
 
-        <Box className="menu-collapsible">
+        <Box className="menu-collapsible" direction="row-responsive" flex="grow">
           <Box align="stretch" justify="center" flex="grow" direction="row-responsive" gap="medium">
             <Box align="center" justify="between" gap="small" pad="medium" basis="1/4">
               <Box justify="center" align="center" direction="row" gap="small">
@@ -176,7 +178,7 @@ const ReportHeader = ({refetchOffers}) => {
               />
             </Box>
             <Box align="center" justify="between" gap="medium" pad="small" basis="1/4"
-                 style={{marginTop: "14px"}}>
+                 style={{marginTop: "6px"}}>
               <MultiToggle
                   options={USER_REVIEW_FILTER}
                   selectedOption={userReviewStatus}
