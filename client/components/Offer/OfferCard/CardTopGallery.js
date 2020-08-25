@@ -1,9 +1,10 @@
 import { Box, Image, Meter, ResponsiveContext, Stack, Text } from "grommet";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Home } from 'grommet-icons'
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss";
 import "./CardTopGallery.style.scss";
+import { useDoubleTap } from "use-double-tap";
 
 const STYLE_TXT_SHADOW = {textShadow: "2px 2px 6px rgba(0,0,0,0.3)"}
 const STYLE_TXT_SHADOW_STRONG = {textShadow: "1px 1px 3px rgba(0,0,0,0.6)"}
@@ -43,6 +44,18 @@ const CardTopGallery = ({onImageLoad,...offer}) => {
     : {size: "large"}
   }
 
+  function _toggleGalleryClass(curClass) {
+    switch (curClass) {
+      case "fit-cover": return "fit-ani";
+      case "fit-ani": return "fit-contain";
+      case "fit-contain": return "fit-cover";
+
+    }
+  }
+  const [galleryClass, setGaleryClass] = useState("fit-cover")
+  const enableEvts = {
+    onDoubleClick: () => setGaleryClass(_toggleGalleryClass),
+    ...useDoubleTap(() => setGaleryClass(_toggleGalleryClass))}
 
   return <Stack fill={true} interactiveChild="first">
     <Box align="center" justify="start" direction="column" fill={true} round="medium" overflow="hidden"
@@ -50,7 +63,7 @@ const CardTopGallery = ({onImageLoad,...offer}) => {
          elevation="none">
       {/**/}
       <ImageGallery items={galleryImgs} lazyLoad={true} thumbnailPosition="right" onImageLoad={onImageLoad}
-                    showPlayButton={false} showNav={false}/>
+                    showPlayButton={false} showNav={false} additionalClass={galleryClass} {...enableEvts} />
     </Box>
     <Box fill={true} round="medium" style={STYLE_BACKDROP}/>
     <Box align="start" justify="start" pad="medium" direction="row" fill="vertical" style={STYLE_NOPOINTER}>
