@@ -101,14 +101,12 @@ const ReportHeader = ({refetchOffers}) => {
   const size = useContext(ResponsiveContext);
   const isMobile = size === "small";
   const isCollapsed = isMobile && !!gridScroll;
-  console.log(`gridScroll: `, gridScroll);
 
   const refetchDebounced = React.useCallback(debounce(refetchOffers, 1500), [])
 
   useEffect(() => {
     const updatedVariables = updateOfferWhereAndOrder({pricesRange, areaRange, comfortRange, userReviewStatus, orderBy})
     if (JSON.stringify(updatedVariables) !== queryVarsJSON) {
-      console.log(`updatedVariables: `, updatedVariables);
       refetchDebounced(updatedVariables)
     }
   }, [pricesRange, areaRange, comfortRange, userReviewStatus, orderBy])
@@ -120,8 +118,7 @@ const ReportHeader = ({refetchOffers}) => {
 
   } : {fill: "vertical", width: "auto"};
   const sortByItemProps = {setOrderBy, orderBy};
-  console.log(`logoProps: `, logoProps);
-
+  
   const headerClass = (isCollapsed) ? "lookout-header collapsed" : "lookout-header";
   return (
       <Box align="center" justify="center" fill="horizontal" direction="row-responsive" basis="xsmall"

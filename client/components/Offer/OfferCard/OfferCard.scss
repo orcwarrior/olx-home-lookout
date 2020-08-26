@@ -3,11 +3,16 @@
   min-width: 440px !important;
   width: auto;
   max-width: 670px !important;
+
 }
 
 @media (max-width: 600px) {
   .offer-card{
     min-width: 300px !important;
+
+    &:first-child {
+      margin-top: 40px;
+    }
   }
 }
 
