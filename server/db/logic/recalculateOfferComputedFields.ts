@@ -7,7 +7,7 @@ async function recalculateLookoutOffersComputedFields(lookoutId): Promise<Offer[
 
     console.log(`recalculateLookoutOffersComputedFields: `, lookoutId);
     // 1. Update price deviation
-    knex<Offer>("Offers")
+    await knex<Offer>("Offers")
         .where({lookoutRequestId: lookoutId})
         .update({
             // @ts-ignore
