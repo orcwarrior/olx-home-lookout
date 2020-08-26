@@ -1,7 +1,7 @@
 {
   "name": "olx-home-lookout-client",
   "private": true,
-  "version": "0.8.1",
+  "version": "0.9.0",
   "repository": {
     "url": "https://github.com/orcwarrior/olx-home-lookout"
   },
