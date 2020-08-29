@@ -171,10 +171,10 @@ const withOfferLogic = (Component, {skipGrommet}) => (offer) => {
     locationIcon, locationIconEmail, getColorByValue,
 
     display_priceM2: Math.round(prices_perM2),
-    rank: rank?.toFixed(2) || "?",
-    indicators_comfort: indicators_comfort?.toFixed(2) || "?",
-    indicators_deal: indicators_deal?.toFixed(2) || "?",
-    descriptionRating: descriptionRating?.toFixed(2) || "?"
+    rank: (rank.toFixed) ? rank.toFixed(2) : "?",
+    indicators_comfort: (indicators_comfort.toFixed) ? indicators_comfort.toFixed(2) : "?",
+    indicators_deal: (indicators_deal.toFixed) ? indicators_deal.toFixed(2) : "?",
+    descriptionRating: (descriptionRating.toFixed) ? descriptionRating.toFixed(2) : "?"
 
   }
   return <Component {...offer} logic={logic}/>
