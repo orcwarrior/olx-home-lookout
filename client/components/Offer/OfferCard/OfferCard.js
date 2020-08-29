@@ -35,14 +35,15 @@ const _OfferCard = React.forwardRef(({measure, style, ...offer}, cellMeasureRef)
 
   const {
     id,
-    title, url, district, description, street, rank, _rank,
-    indicators_comfort, indicators_deal, descriptionRating,
+    title, url, district, description, street,
+
     userReviewStatus
   } = offer;
   const {
     favoriteColor, rejectedColor,
     toggleLike, toggleReject, updateStreet,
     locationIcon,
+    indicators_comfort, indicators_deal, descriptionRating, rank
   } = offer.logic;
   const delayMeasure = () => setTimeout(measure, 100);
 

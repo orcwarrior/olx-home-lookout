@@ -15,10 +15,11 @@ const _EmailOfferEven = (offer) => {
     dbId, galleryImgs,
     meterTxtPriceDeviation, meterTxtColor,
     locationIcon,
+
   } = offer.logic;
-  const prices_perM2 = offer.prices_perM2.toFixed(1);
-  const indicators_deal = offer.indicators_deal.toFixed(1);
-  const indicators_comfort = offer.indicators_comfort.toFixed(0);
+  const prices_perM2 = offer.prices_perM2?.toFixed(1);
+  const indicators_deal = offer.indicators_deal?.toFixed(1);
+  const indicators_comfort = offer.indicators_comfort?.toFixed(0);
   const rank = offer.rank.toFixed(0);
   const emailGalleryRow1 = galleryImgs.slice(1, 5).map(({original}) => original);
   const emailGalleryRow2 = galleryImgs.slice(5, 9).map(({original}) => original);

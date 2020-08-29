@@ -124,7 +124,8 @@ const withOfferLogic = (Component, {skipGrommet}) => (offer) => {
     gallery, mainImg, deviation_price_perM2,
     prices_perM2,
     mapFarImg, mapCloseImg, mapStreetImg,
-    userReviewStatus
+    userReviewStatus,
+    rank, indicators_comfort, indicators_deal, descriptionRating
   } = offer;
   const [percentageM2PriceDeviation, meterTxtPriceDeviation] = calcPercDeviation(offer);
 
@@ -170,6 +171,10 @@ const withOfferLogic = (Component, {skipGrommet}) => (offer) => {
     locationIcon, locationIconEmail, getColorByValue,
 
     display_priceM2: Math.round(prices_perM2),
+    rank: (rank) ? rank.toFixed(2) : "?",
+    indicators_comfort: (indicators_comfort) ? indicators_comfort.toFixed(2) : "?",
+    indicators_deal: (indicators_deal) ? indicators_deal.toFixed(2) : "?",
+    descriptionRating: (descriptionRating) ? descriptionRating.toFixed(2) : "?"
 
   }
   return <Component {...offer} logic={logic}/>
