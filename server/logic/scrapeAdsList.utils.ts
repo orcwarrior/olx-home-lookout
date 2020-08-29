@@ -5,7 +5,7 @@ import {getQueryBuilder} from "../db/typeOrmInstance";
 import {LookoutRequest, Offer as OfferDB} from "../db/schemas";
 
 
-const ROOM_RENT_RGX = /pok[óo]je* |room /i;
+const ROOM_RENT_RGX = /pokoje? |room /i;
 
 function parseOffer(el: CheerioElement, $: CheerioAPI, lookout: LookoutRequest): Offer {
     const sub$ = (selector) => $(selector, el);
@@ -26,10 +26,11 @@ function parseOffer(el: CheerioElement, $: CheerioAPI, lookout: LookoutRequest):
     };
 
     function _getOfferType(): OFFER_TYPE {
-        if (ROOM_RENT_RGX.test(deburr(title)))
+        if (ROOM_RENT_RGX.test(deburr(title)) && _priceBase < 1200)
             return "ROOM";
-        return (title.toLowerCase().includes("wynaj") || _priceBase < 30000)
-            ? "RENT" : "PURCHASE";
+        else if (title.toLowerCase().includes("wynaj") || _priceBase < 20000)
+            return "RENT";
+        else return "PURCHASE";
     }
 }
 
