@@ -30,7 +30,7 @@ const USER_REVIEW_FILTER = [
 const whereDefaults = {userReviewStatus: {_neq: "REJECTED"}}
 const queryDefaults = {where: whereDefaults, orderBy: {rank: "desc"}};
 
-function updateOfferWhereAndOrder({pricesRange, areaRange, comfortRange, userReviewStatus, orderB, uuid}) {
+function updateOfferWhereAndOrder({pricesRange, areaRange, comfortRange, userReviewStatus, orderBy, uuid}) {
   console.log("updateOfferWhereAndOrder...")
   return {
     where: {
