@@ -78,19 +78,19 @@ const _OfferCard = React.forwardRef(({measure, style, ...offer}, cellMeasureRef)
         <div className="indicators">
           <Box align="center" justify="center" direction="row" gap="small" pad={{"left": "medium"}}>
             <Box align="center" justify="center" direction="row" gap="xsmall" style={{wordWrap:"nowrap"}}>
-              <Text size="small">☆ {rank.toFixed()}</Text>
+              <Text size="small">☆ {rank}</Text>
             </Box>
             <Box align="center" justify="center" direction="row" gap="xsmall">
               <Lounge size="small"/>
-              <Text size="small">{indicators_comfort.toFixed(2)}</Text>
+              <Text size="small">{indicators_comfort}</Text>
             </Box>
             <Box align="center" justify="center" direction="row" gap="xsmall">
               <Task size="small"/>
-              <Text size="small">{descriptionRating.toFixed(2)}</Text>
+              <Text size="small">{descriptionRating}</Text>
             </Box>
             <Box align="center" justify="center" direction="row" gap="xsmall">
               <Currency size="small"/>
-              <Text size="small">{indicators_deal.toFixed(2)}</Text>
+              <Text size="small">{indicators_deal}</Text>
             </Box>
           </Box>
         </div>
