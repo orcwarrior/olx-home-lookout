@@ -7,6 +7,7 @@ import "./ReportHeader.scss";
 import useQueryString from "@hooks/useQueryString";
 import { useRecoilState } from "recoil";
 import { gridScrollState } from "../../pages/lookout/[uuid]";
+import { useRouter } from "next/router";
 
 const PRICE_RANGE = [0, 3000];
 const AREA_RANGE = [10, 120];
@@ -29,7 +30,7 @@ const USER_REVIEW_FILTER = [
 const whereDefaults = {userReviewStatus: {_neq: "REJECTED"}}
 const queryDefaults = {where: whereDefaults, orderBy: {rank: "desc"}};
 
-function updateOfferWhereAndOrder({pricesRange, areaRange, comfortRange, userReviewStatus, orderBy}) {
+function updateOfferWhereAndOrder({pricesRange, areaRange, comfortRange, userReviewStatus, orderB, uuid}) {
   console.log("updateOfferWhereAndOrder...")
   return {
     where: {
@@ -37,6 +38,7 @@ function updateOfferWhereAndOrder({pricesRange, areaRange, comfortRange, userRev
       prices_full: _buildUpRangeFilter(pricesRange, PRICE_RANGE),
       attrs_area: _buildUpRangeFilter(areaRange, AREA_RANGE),
       indicators_comfort: _buildUpRangeFilter(comfortRange, COMFORT_RANGE),
+      LookoutRequest: {hash: {_eq: uuid}}
     },
     orderBy: orderBy
   }
@@ -89,6 +91,8 @@ const QSHookJSONOpts = {
 };
 const ReportHeader = ({refetchOffers}) => {
 
+  const router = useRouter();
+  const {uuid} = router.query;
   const [pricesRange, setPricesRange] = useQueryString("price", PRICE_RANGE)
   const [areaRange, setAreaRange] = useQueryString("area", AREA_RANGE)
   const [comfortRange, setComfortRange] = useQueryString("comfort", COMFORT_RANGE)
@@ -105,7 +109,7 @@ const ReportHeader = ({refetchOffers}) => {
   const refetchDebounced = React.useCallback(debounce(refetchOffers, 1500), [])
 
   useEffect(() => {
-    const updatedVariables = updateOfferWhereAndOrder({pricesRange, areaRange, comfortRange, userReviewStatus, orderBy})
+    const updatedVariables = updateOfferWhereAndOrder({pricesRange, areaRange, comfortRange, userReviewStatus, orderBy, uuid})
     if (JSON.stringify(updatedVariables) !== queryVarsJSON) {
       refetchDebounced(updatedVariables)
     }
@@ -118,7 +122,7 @@ const ReportHeader = ({refetchOffers}) => {
 
   } : {fill: "vertical", width: "auto"};
   const sortByItemProps = {setOrderBy, orderBy};
-  
+
   const headerClass = (isCollapsed) ? "lookout-header collapsed" : "lookout-header";
   return (
       <Box align="center" justify="center" fill="horizontal" direction="row-responsive" basis="xsmall"
