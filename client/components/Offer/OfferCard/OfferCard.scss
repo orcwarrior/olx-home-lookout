@@ -1,4 +1,4 @@
-.offer-card{
+.offer-card {
   margin: 6px 2px;
   min-width: 440px !important;
   width: auto;
@@ -7,8 +7,9 @@
 }
 
 @media (max-width: 600px) {
-  .offer-card{
+  .offer-card {
     min-width: 300px !important;
+    overflow: hidden;
 
     &:first-child {
       margin-top: 40px;
@@ -17,13 +18,14 @@
 }
 
 
-.middle-infos{
+.middle-infos {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
   margin: 8px 0;
+  overflow: hidden;
 
   .location {
     display: inline-flex;
@@ -37,7 +39,8 @@
     justify-content: center;
     min-height: 28px;
     white-space: nowrap !important;
-    &:before{
+
+    &:before {
       display: inline;
       content: "";
       margin: 4px 0;
@@ -47,21 +50,23 @@
     }
   }
 }
+
 .actions {
   button {
     border: 0 !important;
     background: transparent !important;
   }
 }
+
 .description {
- div > button {
-   border: 0;
-   background: transparent;
- }
+  div > button {
+    border: 0;
+    background: transparent;
+  }
 }
 
 @media (max-width: 600px) {
-  .middle-infos{
+  .middle-infos {
     flex-wrap: wrap;
   }
 }
