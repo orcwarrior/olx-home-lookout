@@ -6,7 +6,7 @@ const ENV = {
   SHARED_SENTRY_DSN: process.env.SHARED_SENTRY_DSN,
   HASURA_GRAPHQL_ADMIN_SECRET: process.env.HASURA_GRAPHQL_ADMIN_SECRET = "secret",
   CLIENT_VER,
-  GENERAL__ORIGIN: process.env.GENERAL__ORIGIN = "http://localhost:3000"
+  GENERAL__ORIGIN: process.env.GENERAL__ORIGIN
 };
 console.log("Build time env: ", ENV)
 
