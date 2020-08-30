@@ -1,7 +1,7 @@
 import { Box, Grommet } from "grommet";
 
-const Layout = ({children}) => {
-  return <Box fill="vertical" overflow="visible">
+const Layout = ({children, overflow="visible"}) => {
+  return <Box fill="vertical" overflow={overflow}>
     {children}
   </Box>;
 }

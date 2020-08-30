@@ -22,7 +22,7 @@ const LookoutPage = withPage(() => {
   const offers = (data?.Offers_connection?.edges || [])
       .map(({node}) => ({__refetchOffers: refetchOffers, ...node}))
 
-  return <Layout>
+  return <Layout overflow="hidden">
     <ReportHeader refetchOffers={refetchOffers}/>
     <OffersGrid offers={offers}/>
   </Layout>

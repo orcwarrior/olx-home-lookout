@@ -118,7 +118,7 @@ const ReportHeader = ({refetchOffers}) => {
   const logoProps = isMobile ? {
     fill: "horizontal",
     pad: {horizontal: "xlarge"},
-    height: {min: "auto", max: "100%"}
+    height: {min: "inherit", max: "100%"}
 
   } : {fill: "vertical", width: "auto"};
   const sortByItemProps = {setOrderBy, orderBy};
