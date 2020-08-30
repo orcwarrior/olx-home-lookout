@@ -93,8 +93,8 @@ function prepGalleryImages(gallery) {
   }))
 }
 
-function renderLocationIcon({city, street, hasExactAddress, isEmail, themeColors}) {
-  const gMapsQuery = `https://www.google.pl/maps/search/${encodeURIComponent(`${city}, ${street}`)}`;
+function renderLocationIcon({city, district, street, hasExactAddress, isEmail, themeColors}) {
+  const gMapsQuery = `https://www.google.pl/maps/search/${encodeURIComponent(`${city||district}, ${street}`)}`;
   let icon;
 
   if (isEmail) {
@@ -117,7 +117,7 @@ function renderLocationIcon({city, street, hasExactAddress, isEmail, themeColors
 }
 
 
-const withOfferLogic = (Component, {skipGrommet}) => (offer) => {
+const withOfferLogic = (Component, {skipGrommet, fracDigits = 2}) => (offer) => {
   const {
     id, createdAt: createdAtStr,
     title, url, district, city, street, hasExactAddress,
@@ -138,8 +138,8 @@ const withOfferLogic = (Component, {skipGrommet}) => (offer) => {
 
   const favoriteColor = (userReviewStatus === "BOOKMARKED") ? "accent-1" : "white";
   const rejectedColor = (userReviewStatus === "REJECTED") ? "dark-3" : "white";
-  const locationIcon = renderLocationIcon({city, street, hasExactAddress, isEmail: false, themeColors})
-  const locationIconEmail = renderLocationIcon({city, street, hasExactAddress, isEmail: true, themeColors})
+  const locationIcon = renderLocationIcon({city, district, street, hasExactAddress, isEmail: false, themeColors})
+  const locationIconEmail = renderLocationIcon({city, district, street, hasExactAddress, isEmail: true, themeColors})
 
   function actOnOffer(action) {
 
@@ -170,11 +170,11 @@ const withOfferLogic = (Component, {skipGrommet}) => (offer) => {
     meterTxtPriceDeviation,
     locationIcon, locationIconEmail, getColorByValue,
 
-    display_priceM2: Math.round(prices_perM2),
-    rank: (rank.toFixed) ? rank.toFixed(2) : "?",
-    indicators_comfort: (indicators_comfort.toFixed) ? indicators_comfort.toFixed(2) : "?",
-    indicators_deal: (indicators_deal.toFixed) ? indicators_deal.toFixed(2) : "?",
-    descriptionRating: (descriptionRating.toFixed) ? descriptionRating.toFixed(2) : "?"
+    display_priceM2: (prices_perM2?.toFixed) ? prices_perM2.toFixed(fracDigits) : "?",
+    rank: (rank?.toFixed) ? rank.toFixed(2) : "?",
+    indicators_comfort: (indicators_comfort?.toFixed) ? indicators_comfort.toFixed(fracDigits) : "?",
+    indicators_deal: (indicators_deal?.toFixed) ? indicators_deal.toFixed(fracDigits) : "?",
+    descriptionRating: (descriptionRating?.toFixed) ? descriptionRating.toFixed(fracDigits) : "?"
 
   }
   return <Component {...offer} logic={logic}/>
