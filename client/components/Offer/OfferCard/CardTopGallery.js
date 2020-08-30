@@ -5,6 +5,7 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/scss/image-gallery.scss";
 import "./CardTopGallery.style.scss";
 import { useDoubleTap } from "use-double-tap";
+import { InlineInput } from "@components/common/InlineInput";
 
 const STYLE_TXT_SHADOW = {textShadow: "2px 2px 6px rgba(0,0,0,0.3)"}
 const STYLE_TXT_SHADOW_STRONG = {textShadow: "1px 1px 3px rgba(0,0,0,0.6)"}
@@ -24,12 +25,12 @@ const CardTopGallery = ({onImageLoad,...offer}) => {
     createdAt: createdAtStr,
     mainImg: _mainImg, gallery,
     attrs_rooms, attrs_area, deviationAvgM2Price,
-    prices_full, prices_perM2
+    prices_full, prices_perM2,
   } = offer;
   const {
     createdAgo, galleryImgs,
     meterPriceDevProps, meterTxtColor, meterTxtPriceDeviation,
-    display_priceM2
+    display_priceM2, updateFullPrice
   } = offer.logic;
 
   const size = useContext(ResponsiveContext);
@@ -93,7 +94,7 @@ const CardTopGallery = ({onImageLoad,...offer}) => {
              margin={{"right": "medium", "left": "small"}}>
           <Text size="xxlarge" textAlign="end" weight="bold"
                 color="brand" style={STYLE_TXT_SHADOW}>
-            {prices_full}zł
+            <InlineInput fontSize={34} value={prices_full} onSubmit={updateFullPrice} />{}zł
 
 
           </Text>

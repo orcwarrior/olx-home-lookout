@@ -152,6 +152,9 @@ const withOfferLogic = (Component, {skipGrommet, fracDigits = 2}) => (offer) => 
   function updateStreet(newStreet) {
     return changeOffer({variables: {id: dbId, _set: {street: newStreet}}})
   }
+  function updateFullPrice(newPrice) {
+    return changeOffer({variables: {id: dbId, _set: {prices_full: parseInt(newPrice)}}})
+  }
 
   const toggleLike = actOnOffer("BOOKMARKED"), toggleReject = actOnOffer("REJECTED")
 
@@ -159,7 +162,7 @@ const withOfferLogic = (Component, {skipGrommet, fracDigits = 2}) => (offer) => 
 
   const logic = {
     dbId,
-    toggleLike, toggleReject, updateStreet,
+    toggleLike, toggleReject, updateStreet, updateFullPrice,
     favoriteColor, rejectedColor,
 
     mainImg: mainImg || NO_PHOTO_URL,

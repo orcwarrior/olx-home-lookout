@@ -47,10 +47,6 @@ const _OfferCard = React.forwardRef(({measure, style, ...offer}, cellMeasureRef)
   } = offer.logic;
   const delayMeasure = () => setTimeout(measure, 100);
 
-      // useEffect(() => {
-      //   measure();
-      //   console.log("offer.id changd: ", id);
-      // }, [id])
 
   return <Box align="center" justify="center" pad="small" background={{"color": "light-1", "opacity": "weak"}}
               round="medium" ref={cellMeasureRef} className="offer-card" style={style}>
@@ -73,7 +69,8 @@ const _OfferCard = React.forwardRef(({measure, style, ...offer}, cellMeasureRef)
       <div className="middle-infos">
         <div className="location">
           {locationIcon}&nbsp;
-          {district},&nbsp;<InlineInput value={street} onSubmit={updateStreet} />
+          {district},&nbsp;<InlineInput value={street} placeholder="(ulica)"
+                                        fontSize={13} onSubmit={updateStreet} />
         </div>
         <div className="indicators">
           <Box align="center" justify="center" direction="row" gap="small" pad={{"left": "medium"}}>

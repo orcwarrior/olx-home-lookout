@@ -5,7 +5,7 @@ import { useDoubleTap } from "use-double-tap";
 
 const hiddenBtnStyle = {position: "absolute", left: "-1000px", opacity: 0};
 
-const InlineInput = ({value, onSubmit}) => {
+const InlineInput = ({value, onSubmit, fontSize = "inherit", placeholder}) => {
   const [formEnabled, setFormEnabled] = useState(false);
   const [inputVal, setInputVal] = useState(value);
   React.useEffect(() => setInputVal(value), [value]);
@@ -20,7 +20,7 @@ const InlineInput = ({value, onSubmit}) => {
                {...enableEvts}
                onBlur={() => setFormEnabled(false)}>
     <AutosizeInput className="inline-edit" disabled={!formEnabled}
-                   type="text" placeholder="(ulica)" style={{fontSize: "14px"}}
+                   type="text" placeholder={placeholder} style={{fontSize}}
                    value={inputVal} onChange={e => setInputVal(e.target.value)}/>
     <input type={formEnabled ? "submit" : "button"} style={hiddenBtnStyle}/>
   </form>

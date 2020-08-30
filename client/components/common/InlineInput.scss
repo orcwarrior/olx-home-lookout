@@ -1,4 +1,5 @@
 .inline-form {
+  position: relative;
   display: inline-flex;
   flex: 0 1 auto;
   cursor: text !important;
@@ -9,29 +10,52 @@
 }
 
 .inline-edit {
-
+  position: relative;
+  z-index: 200;
+  pointer-events: all;
   input {
+    z-index: 200;
     border: none;
     display: inline-flex;
+    font-size: inherit;
 
     width: auto;
     background-color: transparent;
     padding: 0 0 2px 0;
     margin-top: 2px;
     margin-right: 4px;
-    border-bottom: 1px dashed #FFCA58;
-    color: #FFCA58;
+    border-bottom: 1px dashed #FEE715;
+    color: #FEE715;
     //max-width: 110px;
     flex: 0 1 auto;
     min-width: 50px;
+    animation: animated-cursor 600ms ease infinite;
 
     &[disabled] {
       border-bottom-color: #ccc;
       cursor: pointer;
-      color: #eee;
+      color:#FEE715;
       background-color: transparent;
     }
   }
 
+}
+/* Animation */
+p {
+
+}
+
+/* text animation */
+
+@keyframes animated-text{
+  from{width: 0;}
+  to{width: 472px;}
+}
+
+/* cursor animations */
+
+@keyframes animated-cursor{
+  from{border-right-color: rgba(254, 231, 21, .75);}
+  to{border-right-color: transparent;}
 }
 
