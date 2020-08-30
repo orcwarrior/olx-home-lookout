@@ -115,7 +115,7 @@ import Head from 'next/head'
       display: block !important;
     }
       .email-row {
-      width: calc(100% - 40px) !important;
+      width: calc(100% - 20px) !important;
     }
       .email-col {
       width: 100% !important;

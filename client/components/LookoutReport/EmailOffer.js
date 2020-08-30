@@ -1,7 +1,14 @@
 import React from "react";
 import { withOfferLogic } from "@components/Offer/OfferCard/withOfferLogic";
 import { OfferImg, OfferImgsWrap } from "@components/LookoutReport/EmailOffer.subs";
+import {GENERAL__ORIGIN} from "@config"
 
+function renderLink(offerId) {
+  const offerUrl = (process.browser)
+      ? `${location.origin}/lookout/offer/${offerId}`
+      : `${GENERAL__ORIGIN}/lookout/offer/${offerId}`;
+  return <a href={offerUrl} target="_blank"><span style={{fontSize: "14px"}} >🔗</span></a>
+}
 
 const _EmailOfferEven = (offer) => {
   const {
@@ -15,15 +22,12 @@ const _EmailOfferEven = (offer) => {
     dbId, galleryImgs,
     meterTxtPriceDeviation, meterTxtColor,
     locationIcon,
-
+    prices_perM2, indicators_deal, indicators_comfort
   } = offer.logic;
-  const prices_perM2 = offer.prices_perM2?.toFixed(1);
-  const indicators_deal = offer.indicators_deal?.toFixed(1);
-  const indicators_comfort = offer.indicators_comfort?.toFixed(0);
-  const rank = offer.rank.toFixed(0);
+
+  const rank = offer.rank ? Math.round(offer.rank) : "?";
   const emailGalleryRow1 = galleryImgs.slice(1, 5).map(({original}) => original);
   const emailGalleryRow2 = galleryImgs.slice(5, 9).map(({original}) => original);
-  const homeLookoutUrl = (process.browser) ? `${location.origin}/lookout/offer/${dbId}` : "";
 
   return <div style={{backgroundColor: '#222222'}}>
     <div className="email-row-container" style={{padding: '0px 10px'}}>
@@ -65,20 +69,20 @@ const _EmailOfferEven = (offer) => {
                         <tbody>
                         <tr>
                           <td style={{paddingRight: '0px', paddingLeft: '0px'}} align="center">
-                            <a href={homeLookoutUrl} target="_blank">
-                              <img align="center" border={0} src={mainImg} alt="Image" title="Image" style={{
-                                outline: 'none',
-                                textDecoration: 'none',
-                                msInterpolationMode: 'bicubic',
-                                clear: 'both',
-                                display: 'block !important',
-                                border: 'none',
-                                height: 'auto',
-                                float: 'none',
-                                width: '100%',
-                                maxWidth: '286px'
-                              }} width={286} className="v-src-width v-src-max-width mob-fill-h desk-h-pad"/>
-                            </a>
+                          <a href={mainImg}>
+                            <img align="center" border={0} src={mainImg} alt="Image" title="Image" style={{
+                              outline: 'none',
+                              textDecoration: 'none',
+                              msInterpolationMode: 'bicubic',
+                              clear: 'both',
+                              display: 'block !important',
+                              border: 'none',
+                              height: 'auto',
+                              float: 'none',
+                              width: '100%',
+                              maxWidth: '286px'
+                            }} width={286} className="v-src-width v-src-max-width mob-fill-h desk-h-pad"/>
+                          </a>
                           </td>
                         </tr>
                         </tbody>
@@ -119,7 +123,7 @@ const _EmailOfferEven = (offer) => {
                         <p style={{fontSize: '14px', lineHeight: '130%'}}><strong><span style={{
                           fontSize: '18px',
                           lineHeight: '23.4px'
-                        }}>{title}</span></strong>
+                        }}>{title} | {renderLink(dbId)}</span></strong>
                         </p>
                       </div>
                     </td>
@@ -329,7 +333,7 @@ const _EmailOfferEven = (offer) => {
   </div>
 }
 
-const EmailOfferEven = withOfferLogic(_EmailOfferEven, {skipGrommet: true})
+const EmailOfferEven = withOfferLogic(_EmailOfferEven, {skipGrommet: true, fracDigits: 1})
 
 
 const _EmailOfferOdd = (offer) => {
@@ -343,11 +347,10 @@ const _EmailOfferOdd = (offer) => {
     dbId, galleryImgs,
     meterTxtPriceDeviation, meterTxtColor,
     locationIcon,
+    prices_perM2, indicators_deal, indicators_comfort
   } = offer.logic;
-  const prices_perM2 = offer.prices_perM2.toFixed(1);
-  const indicators_deal = offer.indicators_deal.toFixed(1);
-  const indicators_comfort = offer.indicators_comfort.toFixed(0);
-  const rank = offer.rank.toFixed(0);
+
+  const rank = offer.rank ? Math.round(offer.rank) : "?";
   const emailGalleryRow1 = galleryImgs.slice(1, 5).map(({original}) => original);
   const emailGalleryRow2 = galleryImgs.slice(5, 9).map(({original}) => original);
   const homeLookoutUrl = (process.browser) ? `${location.origin}/lookout/offer/${dbId}` : "";
@@ -387,7 +390,7 @@ const _EmailOfferOdd = (offer) => {
                       <div className="v-text-align"
                            style={{color: '#ffffff', lineHeight: '130%', textAlign: 'right', wordWrap: 'break-word'}}>
                         <p style={{fontSize: '14px', lineHeight: '130%'}}><span
-                            style={{fontSize: '18px', lineHeight: '23.4px'}}><strong>{title}</strong></span>
+                            style={{fontSize: '18px', lineHeight: '23.4px'}}><strong>{title} | {renderLink(dbId)}</strong></span>
                         </p></div>
                     </td>
                   </tr>
@@ -443,7 +446,8 @@ const _EmailOfferOdd = (offer) => {
                     }} align="left">
                       <div className="v-text-align"
                            style={{color: '#ecf0f1', lineHeight: '140%', textAlign: 'right', wordWrap: 'break-word'}}>
-                        <p dir="rtl" style={{fontSize: '14px', lineHeight: '140%'}}><em>{locationIcon} {district}{street ? `, ${street}` : ""}</em></p></div>
+                        <p dir="rtl" style={{fontSize: '14px', lineHeight: '140%'}}>
+                          <em>{locationIcon} {district}{street ? `, ${street}` : ""}</em></p></div>
                     </td>
                   </tr>
                   </tbody>
@@ -548,10 +552,11 @@ const _EmailOfferOdd = (offer) => {
                       <table width="100%" cellPadding={0} cellSpacing={0} border={0}>
                         <tbody>
                         <tr>
-                          <td style={{paddingRight: '0px', paddingLeft: '0px'}} align="center"><a
-                              href={homeLookoutUrl} target="_blank"><img align="center" border={0}
-                                                                           src={mainImg}
-                                                                           alt="Image" title="Image" style={{
+                          <td style={{paddingRight: '0px', paddingLeft: '0px'}} align="center">
+                            <a href={mainImg} target="_blank">
+                            <img align="center" border={0}
+                                                                         src={mainImg}
+                                                                         alt="Image" title="Image" style={{
                             outline: 'none',
                             textDecoration: 'none',
                             msInterpolationMode: 'bicubic',
@@ -579,7 +584,7 @@ const _EmailOfferOdd = (offer) => {
     </div>
 
     <div className="email-row-container" style={{padding: '0px', backgroundColor: 'transparent'}}>
-       <OfferImgsWrap>
+      <OfferImgsWrap>
         {emailGalleryRow1.map(img => <OfferImg imgSrc={img} key={img}/>)}
       </OfferImgsWrap>
       {emailGalleryRow2.length ? <OfferImgsWrap>

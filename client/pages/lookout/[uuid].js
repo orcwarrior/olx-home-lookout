@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/react-hooks";
 import LOOKOUT_OFFERS_QUERY from "../../gql-queries/lookoutOffers.graphql";
-import { Grid, Box, InfiniteScroll, ResponsiveContext } from "grommet";
 import { ReportHeader } from "@components/Report/ReportHeader";
 import { Layout } from "@components/common/Layout";
 import { withPage } from "../../next-utils";
