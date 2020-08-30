@@ -1,8 +1,9 @@
 .offer-card {
   margin: 6px 2px;
-  min-width: 570px !important;
+  min-width: 530px !important;
   width: auto;
   max-width: 750px !important;
+  flex-grow: 1; flex-shrink: 1;
 
 }
 

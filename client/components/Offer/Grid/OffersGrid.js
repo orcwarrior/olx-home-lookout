@@ -11,8 +11,8 @@ import { useRecoilState } from "recoil";
 import { gridScrollState } from "../../../pages/lookout/[uuid]";
 
 
-const COL_MAX_WIDTH = 670;
-const COL_MIN_WIDTH = 440;
+const COL_MAX_WIDTH = 750;
+const COL_MIN_WIDTH = 530;
 const COL_MIN_MOBILE_WIDTH = 310;
 
 function calculateGridCols(screenWidth, isMobile) {
@@ -125,7 +125,8 @@ const OfferRow = ({rowOffers, measure, registerChild, style}) => {
   return <div style={style} className="offers-row">
     {rowOffers.map(offer => <OfferCard {...offer} key={offer.id}
                                        measure={measureOpt} ref={registerChild}
-                                       style={{width: `${100 / cols}%`}}/>
+                                       style={{width: `${100 / cols}%`}}
+        />
     )}
   </div>
 }
