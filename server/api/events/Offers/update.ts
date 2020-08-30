@@ -25,8 +25,10 @@ const UPDATE_Offers = bufferedHandler(async (data: HandlerArgs<any>) => {
                 hasExactAddress
             });
     }
-    if (hasRankChanged)
-        await recalculateOfferComputedFields(offerId);
+    if (hasRankChanged) {
+
+        const updatedOffer = await recalculateOfferComputedFields(offerId);
+    }
 
     return {
         changes: {
