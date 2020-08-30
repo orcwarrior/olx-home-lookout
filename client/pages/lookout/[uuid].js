@@ -20,7 +20,7 @@ const LookoutPage = withPage(() => {
   const {data, refetch: refetchOffers} = useQuery(LOOKOUT_OFFERS_QUERY,
       {variables: {where: defaultWhere, orderBy: {rank: "desc"}}})
   const offers = (data?.Offers_connection?.edges || [])
-      .map(({node}) => node)
+      .map(({node}) => ({__refetchOffers: refetchOffers, ...node}))
 
   return <Layout>
     <ReportHeader refetchOffers={refetchOffers}/>

@@ -130,7 +130,7 @@ const withOfferLogic = (Component, {skipGrommet, fracDigits = 2}) => (offer) => 
   const [percentageM2PriceDeviation, meterTxtPriceDeviation] = calcPercDeviation(offer);
 
   const [_, __, ___, dbId] = JSON.parse(atob(id));
-  const [changeOffer] = useMutation(MUTATE_OFFER)
+  const [_changeOffer] = useMutation(MUTATE_OFFER)
 
   const [galleryImgs, setGalleryImgs] = useState(prepGalleryImages([...gallery, mapFarImg, mapCloseImg, mapStreetImg].filter(Boolean)));
   const {global: {colors: themeColors}} = useContext(skipGrommet ? LocalThemeContext : GrommetThemeContext);
@@ -141,11 +141,16 @@ const withOfferLogic = (Component, {skipGrommet, fracDigits = 2}) => (offer) => 
   const locationIcon = renderLocationIcon({city, district, street, hasExactAddress, isEmail: false, themeColors})
   const locationIconEmail = renderLocationIcon({city, district, street, hasExactAddress, isEmail: true, themeColors})
 
-  function actOnOffer(action) {
+  async function changeOffer(config) {
+    await _changeOffer(config);
+    if (offer.__refetchOffers)
+      setTimeout(offer.__refetchOffers, 2500)
 
+  }
+  function actOnOffer(action) {
     return () => {
       if (userReviewStatus === action) action = "NONE";
-      return changeOffer({variables: {id: dbId, _set: {userReviewStatus: action}}})
+      return _changeOffer({variables: {id: dbId, _set: {userReviewStatus: action}}})
     }
   }
 
@@ -173,7 +178,7 @@ const withOfferLogic = (Component, {skipGrommet, fracDigits = 2}) => (offer) => 
     meterTxtPriceDeviation,
     locationIcon, locationIconEmail, getColorByValue,
 
-    display_priceM2: (prices_perM2?.toFixed) ? prices_perM2.toFixed(fracDigits) : "?",
+    display_priceM2: (prices_perM2?.toFixed) ? prices_perM2.toFixed(Math.max(0, fracDigits-1)) : "?",
     rank: (rank?.toFixed) ? rank.toFixed(2) : "?",
     indicators_comfort: (indicators_comfort?.toFixed) ? indicators_comfort.toFixed(fracDigits) : "?",
     indicators_deal: (indicators_deal?.toFixed) ? indicators_deal.toFixed(fracDigits) : "?",

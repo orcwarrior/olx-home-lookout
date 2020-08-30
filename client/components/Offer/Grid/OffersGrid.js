@@ -70,7 +70,6 @@ const OffersGrid = ({offers}) => {
             vColWidth={colWidth}
 
             onScroll={({scrollTop}) => {
-              console.log(`List.scrollTop: `, scrollTop);
               setGridScroll(scrollTop)
             }}
 
