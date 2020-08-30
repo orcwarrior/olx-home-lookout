@@ -35,15 +35,18 @@
   }
 
   .indicators {
+    position: relative;
     display: inline-flex;
+    flex-wrap: wrap;
     justify-content: center;
     min-height: 28px;
     white-space: nowrap !important;
 
     &:before {
+      position: absolute;
       display: inline;
       content: "";
-      margin: 4px 0;
+      left: 4px;
       width: 1px;
       height: 100%;
       background: #ddd;
