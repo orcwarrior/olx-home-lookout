@@ -43,7 +43,7 @@ function bufferedHandler(handlerFn) {
 
     const debouncedFn = debouncedHandlers[handlerKey] || debounce(handlerWrapped, EVENT_HANDLER_DEBOUNCE, {maxWait: EVENT_HANDLER_MAX_DEBOUNCE});
     const debouncedWrappedFn = (data) => {
-        console.log(`buffered: ${data.new.id}`);
+        // console.log(`buffered: ${data.new.id}`);
         handlersBuffers[handlerKey] = [...(handlersBuffers[handlerKey] || []), data];
         return debouncedFn(data);
     };
