@@ -9,6 +9,9 @@ import {extractStreet} from "@logic/extractors/extractStreet";
 import {getAddrGeocode} from "@api/geo/queryAddressGeo";
 import {getMapImagesForOffer} from "@api/geo/generateOfferMapImages";
 
+function scrapeAdTmpLog(offer, action) {
+    process.stdout.write(`Scraping ad [${offer.url}] detail: /${action}\r`);
+}
 
 function calculatePrices(offer: Offer, attrs: OfferDetailedAttributes, description: string): OfferDetailedPrices {
     const base = offer._priceBase, additional = attrs.bonusRent || 0;
@@ -24,7 +27,10 @@ function calculatePrices(offer: Offer, attrs: OfferDetailedAttributes, descripti
     };
 }
 
-function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
+const waitMs = (ms) => new Promise(res => setTimeout(res, ms));
+
+
+function _scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
     return async function (error, response, done) {
         if (error) {
             console.warn(error);
@@ -39,10 +45,13 @@ function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
 
         const street = extractStreet(offer.title, description);
 
+        scrapeAdTmpLog(offer, `extracted street: ${street}`);
         const addrGeocode = await getAddrGeocode(`${offer.district} ${street || ""}`);
+        scrapeAdTmpLog(offer, `processed geocode: ${addrGeocode}`);
         const [_, __, geoPoint, geoBounds] = addrGeocode;
 
         const mapImgs = await getMapImagesForOffer(offer, addrGeocode);
+        scrapeAdTmpLog(offer, `processed mapImgs: ${addrGeocode}`);
 
         const detailedOffer: OfferDetailed = {
             ...offer,
@@ -60,10 +69,23 @@ function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
             mapFarImg: mapImgs.far?.img,
             mapStreetImg: mapImgs.street?.img,
         };
+        scrapeAdTmpLog(offer, `pre-prepared offer: ${JSON.stringify(detailedOffer)}`);
+        const decoratedOffer = decorateWithIndicators(detailedOffer);
+        scrapeAdTmpLog(offer, `detailer offer: ${JSON.stringify(decoratedOffer)}`);
 
-        resolveCb(decorateWithIndicators(detailedOffer));
+        resolveCb(decoratedOffer);
         if (done) done();
     };
 };
+const SCRAPE_DETAILS_TIMEOUT = 6000;
+
+function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
+    return Promise.race([
+        _scrapeAdDetail(resolveCb, offer),
+        waitMs(SCRAPE_DETAILS_TIMEOUT)
+            .then(() => console.warn(`Scraping ${offer.url} resulted in timeout, not retrived in ${SCRAPE_DETAILS_TIMEOUT}ms!`))
+    ]);
+
+}
 
 export {scrapeAdDetail};
