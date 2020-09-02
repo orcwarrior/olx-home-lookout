@@ -30,8 +30,8 @@ function calculatePrices(offer: Offer, attrs: OfferDetailedAttributes, descripti
 const waitMs = (ms) => new Promise(res => setTimeout(res, ms));
 
 
-function buildScrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
-    return async function scrapeAdDetail (error, response, done) {
+function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
+    return async function (error, response, done) {
         if (error) {
             console.warn(error);
             addNotice(error);
@@ -77,16 +77,15 @@ function buildScrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Off
         if (done) done();
     };
 };
-const SCRAPE_DETAILS_TIMEOUT = 6000;
-
-function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
-    const _scrapeAdDetails = buildScrapeAdDetail(resolveCb, offer);
-    return (error, response, done)  => Promise.race([
-        () => _scrapeAdDetails(error, response, done) ,
-        () => waitMs(SCRAPE_DETAILS_TIMEOUT)
-            .then(() => console.warn(`Scraping ${offer.url} resulted in timeout, not retrived in ${SCRAPE_DETAILS_TIMEOUT}ms!`))
-    ]);
-
-}
+// const SCRAPE_DETAILS_TIMEOUT = 6000;
+//
+// function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
+//     return Promise.race([
+//         _scrapeAdDetail(resolveCb, offer),
+//         waitMs(SCRAPE_DETAILS_TIMEOUT)
+//             .then(() => console.warn(`Scraping ${offer.url} resulted in timeout, not retrived in ${SCRAPE_DETAILS_TIMEOUT}ms!`))
+//     ]);
+//
+// }
 
 export {scrapeAdDetail};
