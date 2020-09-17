@@ -10,6 +10,7 @@ import {getAddrGeocode} from "@api/geo/queryAddressGeo";
 import {getMapImagesForOffer} from "@api/geo/generateOfferMapImages";
 
 function scrapeAdTmpLog(offer, action) {
+    return;
     process.stdout.write(`Scraping ad [${offer.url}] detail: /${action}\r`);
 }
 
@@ -69,9 +70,9 @@ function scrapeAdDetail(resolveCb: (res: OfferDetailed) => void, offer: Offer) {
             mapFarImg: mapImgs.far?.img,
             mapStreetImg: mapImgs.street?.img,
         };
-        scrapeAdTmpLog(offer, `pre-prepared offer: ${JSON.stringify(detailedOffer)}`);
+        scrapeAdTmpLog(offer, `pre-prepared offer...`);
         const decoratedOffer = decorateWithIndicators(detailedOffer);
-        scrapeAdTmpLog(offer, `detailer offer: ${JSON.stringify(decoratedOffer)}`);
+        scrapeAdTmpLog(offer, `detailed offer...`);
 
         resolveCb(decoratedOffer);
         if (done) done();
