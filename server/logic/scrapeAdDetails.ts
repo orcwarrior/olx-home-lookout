@@ -11,7 +11,7 @@ import {getMapImagesForOffer} from "@api/geo/generateOfferMapImages";
 
 function scrapeAdTmpLog(offer, action) {
     return;
-    process.stdout.write(`Scraping ad [${offer.url}] detail: /${action}\r`);
+    process.stdout.write(`Scraping ad [${offer.url}]`);
 }
 
 function calculatePrices(offer: Offer, attrs: OfferDetailedAttributes, description: string): OfferDetailedPrices {
