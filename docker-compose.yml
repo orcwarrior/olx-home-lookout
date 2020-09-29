@@ -24,24 +24,24 @@ services:
       timeout: 5s
       retries: 5
 
-  home-lookout-pgadmin:
-    image: dpage/pgadmin4
-    env_file:
-      - ".env"
-      - "secret.env"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN__DEFAULT_EMAIL:-admin@homelookout.pl}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN__DEFAULT_PASSWORD:-admin}
-    volumes:
-      - home_lookout_pgadmin:/root/.pgadmin
-      - ./volumes/pgadmin/servers.json:/pgadmin4/servers.json
-    ports:
-      - "${PGADMIN__PORT:-8010}:80"
-    networks:
-      - home_lookout
-    depends_on:
-      - home-lookout-postgres
-    restart: unless-stopped
+#  home-lookout-pgadmin:
+#    image: dpage/pgadmin4
+#    env_file:
+#      - ".env"
+#      - "secret.env"
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: ${PGADMIN__DEFAULT_EMAIL:-admin@homelookout.pl}
+#      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN__DEFAULT_PASSWORD:-admin}
+#    volumes:
+#      - home_lookout_pgadmin:/root/.pgadmin
+#      - ./volumes/pgadmin/servers.json:/pgadmin4/servers.json
+#    ports:
+#      - "${PGADMIN__PORT:-8010}:80"
+#    networks:
+#      - home_lookout
+#    depends_on:
+#      - home-lookout-postgres
+#    restart: unless-stopped
 
   graphql-engine:
     image: hasura/graphql-engine:v1.3.1.cli-migrations-v2
