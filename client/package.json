@@ -38,7 +38,7 @@
     "grommet": "^2.14.0",
     "isomorphic-fetch": "^2.2.1",
     "js-cookie": "^2.2.1",
-    "next": "^9.5.1",
+    "next": "^11.1.0",
     "next-compose-plugins": "^2.2.0",
     "next-offline": "^4.0.0",
     "next-plugin-graphql": "^0.0.2",
