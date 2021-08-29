@@ -9,14 +9,17 @@
   "outDir": "dist",
   "listFiles": false,
   "traceResolution": false,
-  "typeRoots": [
-    "node_modules/@types"
-  ],
   "compilerOptions": {
+    "module": "commonjs",
+    "target": "ESNext",
+    "moduleResolution": "node",
     "baseUrl": ".",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "downlevelIteration": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
     "paths": {
       "@config/*": [
         "config/*"
@@ -38,9 +41,15 @@
       ]
     },
     "lib": [
-      "es2020.String",
-      "ES2020.Promise",
-      "ESNext.Array"
+      "ESNext"
+    ],
+    "types": [
+      "node"
     ]
-  }
+  },
+  "include": [
+    "./api",
+    "./config",
+    "./db"
+  ]
 }

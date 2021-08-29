@@ -1,10 +1,10 @@
-import Knex = require("knex");
+import {Knex, knex} from "knex";
 import knexPostgis = require("knex-postgis");
 import {db} from "./config";
 
 let knexClient: Knex<any, unknown[]>;
 try {
-    knexClient = Knex({
+    knexClient = knex({
         client: "pg",
         connection: db.knexConnection,
         searchPath: [db.schemaName],

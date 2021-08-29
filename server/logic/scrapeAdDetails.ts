@@ -8,6 +8,7 @@ import {extractAdGallery} from "./extractors/extractAdGallery";
 import {extractStreet} from "@logic/extractors/extractStreet";
 import {getAddrGeocode} from "@api/geo/queryAddressGeo";
 import {getMapImagesForOffer} from "@api/geo/generateOfferMapImages";
+import CheerioAPI = cheerio.CheerioAPI;
 
 function scrapeAdTmpLog(offer, action) {
     return;

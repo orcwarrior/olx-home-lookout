@@ -1,8 +1,13 @@
-import {deburr, snakeCase, fromPairs} from "lodash";
+import {deburr, snakeCase, fromPairs, trim} from "lodash";
 import {Column} from "typeorm";
 import {Offer} from "../helpers/Offer";
 import {addNotice} from "../helpers/notices";
 import {parseValue} from "../utils/parseValue";
+import * as cheerio from "cheerio";
+import CheerioAPI = cheerio.CheerioAPI;
+
+type Cheerio = cheerio.Cheerio;
+
 
 type ESTATE_TYPE = "flat" | "apartament" | "house" | "old apartament" | "loft";
 
@@ -40,12 +45,19 @@ function _normalizeKey(key) {
 
 
 function extractAttrsOLX($: CheerioAPI): [OfferDetailedAttributes, any] {
-    const detail: ScrappedDetails = fromPairs($(".offer-details__item")
+    const paramsWrapper = $("#baxter-above-parameters").nextUntil("ul").next();
+    const [_trash, ...paramsList] = paramsWrapper.find("li > p")
         .toArray()
-        .map(itemEl => [
-            _normalizeKey($(".offer-details__name", itemEl).text()),
-            $(".offer-details__value", itemEl).text()])
-    );
+        .map((el: any) => el?.children[0]?.data);
+    // console.log(`paramsList: `, paramsList);
+    // .map((el: any)=> el?.text())
+    const detail: ScrappedDetails =
+        fromPairs(
+            paramsList
+                .map(plainTxt => plainTxt.split(":"))
+                .map(([key, value]) => [_normalizeKey(key), trim(value)])
+        );
+    
     // console.log(`OLX.detailItems: `, detail);
     return [{
         area: parseValue(detail.powierzchnia?.replace(",", ".")),

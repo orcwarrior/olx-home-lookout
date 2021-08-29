@@ -1,12 +1,13 @@
 import * as path from "path";
 import {snakeCase} from "lodash";
 // import * as pluralize from "pluralize";
-import Knex = require("knex");
+import {Knex, knex} from "knex";
 import {db} from "@config/index";
 import {namingStrategy} from "./naming";
 import knexClient from "@root/knexClient";
 
-export type SchemaExecutor = (knex: Knex<any, unknown[]>) => Promise<any>
+type KnexInstance = Knex<any, unknown[]>;
+export type SchemaExecutor = (knex: KnexInstance) => Promise<any>
 
 export function getTableNameByFilename(callerModule) {
 
@@ -29,10 +30,10 @@ CREATE OR REPLACE VIEW ${view} AS
 }
 
 export function getJoinTableName(leftTable: string, rightTable: string) {
-    return namingStrategy.joinTableName(leftTable, rightTable );
+    return namingStrategy.joinTableName(leftTable, rightTable);
 }
 
-let knexPreClient: Knex<any, unknown[]>;
+let knexPreClient: KnexInstance;
 
 export async function createDbIfNotExists() {
 
@@ -45,7 +46,7 @@ export async function createDbIfNotExists() {
     if (!row || !row.exists) {
         await knexPreClient.raw(`CREATE DATABASE ${db.dbName}`);
         console.log(`Create pgcrypto in: ${db.typeOrmConnection.url}`);
-        await knexClient.raw(`CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;`)
+        await knexClient.raw(`CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;`);
         await knexPreClient;
         return true;
 
@@ -58,7 +59,7 @@ function initKnex() {
     let client;
     try {
         console.log("initializing knexClient...");
-        client = Knex({
+        client = knex({
             client: "pg",
             connection: {...db.knexConnection, database: db.pgDbName},
             searchPath: [db.schemaName],

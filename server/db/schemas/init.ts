@@ -2,7 +2,8 @@ import * as path from "path";
 import * as glob from "glob";
 import knexClient from "../../knexClient";
 import {promisify} from "util";
-import Knex = require("knex");
+import {Knex} from "knex";
+
 import {db} from "../../config";
 import {createConnection} from "typeorm";
 
@@ -41,12 +42,13 @@ async function initSchemas() {
         console.log("Database typeORM connection already initied");
         return typeOrmConnection;
     }
-    console.log(`Initing database schemas ... (${Object.keys(entities)})`);
+    console.log(`Initing database schemas ... (${Object.keys(entities)})`, db);
 
     typeOrmConnection = await createConnection({
         ...db.typeOrmConnection,
         entities: Object.values(entities),
-        synchronize: db.dropDb
+        synchronize: db.dropDb,
+        logging: "all"
     });
 
     if (db.dropDb) {

@@ -12,21 +12,20 @@ import {recalculateLookoutAvgRank} from "@db/logic/recalculateLookoutAvgRank";
 const waitMs = (ms) => new Promise(res => setTimeout(res, ms));
 async function SCHEDULE_UpdateOffers() {
 
-    if (noDisturbHours())
-        return console.warn("Report was rejected due that we're at night currently :)")
+    // if (noDisturbHours())
+    //     return console.warn("Report was rejected due that we're at night currently :)")
 
 
-    const offerLookouts = await knex<LookoutRequest>("LookoutRequests");
+    const offerLookouts: LookoutRequest[] = await knex<LookoutRequest>("LookoutRequests");
 
     console.log("Lookouts", offerLookouts);
 
     const newOffers = await Promise.all(
-        offerLookouts.map(async (lookout: LookoutRequest) => {
+        offerLookouts.map(async (lookout: LookoutRequest): Promise<OfferDetailed[]> => {
             const prevOffers = await knex<Offer>("Offers"); // DK: To prevent duplicates
-            const scrappedOffers = await scrapeAdsList(lookout, prevOffers);
-            return scrappedOffers;
+            return await scrapeAdsList(lookout, prevOffers);
         })
-    ).then(lookoutsOffers => lookoutsOffers.map(offers =>
+    ).then((lookoutsOffers) => lookoutsOffers.flatMap(offers =>
         uniqBy(offers, (ad: OfferDetailed) => ad.url))
     );
 

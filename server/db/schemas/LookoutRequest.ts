@@ -3,12 +3,12 @@ import {OFFER_TYPE} from "../../logic/helpers/Offer";
 import {Offer} from "./Offer";
 
 
-@Entity()
+@Entity({synchronize: true})
 export class LookoutRequest {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToMany(type => Offer, req => req.id)
+    @OneToMany(() => Offer, req => req.id)
     offers: Offer[];
 
     @Index()

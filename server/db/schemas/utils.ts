@@ -1,6 +1,5 @@
 import "reflect-metadata";
-import * as Knex from "knex";
-import {Raw} from "knex";
+import {Knex} from "knex";
 import {postgis_st} from "../../knexClient";
 import {ColumnType} from "typeorm";
 
@@ -11,7 +10,7 @@ import {ColumnType} from "typeorm";
 
 type GeoType = "Point" | "PointZ" | "LineString" | "Polygon";
 
-export type GeographyType = Geography | Raw;
+export type GeographyType = Geography;
 
 export class Geography {
 
@@ -30,7 +29,7 @@ export class Geography {
         return this;
     }
 
-    toPostgisGeography: () => Knex.Raw = () => {
+    toPostgisGeography: () => any = () => {
         return postgis_st.geomFromText(`Point(${this.coordinates.join(" ")})`, this.srid);
     };
     toTypeOrm = () => ({type: this.type, coordinates: this.coordinates});

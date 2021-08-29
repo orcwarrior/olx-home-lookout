@@ -1,4 +1,5 @@
 import {Offer} from "../helpers/Offer";
+import CheerioAPI = cheerio.CheerioAPI;
 
 const OFFER_DESCRIPTION_RATINGS = {
     // Negative
@@ -36,7 +37,7 @@ function rateDescription(description: string): object {
 }
 
 function extractDescription(offer: Offer, $: CheerioAPI): [string, object, number] {
-    const description = $(".section-description > div, #textContent").text();
+    const description = $(`div[data-cy="ad_description"] > div`).text();
     const detailedRatedDesc = rateDescription(`${offer.title} ${description}`);
     const descRatingSum = Object.values(detailedRatedDesc).reduce((sum, n) => (sum + n), 0);
 

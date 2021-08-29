@@ -1,5 +1,6 @@
-import {DefaultNamingStrategy, NamingStrategyInterface} from "typeorm";
+import {DefaultNamingStrategy, NamingStrategyInterface, Table} from "typeorm";
 import * as pluralize from "pluralize";
+import * as crypto from "crypto";
 
 export class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrategyInterface {
 
@@ -27,6 +28,17 @@ export class CustomNamingStrategy extends DefaultNamingStrategy implements Namin
 
     joinTableName(firstTableName: string, secondTableName: string, firstPropertyName?: string, secondPropertyName?: string): string {
         return `${firstTableName}_${secondTableName}`;
+    }
+
+    foreignKeyName(tableOrName: Table | string, columnNames: string[]): string {
+
+        tableOrName = (typeof tableOrName === "string") ? tableOrName : tableOrName.name;
+        const table = tableOrName.replace("public.", "");
+        const name = `${table}_${columnNames[0]}`;
+        const fkName = `FK_${name}_${crypto.createHash("md5").update(name).digest("hex")}`;
+        console.trace(`fkName: `, fkName);
+
+        return fkName;
     }
 
 }

@@ -8,6 +8,7 @@ import {
     parseOffer, updateLookoutInitialLookoutFinished,
     updateLookoutOrdersProcessedCount
 } from "./scrapeAdsList.utils";
+import * as CheerioAPI from "cheerio";
 
 const OFFERS_PARSE_CAP = 900;
 const OFFERS_START_PAGE = 1;
@@ -40,13 +41,13 @@ export default async function scrapeAdsList(lookout: LookoutRequest, previouslyP
                 else {
                     try {
 
-                        const $: CheerioAPI = response.$;
+                        const $: typeof CheerioAPI = response.$;
                         const offers = $(".offer").toArray()
                             .map(((element) => parseOffer(element, $, lookout)));
 
                         const finalOffers = offers
                             .filter(o => !previouslyParsed.some(prev => prev.url === o.url))
-                            .filter(offerMatchLookoutParams(lookout))
+                            .filter(offerMatchLookoutParams(lookout));
 
 
                         console.log(`offers collected: ${offers.length} - (uniq) --> ${finalOffers.length}  url: ${lookout.url}`);

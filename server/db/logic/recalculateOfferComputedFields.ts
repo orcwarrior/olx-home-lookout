@@ -31,6 +31,7 @@ async function recalculateOfferComputedFields(offerId): Promise<Offer> {
         .where({id: offerId})
         .update({
             // @ts-ignore
+            // DK: This returns null?
             prices_perM2: knex.raw(`prices_full / attrs_area`),
             indicators_deal: knex.raw(`(indicators_comfort / 1.5) / (prices_full / attrs_area)`)
 })

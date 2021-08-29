@@ -9,7 +9,8 @@
     "api:prod": "ts-node --files -r tsconfig-paths/register api/index.ts",
     "db:init": "cross-env-shell SERVER__DB_DROP=1  ts-node --files -r tsconfig-paths/register db/init.ts",
     "db:init:once": "cross-env-shell SERVER__DB_INIT_ONCE=1 SERVER__DB_DROP=1 ts-node --files -r tsconfig-paths/register db/init.ts",
-    "db:init:dev": "ts-node-dev --files -r tsconfig-paths/register db/init.ts"
+    "db:init:dev": "ts-node-dev --files -r tsconfig-paths/register db/init.ts",
+    "test:olx-manual": "ts-node-dev --files -r tsconfig-paths/register _manualTests/olxAdScraping.ts"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.2.4",
@@ -20,16 +21,16 @@
     "fetch-retry": "^4.0.1",
     "glob": "^7.1.4",
     "jimp": "^0.16.0",
-    "knex": "^0.20.12",
-    "knex-postgis": "^0.12.0",
+    "knex": "^0.95.4",
+    "knex-postgis": "^0.13.0",
     "lru-cache": "^6.0.0",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
-    "pg": "^7.18.2",
+    "pg": "^8.5.1",
     "pluralize": "^8.0.0",
     "source-map-support": "^0.5.13",
     "sql-fixtures": "^1.0.2",
-    "typeorm": "^0.2.25",
+    "typeorm": "0.2.31",
     "typescript": "^3.9.7"
   },
   "devDependencies": {

@@ -18,6 +18,7 @@ const {
 const isDev = NODE_ENV === "development" || !NODE_ENV;
 
 const postgresUrl = `postgres://${POSTGRES__USER}:${POSTGRES__PASSWORD}@${POSTGRES__HOST}:${POSTGRES__PORT}`;
+console.log(`postgresUrl: `, postgresUrl)
 
 const dropDb = SERVER__DB_DROP !== undefined && !!JSON.parse(String(SERVER__DB_DROP));
 const seedDb = SERVER__DB_SEED !== undefined && !!JSON.parse(String(SERVER__DB_SEED));

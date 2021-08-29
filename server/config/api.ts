@@ -18,5 +18,5 @@ const api = {
     SERVER__SENDGRID_API_KEY,
     SERVER__EMAIL_SENDER,
 };
-
+console.log(`GOOGLE_MAPS_API_KEY: `, GOOGLE_MAPS_API_KEY)
 export {api}

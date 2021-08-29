@@ -3,6 +3,9 @@ import {reparseDistanceDateStr} from "./helpers/reparseDistanceDateStr";
 import {deburr, last} from "lodash";
 import {getQueryBuilder} from "../db/typeOrmInstance";
 import {LookoutRequest, Offer as OfferDB} from "../db/schemas";
+import CheerioAPI = cheerio.CheerioAPI;
+import CheerioElement = cheerio.Element;
+
 
 
 const ROOM_RENT_RGX = /pokoje? |room /i;
