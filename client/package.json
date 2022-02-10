@@ -44,7 +44,7 @@
     "next-plugin-graphql": "^0.0.2",
     "next-redux-wrapper": "^3.0.0",
     "next-with-apollo": "^4.2.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "query-string": "^6.13.1",
     "react": "16.13.1",
     "react-apollo": "^3.0.1",
