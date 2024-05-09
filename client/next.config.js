@@ -1,13 +1,11 @@
 const webpack = require("webpack");
 const withPlugins = require("next-compose-plugins");
 // const withCSS = require("@zeit/next-css");
-const withSass = require("@zeit/next-sass");
 const withGraphql = require("next-plugin-graphql");
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer");
 const withSourceMaps = require("@zeit/next-source-maps")();
 
 const env = require("./env.js");
-const {withOffline, offlinePluginConfig} = require("./next-offline.config");
 
 const sourceMapsconfig = {
     webpack: (config, {isServer, buildId}) => {
@@ -28,7 +26,6 @@ module.exports = withPlugins([
     [withGraphql],
     // [withCSS],
     // [withOffline, offlinePluginConfig],
-    [withSass],
     [withBundleAnalyzer],
 ], {
     analyzeServer: ["server", "both"].includes(process.env.BUNDLE_ANALYZE),

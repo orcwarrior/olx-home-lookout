@@ -42,7 +42,7 @@ async function startupSeed({subfolder = NODE_ENV} = {}) {
 
         try {
             const seedResult = await fixturesInstance.create(enchancedDataSpec);
-            const seedStats = _.mapValues(seedResult, (res) => res.length);
+            const seedStats = _.map(seedResult, (res) => res.length);
             console.log(`DB Seed ended, stats: `, seedStats);
             return {stats: seedStats, statsSeedTimeMS: (new Date().valueOf() - timestamp)};
         } catch (err) {
@@ -144,7 +144,7 @@ function enchanceFixtures(dataSpec) {
         function __processFixtureTable(fixtures, tableName) {
             const __processValueFunc = (fixtureIdx) => (val) => _.isFunction(val) ? val(currentSpec, fixtureIdx, tableName) : val;
 
-            return fixtures.map((fixture, idx) => _.mapValues(fixture, (val) => {
+            return fixtures.map((fixture, idx) => _.map(fixture, (val) => {
                 const _processForThisFixture = __processValueFunc(idx);
                 return Array.isArray(val) ? val.map(_processForThisFixture) : _processForThisFixture(val);
             })).map(rowFn);
@@ -169,7 +169,7 @@ function enchanceFixtures(dataSpec) {
         return Object.entries(currentSpec)
             .reduce((acc, [tableName, fixtures]: any[]) => ({
                 ...acc,
-                [tableName]: fixtures.map(row => _.mapValues(row, escapeColon))
+                [tableName]: fixtures.map(row => _.map(row, escapeColon))
             }), {});
     }
 
