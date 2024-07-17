@@ -1,10 +1,10 @@
-import {Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, OneToMany} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, Index, ManyToOne, OneToMany, BaseEntity} from "typeorm";
 import {OFFER_TYPE} from "../../logic/helpers/Offer";
 import {Offer} from "./Offer";
 
 
 @Entity({synchronize: true})
-export class LookoutRequest {
+export class LookoutRequest extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -21,10 +21,10 @@ export class LookoutRequest {
     @Column({unique: true})
     email: string;
 
-    @Column({type: "float"})
+    @Column({type: "float", comment: "0-1 float value on price importance to the final rank"})
     priceSignificance: number;
 
-    @Column({type: "float"})
+    @Column({type: "float", comment: "0-1 float value on comfort importance to the final rank"})
     comfortSignificance: number;
 
     @Column({type: "float", nullable: true})

@@ -1,9 +1,9 @@
 import {Column} from "typeorm";
-import {OfferDetailedAttributes} from "../extractors/extractAttrs";
-import {LookoutRequest} from "../../db/schemas";
+import {OfferDetailedAttributes} from "../extractors/attrs";
 
 
 type OFFER_TYPE = "RENT" | "PURCHASE" | "ROOM";
+type OFFER_HOST = "olx" | "otodom";
 type Offer = {
     id?: number,
     title: string,
@@ -14,7 +14,9 @@ type Offer = {
     city: string,
     district?: string,
     offerType: OFFER_TYPE,
-    lookoutRequestId: number
+    offerHost: OFFER_HOST,
+    lookoutRequestId: number,
+    wasRefreshed: boolean,
 }
 
 class OfferDetailedPrices {

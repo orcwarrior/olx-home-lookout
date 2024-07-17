@@ -1,4 +1,4 @@
-import CheerioAPI = cheerio.CheerioAPI;
+import {CheerioAPI} from "@quackcode-dk/cheerio";
 
 function extractAdGallery($: CheerioAPI): string[] {
     // @ts-ignore

@@ -1,5 +1,5 @@
 import {Offer} from "../helpers/Offer";
-import CheerioAPI = cheerio.CheerioAPI;
+import {CheerioAPI} from "@quackcode-dk/cheerio";
 
 const OFFER_DESCRIPTION_RATINGS = {
     // Negative
@@ -42,7 +42,6 @@ function extractDescription(offer: Offer, $: CheerioAPI): [string, object, numbe
     const descRatingSum = Object.values(detailedRatedDesc).reduce((sum, n) => (sum + n), 0);
 
     return [description, detailedRatedDesc, descRatingSum];
-
 }
 
 

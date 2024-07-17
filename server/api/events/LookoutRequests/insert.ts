@@ -6,14 +6,14 @@ import {OfferDetailed} from "../../../logic/helpers/Offer";
 import {uniqBy} from "lodash";
 
 const INSERT_LookoutRequests = bufferedHandler(async (data: HandlerArgs<LookoutRequest>) => {
-    const offerBuilder = await getQueryBuilder<Offer>();
+    const offerQueryBuilder = await getQueryBuilder<Offer>();
 
     const offers = await scrapeAdsList(data.new);
 
     const uniqOffers = uniqBy(offers, (ad: OfferDetailed) => ad.url);
     console.log(`offers collected: ${offers.length} - (uniq) --> ${uniqOffers.length}`);
 
-    return Promise.allSettled(uniqOffers.map(offer => offerBuilder
+    return Promise.allSettled(uniqOffers.map(offer => offerQueryBuilder
         .insert()
         .into(Offer)
     // @ts-ignore

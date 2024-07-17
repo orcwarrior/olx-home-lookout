@@ -1,4 +1,4 @@
-# This file was generated based on ".graphqlconfig". Do not edit manually.
+# This file was generated. Do not edit manually.
 
 schema {
     query: query_root
@@ -1354,6 +1354,20 @@ enum order_by {
     desc_nulls_last
 }
 
+scalar _jsonb
+
+scalar _text
+
+scalar float8
+
+scalar geography
+
+scalar geometry
+
+scalar jsonb
+
+scalar timestamp
+
 "expression to compare columns of type Boolean. All fields are combined with logical 'AND'."
 input Boolean_comparison_exp {
     _eq: Boolean
@@ -2517,18 +2531,3 @@ input timestamp_comparison_exp {
     _neq: timestamp
     _nin: [timestamp!]
 }
-
-
-scalar _jsonb
-
-scalar _text
-
-scalar float8
-
-scalar geography
-
-scalar geometry
-
-scalar jsonb
-
-scalar timestamp

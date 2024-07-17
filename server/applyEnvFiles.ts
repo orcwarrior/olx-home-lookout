@@ -1,5 +1,5 @@
-import * as fs from "fs";
-import * as path from "path";
+import  fs from "fs";
+import  path from "path";
 
 //@ts-ignore
 if (process.env.RUNTIME_ENVIROMENT === "docker_compose") return;

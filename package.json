@@ -20,6 +20,7 @@
     "lodash": "4.17.19"
   },
   "devDependencies": {
-    "touch": "^3.1.0"
+    "touch": "^3.1.0",
+    "eslint-plugin-unused-imports": "^4.0.0"
   }
 }

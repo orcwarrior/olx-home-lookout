@@ -1,5 +1,5 @@
-import * as path from "path";
-import * as glob from "glob";
+import path from "path";
+import glob from "glob";
 import knexClient from "../../knexClient";
 import {promisify} from "util";
 import {Knex} from "knex";
@@ -33,7 +33,7 @@ function prepareFiles(prefix = "./"): Promise<SchemaTuple[]> {
     }
 }
 
-import * as entities from "./index";
+import  * as entities from "./index";
 
 let typeOrmConnection;
 
@@ -48,7 +48,8 @@ async function initSchemas() {
         ...db.typeOrmConnection,
         entities: Object.values(entities),
         synchronize: db.dropDb,
-        logging: "all"
+        logging: "all",
+
     });
 
     if (db.dropDb) {

@@ -1,6 +1,6 @@
 import {Router} from "express";
-import * as LRU from "lru-cache";
-import * as ms from "ms";
+import LRU from "lru-cache";
+import ms from "ms";
 import {deburr} from "lodash";
 import fetch from "node-fetch";
 import {api} from "@config/index";

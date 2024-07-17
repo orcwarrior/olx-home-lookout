@@ -1,7 +1,7 @@
-import * as _ from "lodash";
-import * as sqlFixtures from "sql-fixtures";
-import * as fs from "fs";
-import * as path from "path";
+import  _ from "lodash";
+import  sqlFixtures from "sql-fixtures";
+import  fs from "fs";
+import  path from "path";
 import {promisify, inspect} from "util";
 import {db, NODE_ENV} from "@config/index";
 import {getJoinTableName, modelNameToTableName} from "../utils";

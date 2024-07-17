@@ -1,4 +1,4 @@
-import {extractAttrs, OfferDetailedAttributes} from "./extractors/extractAttrs";
+import {extractAttrs, OfferDetailedAttributes} from "./extractors/attrs";
 import {extractDescription} from "./extractors/extractRateDescription";
 import {Offer, OfferDetailed, OfferDetailedPrices} from "./helpers/Offer";
 import {addNotice} from "./helpers/notices";
@@ -8,7 +8,7 @@ import {extractAdGallery} from "./extractors/extractAdGallery";
 import {extractStreet} from "@logic/extractors/extractStreet";
 import {getAddrGeocode} from "@api/geo/queryAddressGeo";
 import {getMapImagesForOffer} from "@api/geo/generateOfferMapImages";
-import CheerioAPI = cheerio.CheerioAPI;
+import {CheerioAPI} from "@quackcode-dk/cheerio";
 
 function scrapeAdTmpLog(offer, action) {
     return;

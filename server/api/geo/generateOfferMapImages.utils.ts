@@ -1,10 +1,10 @@
-import * as Jimp from "jimp";
+import  Jimp from "jimp";
 import {api} from "@config/index";
 import {GeoBounds} from "@api/geo/queryAddressGeo";
 import {isUndefined} from "lodash";
 import fetch from "node-fetch";
-import * as fs from "fs";
-import * as path from "path";
+import  fs from "fs";
+import  path from "path";
 
 const fetchWithRetry = require("fetch-retry")(fetch, {
     retries: 4,
@@ -69,7 +69,7 @@ async function downloadFile(url, path) {
             reject(err);
         });
         fileStream.on("finish", function () {
-            resolve();
+            resolve(res.body);
         });
     });
 };

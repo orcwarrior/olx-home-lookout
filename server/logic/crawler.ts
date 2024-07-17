@@ -1,4 +1,4 @@
-import * as Crawler from "crawler";
+import Crawler from "../lib/crawler/crawler";
 
 
 const crawler = new Crawler({

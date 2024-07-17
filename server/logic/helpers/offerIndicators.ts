@@ -1,17 +1,17 @@
 import {OfferDetailed, OfferDetails} from "./Offer";
-import {ESTATE_TYPE} from "../extractors/extractAttrs";
+import {ESTATE_TYPE} from "../extractors/attrs";
 
 function _rateEstateTypeComfort(type: ESTATE_TYPE) {
     switch (type) {
-        case "apartament":
-        case "loft":
-            return 20;
-        case "house":
-            return 20;
-        case "flat":
-            return 10;
-        case "old apartament":
-            return -5;
+    case "apartament":
+    case "loft":
+        return 20;
+    case "house":
+        return 20;
+    case "flat":
+        return 10;
+    case "old apartament":
+        return -5;
     }
 }
 

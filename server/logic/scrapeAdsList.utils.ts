@@ -3,29 +3,38 @@ import {reparseDistanceDateStr} from "./helpers/reparseDistanceDateStr";
 import {deburr, last} from "lodash";
 import {getQueryBuilder} from "../db/typeOrmInstance";
 import {LookoutRequest, Offer as OfferDB} from "../db/schemas";
-import CheerioAPI = cheerio.CheerioAPI;
-import CheerioElement = cheerio.Element;
-
+import {CheerioAPI, Element} from "@quackcode-dk/cheerio";
 
 
 const ROOM_RENT_RGX = /pokoje? |room /i;
 
-function parseOffer(el: CheerioElement, $: CheerioAPI, lookout: LookoutRequest): Offer {
+function parseOffer(el: Element, $: CheerioAPI, lookout: LookoutRequest): Offer {
     const sub$ = (selector) => $(selector, el);
-    const title = sub$("a > strong").text();
-    const _priceBase = parseFloat(sub$(".price > strong").text().replace(/zł| /gi, ""));
-    const urlNormalized = sub$("td[valign=top] a").attr("href").replace(/\??#.+$/, "").replace("?","");
-    const [city, district] = sub$("[data-icon=location-filled]").parent().text().split(",");
+    const title = sub$(`*[data-cy="ad-card-title"] a > h6`).text();
+    const _priceBase = parseFloat(sub$("*[data-testid=\"ad-price\"]").text().replace(/zł| /gi, ""));
+    const urlNormalized = sub$("*[data-cy=\"ad-card-title\"] a").attr("href")
+        .replace(/\??#.+$/, "")
+        .replace("?","");
+
+    const locationAndDate = sub$(`*[data-testid="location-date"]`).text();
+    const [location, dateDescription] = locationAndDate.split(" - ");
+    const [city, district] = location.split(",").map(s => s.trim());
+    const [_date, _refreshedDate] = dateDescription.split("Odświeżono ");
+    const wasRefreshed = !!_refreshedDate; // DK: Dates in 2 item means "Odświeżono " was found
+    const offerHost = urlNormalized.includes("otodom") ? "otodom" : "olx";
+
     return {
         title,
-        url: urlNormalized,
-        mainImg: sub$("img.fleft").attr("src"),
+        url: offerHost === "olx" ? ("https://www.olx.pl" + urlNormalized) : urlNormalized,
+        mainImg: sub$("a img").attr("src"),
         _priceBase,
-        createdAt: reparseDistanceDateStr(sub$("[data-icon=clock]").parent().text()),
+        createdAt: reparseDistanceDateStr(_date ?? _refreshedDate),
         city: city.trim(),
         district: district && `${city.trim()}, ${district.trim()}`,
         offerType: _getOfferType(),
-        lookoutRequestId: lookout.id
+        offerHost,
+        lookoutRequestId: lookout.id,
+        wasRefreshed
     };
 
     function _getOfferType(): OFFER_TYPE {
@@ -72,7 +81,6 @@ async function updateLookoutInitialLookoutFinished(lookout: LookoutRequest) {
         .set({initialLookoutFinished: true})
         .execute()
         .catch(err => console.warn("Update Lookout err: ", err));
-
 }
 
 

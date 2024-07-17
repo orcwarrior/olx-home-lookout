@@ -1,6 +1,6 @@
-import * as path from "path";
+import  path from "path";
 import {snakeCase} from "lodash";
-// import * as pluralize from "pluralize";
+// import  pluralize from "pluralize";
 import {Knex, knex} from "knex";
 import {db} from "@config/index";
 import {namingStrategy} from "./naming";

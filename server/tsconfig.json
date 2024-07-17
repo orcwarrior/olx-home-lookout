@@ -1,25 +1,22 @@
 {
-  "module": "commonjs",
-  "esModuleInterop": true,
-  "allowSyntheticDefaultImports": true,
-  "target": "es6",
   "noImplicitAny": true,
-  "moduleResolution": "node",
   "sourceMap": true,
   "outDir": "dist",
   "listFiles": false,
   "traceResolution": false,
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "CommonJS",
     "target": "ESNext",
     "moduleResolution": "node",
-    "baseUrl": ".",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "downlevelIteration": true,
     "strict": false,
     "noImplicitAny": false,
     "noImplicitReturns": false,
+    "baseUrl": ".",
     "paths": {
       "@config/*": [
         "config/*"
@@ -50,6 +47,7 @@
   "include": [
     "./api",
     "./config",
-    "./db"
+    "./db",
+    "./lib"
   ]
 }

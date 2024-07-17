@@ -1,6 +1,6 @@
 import {DefaultNamingStrategy, NamingStrategyInterface, Table} from "typeorm";
-import * as pluralize from "pluralize";
-import * as crypto from "crypto";
+import  pluralize from "pluralize";
+import  crypto from "crypto";
 
 export class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrategyInterface {
 

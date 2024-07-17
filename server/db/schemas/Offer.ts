@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, RelationId} from "typeorm";
 import {OFFER_TYPE, OfferDetailedPrices, OfferIndicators} from "../../logic/helpers/Offer";
-import {OfferDetailedAttributes} from "../../logic/extractors/extractAttrs";
+import {OfferDetailedAttributes} from "../../logic/extractors/attrs";
 import {LookoutRequest} from "./LookoutRequest";
 import {LookoutReport} from "@db/schemas/LookoutReport";
 import {GeographyType} from "@db/schemas/utils";

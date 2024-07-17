@@ -1,7 +1,7 @@
 import {LookoutReport, LookoutRequest} from "@db/schemas";
 import {api} from "@config/index";
 import {crawlerRateLimitedQueue} from "@logic/crawler";
-import * as sgMail from "@sendgrid/mail";
+import sgMail from "@sendgrid/mail";
 import {format} from "date-fns";
 
 sgMail.setApiKey(api.SERVER__SENDGRID_API_KEY);

@@ -8,7 +8,7 @@ import {
     parseOffer, updateLookoutInitialLookoutFinished,
     updateLookoutOrdersProcessedCount
 } from "./scrapeAdsList.utils";
-import * as CheerioAPI from "cheerio";
+import {CheerioAPI} from "@quackcode-dk/cheerio";
 
 const OFFERS_PARSE_CAP = 900;
 const OFFERS_START_PAGE = 1;
@@ -41,9 +41,9 @@ export default async function scrapeAdsList(lookout: LookoutRequest, previouslyP
                 else {
                     try {
 
-                        const $: typeof CheerioAPI = response.$;
-                        const offers = $(".offer").toArray()
-                            .map(((element) => parseOffer(element, $, lookout)));
+                        const $: CheerioAPI = response.$ as unknown as CheerioAPI;
+                        const offers = $(`[data-cy="l-card"]`).toArray()
+                            .map(((element) => parseOffer(element as any, $, lookout)));
 
                         const finalOffers = offers
                             .filter(o => !previouslyParsed.some(prev => prev.url === o.url))
